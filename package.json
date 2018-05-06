@@ -4,6 +4,7 @@
   "private": true,
   "devDependencies": {
     "babel-plugin-import": "^1.7.0",
+    "flow-bin": "^0.71.0",
     "jest-expo": "26.0.0",
     "react-native-scripts": "1.13.2",
     "react-test-renderer": "16.3.0-alpha.1"
@@ -22,8 +23,14 @@
   "dependencies": {
     "antd-mobile": "^2.1.8",
     "expo": "^26.0.0",
+    "ramda": "^0.25.0",
     "react": "16.3.0",
     "react-native": "~0.54.1",
-    "react-native-navigation": "^1.1.457"
+    "react-navigation": "^1.5.12",
+    "react-redux": "^5.0.7",
+    "redux": "^4.0.0",
+    "redux-observable": "0.16",
+    "redux-persist": "^5.9.1",
+    "rxjs": "^5.5.10"
   }
 }
