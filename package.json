@@ -28,6 +28,7 @@
     "rc-form": "^2.2.0",
     "react": "16.3.0",
     "react-native": "~0.54.1",
+    "react-native-vector-icons": "^4.6.0",
     "react-navigation": "^1.5.12",
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",
@@ -35,7 +36,7 @@
     "redux-devtools-log-monitor": "^1.4.0",
     "redux-logger": "^3.0.6",
     "redux-observable": "0.16",
-    "redux-persist": "^5.9.1",
+    "redux-persist": "5.6.12",
     "redux-reset": "^0.3.0",
     "rxjs": "^5.5.10"
   }

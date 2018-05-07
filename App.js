@@ -11,15 +11,38 @@ import { SignInScreenContainer } from './src/screen/SignIn.screen';
 import { TodoListScreenContainer } from './src/screen/TodoList.screen';
 import { ProfileScreenContainer } from './src/screen/Profile.screen';
 
+import Ionicons from 'react-native-vector-icons/Ionicons';
+
 const { store, persistor } = createStore();
+
+const TodoStack = StackNavigator({
+  TodoList: TodoListScreenContainer
+});
 
 const MainTab = TabNavigator(
   {
-    Todo: TodoListScreenContainer,
+    Todo: {
+      screen: TodoStack
+    },
     Profile: ProfileScreenContainer
   },
   {
-    initialRouteName: 'Profile'
+    /* initialRouteName: 'Profile', */
+    navigationOptions: ({ navigation }) => ({
+      tabBarIcon: ({ focused, tintColor }) => {
+        const { routeName } = navigation.state;
+        let iconName;
+        if (routeName === 'Todo') {
+          iconName = `ios-paper${focused ? '' : '-outline'}`;
+        } else if (routeName === 'Profile') {
+          iconName = `ios-person${focused ? '' : '-outline'}`;
+        } else if (routeName === 'Calendar') {
+          iconName = `ios-calendar{focused ? '' : '-outline'}`;
+        }
+
+        return <Ionicons name={iconName} size={25} color={tintColor} />;
+      }
+    })
   }
 );
 

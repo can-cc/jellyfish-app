@@ -5343,6 +5343,14 @@ react-native-vector-icons@4.5.0:
     prop-types "^15.5.10"
     yargs "^8.0.2"
 
+react-native-vector-icons@^4.6.0:
+  version "4.6.0"
+  resolved "http://registry.npm.taobao.org/react-native-vector-icons/download/react-native-vector-icons-4.6.0.tgz#e4014311ffa6de397d914ffc31b7097a874cc8d5"
+  dependencies:
+    lodash "^4.0.0"
+    prop-types "^15.5.10"
+    yargs "^8.0.2"
+
 react-native@~0.54.1:
   version "0.54.4"
   resolved "http://registry.npm.taobao.org/react-native/download/react-native-0.54.4.tgz#19c6c598f6acf04f1c032fe9a1812f0c640fa8b7"
@@ -5567,9 +5575,9 @@ redux-observable@0.16:
   version "0.16.0"
   resolved "http://registry.npm.taobao.org/redux-observable/download/redux-observable-0.16.0.tgz#dc431d0f47a9c3af232639d6bdd70d80c1b620d9"
 
-redux-persist@^5.9.1:
-  version "5.9.1"
-  resolved "http://registry.npm.taobao.org/redux-persist/download/redux-persist-5.9.1.tgz#83bd4abd526ef768f63fceee338fa9d8ed6552d6"
+redux-persist@5.6.12:
+  version "5.6.12"
+  resolved "http://registry.npm.taobao.org/redux-persist/download/redux-persist-5.6.12.tgz#7c65f7d9cdd04104507526ef02b30423c4b85743"
 
 redux-reset@^0.3.0:
   version "0.3.0"

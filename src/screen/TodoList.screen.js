@@ -1,15 +1,54 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { Button } from 'antd-mobile';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { Button, List, InputItem, WhiteSpace } from 'antd-mobile';
 import { StackNavigator } from 'react-navigation';
 import { bindActionCreators } from 'redux';
-import { makeActionRequestCollection } from '../action/actions';
 import { connect } from 'react-redux';
+import { createForm } from 'rc-form';
+import { makeActionRequestCollection } from '../action/actions';
+
+class TodoCreater extends React.Component<{
+  onSubmit: any
+}> {
+  submit = () => {
+    console.log('hihihi----------');
+    this.props.form.validateFields((error, value: { todoContent: string }) => {
+      this.onSubmit(value);
+    });
+  };
+
+  render() {
+    const { getFieldProps } = this.props.form;
+
+    return (
+      <List>
+        <InputItem
+          {...getFieldProps('todoContent', {
+            rules: [{ required: true }]
+          })}
+          onSubmitEditing={this.submit}
+          placeholder="Add Todo..."
+        />
+      </List>
+    );
+  }
+}
+
+const TodoCreaterWrapper = createForm()(TodoCreater);
 
 class TodoListScreen extends React.Component {
+  static navigationOptions = {
+    title: 'Todo List'
+  };
+
+  createTodo = () => {
+    this.props.actions.CREATE_TODO_REQUEST({});
+  };
+
   render() {
     return (
       <View style={styles.container}>
+        <TodoCreaterWrapper onSubmit={this.createTodo} />
         <Text>List</Text>
       </View>
     );
@@ -17,12 +56,7 @@ class TodoListScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center'
-  }
+  container: {}
 });
 
 export const TodoListScreenContainer = connect(

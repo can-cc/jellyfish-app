@@ -17,6 +17,10 @@ class SignInScreen extends Component<{
   epicAdapterService: any,
   navigation: any
 }> {
+  static navigationOptions = {
+    title: 'Login'
+  };
+
   submit = () => {
     this.props.form.validateFields((error, value: { uername: string, password: string }) => {
       this.props.actions.SIGNIN_REQUEST(value);

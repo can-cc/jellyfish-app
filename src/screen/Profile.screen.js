@@ -7,6 +7,10 @@ import { makeActionRequestCollection } from '../action/actions';
 import { connect } from 'react-redux';
 
 class ProfileScreen extends React.Component {
+  static navigationOptions = {
+    title: 'Profile'
+  };
+
   logout = () => {
     this.props.logout();
     this.props.navigation.navigate('SignIn');
