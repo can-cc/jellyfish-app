@@ -1,19 +1,86 @@
-import React from 'react';
+// @flow
+import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { Button } from 'antd-mobile';
+import { connect } from 'react-redux';
 import { StackNavigator } from 'react-navigation';
+import { bindActionCreators } from 'redux';
+import { WingBlank, WhiteSpace, Button, List, InputItem } from 'antd-mobile';
+import { createForm } from 'rc-form';
+import { makeActionRequestCollection } from '../action/actions';
+import epicAdapterService from '../service/single/epic-adapter.service';
+import Actions from '../action/actions';
 
-class App extends React.Component {
+import 'rxjs/add/operator/take';
+
+class SignInScreen extends Component<{
+  actions: any,
+  epicAdapterService: any,
+  navigation: any
+}> {
+  submit = () => {
+    this.props.form.validateFields((error, value: { uername: string, password: string }) => {
+      this.props.actions.SIGNIN_REQUEST(value);
+      this.props.epicAdapterService.input$
+        .ofType(Actions.SIGNIN.SUCCESS)
+        .take(1)
+        .subscribe(() => {
+          this.props.navigation.navigate('Main');
+        });
+    });
+  };
+
   render() {
+    const { getFieldProps } = this.props.form;
     return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
-        <Button type="warning" onClick={() => this.props.navigation.navigate('Details')}>
-          antd-mobile2 button
-        </Button>
+      <View>
+        <WhiteSpace size="lg" />
+        <WhiteSpace size="lg" />
+        <WhiteSpace size="lg" />
+        <WhiteSpace size="lg" />
+        <WhiteSpace size="lg" />
+        <WhiteSpace size="lg" />
+        <WhiteSpace size="lg" />
+        <WhiteSpace size="lg" />
+        <WhiteSpace size="lg" />
+        <WingBlank>
+          <List>
+            <InputItem
+              labelNumber={5}
+              {...getFieldProps('username', {
+                rules: [{ required: true }]
+              })}
+            >
+              Username
+            </InputItem>
+            <InputItem
+              labelNumber={5}
+              type="password"
+              {...getFieldProps('password', {
+                rules: [{ required: true }]
+              })}
+            >
+              password
+            </InputItem>
+          </List>
+
+          <WhiteSpace size="lg" />
+          <Button type="warning" onClick={this.submit}>
+            Sign In
+          </Button>
+        </WingBlank>
       </View>
     );
   }
 }
+
+export const SignInScreenContainer = connect(
+  state => {
+    return {};
+  },
+  dispatch => {
+    return {
+      actions: bindActionCreators(makeActionRequestCollection(), dispatch),
+      epicAdapterService
+    };
+  }
+)(createForm()(SignInScreen));

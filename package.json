@@ -4,10 +4,11 @@
   "private": true,
   "devDependencies": {
     "babel-plugin-import": "^1.7.0",
-    "flow-bin": "^0.71.0",
-    "jest-expo": "26.0.0",
-    "react-native-scripts": "1.13.2",
-    "react-test-renderer": "16.3.0-alpha.1"
+    "eslint": "^4.16.0",
+    "eslint-plugin-flowtype": "^2.41.0",
+    "eslint-plugin-prettier": "^2.5.0",
+    "eslint-plugin-react": "^7.5.1",
+    "react-native-scripts": "^1.14.0"
   },
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
@@ -24,13 +25,18 @@
     "antd-mobile": "^2.1.8",
     "expo": "^26.0.0",
     "ramda": "^0.25.0",
+    "rc-form": "^2.2.0",
     "react": "16.3.0",
     "react-native": "~0.54.1",
     "react-navigation": "^1.5.12",
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",
+    "redux-devtools": "^3.4.1",
+    "redux-devtools-log-monitor": "^1.4.0",
+    "redux-logger": "^3.0.6",
     "redux-observable": "0.16",
     "redux-persist": "^5.9.1",
+    "redux-reset": "^0.3.0",
     "rxjs": "^5.5.10"
   }
 }
