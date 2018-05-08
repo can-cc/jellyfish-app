@@ -1,3 +1,4 @@
+// @flow
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { Button, List, InputItem, WhiteSpace } from 'antd-mobile';
@@ -11,9 +12,8 @@ class TodoCreater extends React.Component<{
   onSubmit: any
 }> {
   submit = () => {
-    console.log('hihihi----------');
     this.props.form.validateFields((error, value: { todoContent: string }) => {
-      this.onSubmit(value);
+      this.props.onSubmit(value.todoContent);
     });
   };
 
@@ -41,8 +41,8 @@ class TodoListScreen extends React.Component {
     title: 'Todo List'
   };
 
-  createTodo = () => {
-    this.props.actions.CREATE_TODO_REQUEST({});
+  createTodo = (content: string) => {
+    this.props.actions.CREATE_TODO_REQUEST({ content });
   };
 
   render() {

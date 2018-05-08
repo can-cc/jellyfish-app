@@ -4,9 +4,12 @@ import { createEpicMiddleware } from 'redux-observable';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { combineReducers } from 'redux';
-import epicAdapterService from '../service/single/epic-adapter.service';
 import reduxReset from 'redux-reset';
 import logger from 'redux-logger';
+import { setupAxiosJwtHeader } from '../helper/http-intercetor';
+import epicAdapterService from '../service/single/epic-adapter.service';
+
+setupAxiosJwtHeader();
 
 import { reducers } from '../reducer';
 import rootEpic from '../epic';
@@ -31,7 +34,7 @@ function setupStore() {
 export default () => {
   const store = setupStore();
   const persistor = persistStore(store, null, () => {
-    console.log(store.getState());
+    setupAxiosJwtHeader(store.getState().auth.token);
   });
   return { store, persistor };
 };

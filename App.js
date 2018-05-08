@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { Button } from 'antd-mobile';
 import { StackNavigator, SwitchNavigator, TabNavigator } from 'react-navigation';
 import { PersistGate } from 'redux-persist/integration/react';
+
 import createStore from './src/store/store';
 
 import { AuthLoadingScreenContainer } from './src/screen/AuthLoading.screen';

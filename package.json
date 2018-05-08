@@ -16,7 +16,8 @@
     "eject": "react-native-scripts eject",
     "android": "react-native-scripts android",
     "ios": "react-native-scripts ios",
-    "test": "jest"
+    "test": "jest",
+    "proxy": "mitmproxy -R http://127.0.0.1:8000 -p 8888 --anticache"
   },
   "jest": {
     "preset": "jest-expo"
