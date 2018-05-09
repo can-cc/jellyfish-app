@@ -13,3 +13,9 @@ export const CREATE_TODO = action$ => {
       .catch(Actions.CREATE_TODO.failure);
   });
 };
+
+export const GET_TODO_LIST = action$ => {
+  return action$.ofType(Actions.GET_TODO_LIST).mergeMap(action => {
+    return axios.get(`${API_BASE}/todo?userId=${action.payload.userId}`);
+  });
+};

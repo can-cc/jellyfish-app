@@ -14,6 +14,9 @@ class TodoCreater extends React.Component<{
   submit = () => {
     this.props.form.validateFields((error, value: { todoContent: string }) => {
       this.props.onSubmit(value.todoContent);
+      this.props.form.setFieldsValue({
+        todoContent: ''
+      });
     });
   };
 
@@ -41,6 +44,10 @@ class TodoListScreen extends React.Component {
     title: 'Todo List'
   };
 
+  componentWillMount() {
+    this.props.actions.GET_TODO_LIST_REQUEST();
+  }
+
   createTodo = (content: string) => {
     this.props.actions.CREATE_TODO_REQUEST({ content });
   };
@@ -61,7 +68,9 @@ const styles = StyleSheet.create({
 
 export const TodoListScreenContainer = connect(
   state => {
-    return {};
+    return {
+      userId: state.auth.userId
+    };
   },
   dispatch => {
     return {
