@@ -27,6 +27,5 @@ class AuthLoadingScreen extends Component<{
 }
 
 export const AuthLoadingScreenContainer = connect(state => {
-  console.log(state);
   return { token: state.auth.token };
 })(AuthLoadingScreen);

@@ -15,7 +15,12 @@ export const CREATE_TODO = action$ => {
 };
 
 export const GET_TODO_LIST = action$ => {
-  return action$.ofType(Actions.GET_TODO_LIST).mergeMap(action => {
-    return axios.get(`${API_BASE}/todo?userId=${action.payload.userId}`);
+  return action$.ofType(Actions.GET_TODO_LIST.REQUEST).mergeMap(action => {
+    return axios
+      .get(`${API_BASE}/todo?userId=${action.payload.userId}`)
+      .then(response => {
+        return Actions.GET_TODO_LIST.success(response.data);
+      })
+      .catch(Actions.GET_TODO_LIST.failure);
   });
 };
