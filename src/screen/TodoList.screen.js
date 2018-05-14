@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import { Button, List, InputItem, WhiteSpace } from 'antd-mobile';
+import { Button, List, Checkbox, InputItem, WhiteSpace } from 'antd-mobile';
 
 import { StackNavigator } from 'react-navigation';
 import { bindActionCreators } from 'redux';
@@ -10,6 +10,7 @@ import { createForm } from 'rc-form';
 import { makeActionRequestCollection } from '../action/actions';
 
 const Item = List.Item;
+const CheckboxItem = Checkbox.CheckboxItem;
 
 class TodoCreater extends React.Component<{
   onSubmit: any
@@ -67,7 +68,13 @@ class TodoListScreen extends React.Component<{
         <TodoCreaterWrapper onSubmit={this.createTodo} />
         <List className="my-list">
           {this.props.todos.map(todo => {
-            return <Item key={todo.id}>{todo.content}</Item>;
+            return (
+              <Item key={todo.id}>
+                <CheckboxItem multipleLine onChange={() => {}}>
+                  {todo.content}
+                </CheckboxItem>
+              </Item>
+            );
           })}
         </List>
       </View>
