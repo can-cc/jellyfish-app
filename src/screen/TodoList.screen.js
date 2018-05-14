@@ -52,7 +52,8 @@ class TodoListScreen extends React.Component<{
 
   componentWillMount() {
     this.props.actions.GET_TODO_LIST_REQUEST({
-      userId: this.props.userId
+      userId: this.props.userId,
+      done: false
     });
   }
 
