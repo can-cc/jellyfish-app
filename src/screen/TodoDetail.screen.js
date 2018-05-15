@@ -1,38 +1,35 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { Button } from 'antd-mobile';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { Button, List, Input } from 'antd-mobile';
 import { StackNavigator } from 'react-navigation';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { makeActionRequestCollection } from '../action/actions';
 
+const InputItem = Input.InputItem;
+
 class TodoDetailScreen extends React.Component {
   static navigationOptions = {
-    title: 'Create Todo'
-    /* headerRight: <TouchableOpacity onPress={this.onPressDone}>Save</TouchableOpacity> */
+    title: 'Create Todo',
+    headerRight: <TouchableOpacity onPress={this.onPressDone}>Save</TouchableOpacity>
   };
 
-  onPressDone = () => {
-    console.log('done');
-  };
+  onPressDone = () => {};
 
   render() {
     return (
       <View style={styles.container}>
-        <WingBlank>
-          <List>
-            <InputItem
-              labelNumber={5}
-              {...getFieldProps('username', {
-                rules: [{ required: true }]
-              })}
-            >
-              Todo
-            </InputItem>
-          </List>
-
-          <WhiteSpace size="lg" />
-        </WingBlank>
+        <List>
+          <InputItem
+            labelNumber={5}
+            {...getFieldProps('username', {
+              rules: [{ required: true }]
+            })}
+          >
+            Todo
+          </InputItem>
+        </List>
+        <WhiteSpace size="lg" />
       </View>
     );
   }
@@ -47,7 +44,7 @@ const styles = StyleSheet.create({
   }
 });
 
-export const TodoListScreenContainer = connect(
+export const TodoDetailScreenContainer = connect(
   state => {
     return {};
   },

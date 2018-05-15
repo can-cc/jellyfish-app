@@ -1,47 +1,17 @@
 // @flow
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import { Button, List, Checkbox, InputItem, WhiteSpace } from 'antd-mobile';
+import { Button, List, Checkbox, InputItem, WhiteSpace, Flex } from 'antd-mobile';
 
 import { StackNavigator } from 'react-navigation';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { createForm } from 'rc-form';
 import { makeActionRequestCollection } from '../action/actions';
+import { TodoCreater } from '../component/todo/TodoCreater.component';
 
 const Item = List.Item;
 const CheckboxItem = Checkbox.CheckboxItem;
-
-class TodoCreater extends React.Component<{
-  onSubmit: any
-}> {
-  submit = () => {
-    this.props.form.validateFields((error, value: { todoContent: string }) => {
-      this.props.onSubmit(value.todoContent);
-      this.props.form.setFieldsValue({
-        todoContent: ''
-      });
-    });
-  };
-
-  render() {
-    const { getFieldProps } = this.props.form;
-
-    return (
-      <List>
-        <InputItem
-          {...getFieldProps('todoContent', {
-            rules: [{ required: true }]
-          })}
-          onSubmitEditing={this.submit}
-          placeholder="Add Todo..."
-        />
-      </List>
-    );
-  }
-}
-
-const TodoCreaterWrapper = createForm()(TodoCreater);
 
 class TodoListScreen extends React.Component<{
   userId: string,
@@ -62,17 +32,26 @@ class TodoListScreen extends React.Component<{
     this.props.actions.CREATE_TODO_REQUEST({ content });
   };
 
+  onTodoClick = () => {
+    this.props.navigation.navigate('TodoDetail');
+  };
+
   render() {
     return (
       <View style={styles.container}>
-        <TodoCreaterWrapper onSubmit={this.createTodo} />
-        <List className="my-list">
+        <TodoCreater onSubmit={this.createTodo} />
+        <List>
           {this.props.todos.map(todo => {
             return (
-              <Item key={todo.id}>
-                <CheckboxItem multipleLine onChange={() => {}}>
-                  {todo.content}
-                </CheckboxItem>
+              <Item key={todo.id} onClick={this.onTodoClick}>
+                <Flex>
+                  <Flex.Item>
+                    <Checkbox />
+                  </Flex.Item>
+                  <Flex.Item>
+                    <View>{todo.content}</View>
+                  </Flex.Item>
+                </Flex>
               </Item>
             );
           })}

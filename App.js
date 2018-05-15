@@ -10,6 +10,7 @@ import createStore from './src/store/store';
 import { AuthLoadingScreenContainer } from './src/screen/AuthLoading.screen';
 import { SignInScreenContainer } from './src/screen/SignIn.screen';
 import { TodoListScreenContainer } from './src/screen/TodoList.screen';
+import { TodoDetailScreenContainer } from './src/screen/TodoDetail.screen';
 import { ProfileScreenContainer } from './src/screen/Profile.screen';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -17,7 +18,8 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 const { store, persistor } = createStore();
 
 const TodoStack = StackNavigator({
-  TodoList: TodoListScreenContainer
+  TodoList: TodoListScreenContainer,
+  TodoDetail: TodoDetailScreenContainer
 });
 
 const MainTab = TabNavigator(
