@@ -45,12 +45,8 @@ class TodoListScreen extends React.Component<{
             return (
               <Item key={todo.id} onClick={this.onTodoClick}>
                 <Flex>
-                  <Flex.Item>
-                    <Checkbox />
-                  </Flex.Item>
-                  <Flex.Item>
-                    <View>{todo.content}</View>
-                  </Flex.Item>
+                  <Checkbox />
+                  <Text style={{ color: 'black', marginLeft: 15 }}>{todo.content}</Text>
                 </Flex>
               </Item>
             );

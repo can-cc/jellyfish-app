@@ -1,12 +1,11 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import { Button, List, Input } from 'antd-mobile';
+import { WingBlank, WhiteSpace, Button, List, InputItem } from 'antd-mobile';
 import { StackNavigator } from 'react-navigation';
 import { bindActionCreators } from 'redux';
+import { createForm } from 'rc-form';
 import { connect } from 'react-redux';
 import { makeActionRequestCollection } from '../action/actions';
-
-const InputItem = Input.InputItem;
 
 class TodoDetailScreen extends React.Component {
   static navigationOptions = {
@@ -17,6 +16,7 @@ class TodoDetailScreen extends React.Component {
   onPressDone = () => {};
 
   render() {
+    const { getFieldProps } = this.props.form;
     return (
       <View style={styles.container}>
         <List>
@@ -53,4 +53,4 @@ export const TodoDetailScreenContainer = connect(
       actions: bindActionCreators(makeActionRequestCollection(), dispatch)
     };
   }
-)(TodoDetailScreen);
+)(createForm()(TodoDetailScreen));

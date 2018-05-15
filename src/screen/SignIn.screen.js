@@ -37,15 +37,6 @@ class SignInScreen extends Component<{
     const { getFieldProps } = this.props.form;
     return (
       <View>
-        <WhiteSpace size="lg" />
-        <WhiteSpace size="lg" />
-        <WhiteSpace size="lg" />
-        <WhiteSpace size="lg" />
-        <WhiteSpace size="lg" />
-        <WhiteSpace size="lg" />
-        <WhiteSpace size="lg" />
-        <WhiteSpace size="lg" />
-        <WhiteSpace size="lg" />
         <WingBlank>
           <List>
             <InputItem
