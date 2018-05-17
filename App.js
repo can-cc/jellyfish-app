@@ -15,6 +15,8 @@ import { ProfileScreenContainer } from './src/screen/Profile.screen';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
+import { PersistorContext } from './src/component/context/PersistorContext';
+
 const { store, persistor } = createStore();
 
 const TodoStack = StackNavigator({
@@ -30,7 +32,7 @@ const MainTab = TabNavigator(
     Profile: ProfileScreenContainer
   },
   {
-    /* initialRouteName: 'Profile', */
+    /* initialRouteName: 'Profile' */
     navigationOptions: ({ navigation }) => ({
       tabBarIcon: ({ focused, tintColor }) => {
         const { routeName } = navigation.state;
@@ -65,7 +67,9 @@ export default class Main extends Component {
     return (
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-          <AppSwitchNavigator />
+          <PersistorContext.Provider value={persistor}>
+            <AppSwitchNavigator />
+          </PersistorContext.Provider>
         </PersistGate>
       </Provider>
     );

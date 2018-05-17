@@ -5,25 +5,31 @@ import { StackNavigator } from 'react-navigation';
 import { bindActionCreators } from 'redux';
 import { makeActionRequestCollection } from '../action/actions';
 import { connect } from 'react-redux';
+import { PersistorContext } from '../component/context/PersistorContext';
 
 class ProfileScreen extends React.Component {
   static navigationOptions = {
     title: 'Profile'
   };
 
-  logout = () => {
+  logout = persistor => {
+    persistor.purge();
     this.props.logout();
     this.props.navigation.navigate('SignIn');
   };
 
   render() {
     return (
-      <View style={styles.container}>
-        <Text>List</Text>
-        <Button type="primary" onClick={this.logout}>
-          Logout
-        </Button>
-      </View>
+      <PersistorContext.Consumer>
+        {persistor => (
+          <View style={styles.container}>
+            <Text>List</Text>
+            <Button type="primary" onClick={() => this.logout(persistor)}>
+              Logout
+            </Button>
+          </View>
+        )}
+      </PersistorContext.Consumer>
     );
   }
 }

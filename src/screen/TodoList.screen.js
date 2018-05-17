@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, ScrollView } from 'react-native';
 import { Button, List, Checkbox, InputItem, WhiteSpace, Flex } from 'antd-mobile';
 
 import { StackNavigator } from 'react-navigation';
@@ -36,22 +36,29 @@ class TodoListScreen extends React.Component<{
     this.props.navigation.navigate('TodoDetail');
   };
 
+  onCheckClick = todo => {
+    this.props.actions.UPDATE_TODO_REQUEST({ ...todo, done: !todo.done });
+  };
+
   render() {
     return (
       <View style={styles.container}>
         <TodoCreater onSubmit={this.createTodo} />
-        <List>
-          {this.props.todos.map(todo => {
-            return (
-              <Item key={todo.id} onClick={this.onTodoClick}>
-                <Flex>
-                  <Checkbox />
-                  <Text style={{ color: 'black', marginLeft: 15 }}>{todo.content}</Text>
-                </Flex>
-              </Item>
-            );
-          })}
-        </List>
+        <ScrollView>
+          <List>
+            {this.props.todos.map(todo => {
+              return (
+                <Item key={todo.id} onClick={this.onTodoClick}>
+                  <Flex>
+                    <Checkbox checked={todo.done} onChange={() => this.onCheckClick(todo)} />
+                    <Text style={{ color: 'black', marginLeft: 15 }}>{todo.content}</Text>
+                  </Flex>
+                </Item>
+              );
+            })}
+          </List>
+          <WhiteSpace size="xl" style={{ height: 80 }} />
+        </ScrollView>
       </View>
     );
   }

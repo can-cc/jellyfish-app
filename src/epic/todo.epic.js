@@ -14,6 +14,15 @@ export const CREATE_TODO = action$ => {
   });
 };
 
+export const UPDATE_TODO = action$ => {
+  return action$.ofType(Actions.UPDATE_TODO.REQUEST).mergeMap(action => {
+    return axios
+      .put(`${API_BASE}/todo/${action.payload.id}`, action.payload)
+      .then(response => Actions.UPDATE_TODO.success(response.data))
+      .catch(Actions.UPDATE_TODO.failure);
+  });
+};
+
 export const GET_TODO_LIST = action$ => {
   return action$.ofType(Actions.GET_TODO_LIST.REQUEST).mergeMap(action => {
     return axios
