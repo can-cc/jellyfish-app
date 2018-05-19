@@ -1,5 +1,6 @@
 // @flow
 import Actions from '../action/actions';
+import R from 'ramda';
 
 export function todo(state = { todos: [] }, action: FSAction) {
   switch (action.type) {
@@ -10,11 +11,11 @@ export function todo(state = { todos: [] }, action: FSAction) {
       };
 
     case Actions.UPDATE_TODO.REQUEST: {
-      const udpatedTodoIndex: number = state.todos.findIndex(todo => {
-        todo.id === action.payload.id;
-      });
+      const udpatedTodoIndex: number = R.findIndex(todo => {
+        return todo.id === action.payload.id;
+      })(state.todos);
       const todos = ~udpatedTodoIndex
-        ? state.todos.splice(updatedTodoIndex, 1, action.payload)
+        ? R.update(udpatedTodoIndex, action.payload, state.todos)
         : state.todos;
       return {
         ...state,

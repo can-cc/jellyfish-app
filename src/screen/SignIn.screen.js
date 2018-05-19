@@ -1,6 +1,6 @@
 // @flow
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
 import { connect } from 'react-redux';
 import { StackNavigator } from 'react-navigation';
 import { bindActionCreators } from 'redux';
@@ -37,6 +37,12 @@ class SignInScreen extends Component<{
     const { getFieldProps } = this.props.form;
     return (
       <View>
+        <WhiteSpace style={{ height: 100 }} />
+        <View style={{ alignItems: 'center' }}>
+          <Image style={{ width: 100, height: 100 }} source={require('../assets/imgs/logo.png')} />
+        </View>
+        <WhiteSpace style={{ height: 30 }} />
+
         <WingBlank>
           <List>
             <InputItem
@@ -54,11 +60,12 @@ class SignInScreen extends Component<{
                 rules: [{ required: true }]
               })}
             >
-              password
+              Password
             </InputItem>
           </List>
 
-          <WhiteSpace size="lg" />
+          <WhiteSpace style={{ height: 50 }} />
+
           <Button type="warning" onClick={this.submit}>
             Sign In
           </Button>

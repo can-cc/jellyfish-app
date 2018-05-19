@@ -32,8 +32,10 @@ class TodoListScreen extends React.Component<{
     this.props.actions.CREATE_TODO_REQUEST({ content });
   };
 
-  onTodoClick = () => {
-    this.props.navigation.navigate('TodoDetail');
+  onTodoClick = todo => {
+    this.props.navigation.navigate('TodoDetail', {
+      todoId: todo.id
+    });
   };
 
   onCheckClick = todo => {
@@ -48,7 +50,7 @@ class TodoListScreen extends React.Component<{
           <List>
             {this.props.todos.map(todo => {
               return (
-                <Item key={todo.id} onClick={this.onTodoClick}>
+                <Item key={todo.id} onClick={() => this.onTodoClick(todo)}>
                   <Flex>
                     <Checkbox checked={todo.done} onChange={() => this.onCheckClick(todo)} />
                     <Text style={{ color: 'black', marginLeft: 15 }}>{todo.content}</Text>

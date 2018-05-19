@@ -24,7 +24,9 @@ export const REHYDRATE = action$ => {
   return action$
     .ofType('persist/REHYDRATE')
     .do(action => {
-      setupAxiosJwtHeader(action.payload.auth.token);
+      if (action.payload) {
+        setupAxiosJwtHeader(action.payload.auth.token);
+      }
     })
     .ignoreElements();
 };
