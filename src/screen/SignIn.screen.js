@@ -1,10 +1,10 @@
 // @flow
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { StackNavigator } from 'react-navigation';
 import { bindActionCreators } from 'redux';
-import { WingBlank, WhiteSpace, Button, List, InputItem } from 'antd-mobile';
+import { WingBlank, WhiteSpace, Button, List, Flex, InputItem, Toast } from 'antd-mobile';
 import { createForm } from 'rc-form';
 import { makeActionRequestCollection } from '../action/actions';
 import epicAdapterService from '../service/single/epic-adapter.service';
@@ -30,6 +30,13 @@ class SignInScreen extends Component<{
         .subscribe(() => {
           this.props.navigation.navigate('Main');
         });
+
+      this.props.epicAdapterService.input$
+        .ofType(Actions.SIGNIN.FAILURE)
+        .take(1)
+        .subscribe(() => {
+          Toast.fail('\n登录失败，请重试');
+        });
     });
   };
 
@@ -51,7 +58,7 @@ class SignInScreen extends Component<{
                 rules: [{ required: true }]
               })}
             >
-              Username
+              用户名
             </InputItem>
             <InputItem
               labelNumber={5}
@@ -60,15 +67,23 @@ class SignInScreen extends Component<{
                 rules: [{ required: true }]
               })}
             >
-              Password
+              密码
             </InputItem>
           </List>
 
           <WhiteSpace style={{ height: 50 }} />
 
           <Button type="warning" onClick={this.submit}>
-            Sign In
+            登录
           </Button>
+
+          <WhiteSpace style={{ height: 40 }} />
+
+          <Flex style={{ justifyContent: 'center', alignItems: 'center' }}>
+            <TouchableOpacity>
+              <Text>直接使用</Text>
+            </TouchableOpacity>
+          </Flex>
         </WingBlank>
       </View>
     );

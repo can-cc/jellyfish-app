@@ -4,6 +4,7 @@ import axios from 'axios';
 import { API_BASE } from '../env/env';
 
 import 'rxjs/add/operator/mergeMap';
+import 'rxjs/add/operator/debounceTime';
 
 export const CREATE_TODO = action$ => {
   return action$.ofType(Actions.CREATE_TODO.REQUEST).mergeMap(action => {
@@ -15,11 +16,23 @@ export const CREATE_TODO = action$ => {
 };
 
 export const UPDATE_TODO = action$ => {
-  return action$.ofType(Actions.UPDATE_TODO.REQUEST).mergeMap(action => {
+  return action$
+    .ofType(Actions.UPDATE_TODO.REQUEST)
+    .debounceTime(1000)
+    .mergeMap(action => {
+      return axios
+        .put(`${API_BASE}/todo/${action.payload.id}`, action.payload)
+        .then(response => Actions.UPDATE_TODO.success(response.data))
+        .catch(Actions.UPDATE_TODO.failure);
+    });
+};
+
+export const DELETE_TODO = action$ => {
+  return action$.ofType(Actions.DELETE_TODO.REQUEST).mergeMap(action => {
     return axios
-      .put(`${API_BASE}/todo/${action.payload.id}`, action.payload)
-      .then(response => Actions.UPDATE_TODO.success(response.data))
-      .catch(Actions.UPDATE_TODO.failure);
+      .delete(`${API_BASE}/todo/${action.payload.id}`)
+      .then(response => Actions.DELETE_TODO.success({ id: action.payload.id }))
+      .catch(Actions.DELETE_TODO.failure);
   });
 };
 

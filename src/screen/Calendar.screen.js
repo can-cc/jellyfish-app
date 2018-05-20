@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, StatusBar, Text, View, TouchableOpacity } from 'react-native';
 import { WingBlank, WhiteSpace, Button, List, InputItem } from 'antd-mobile';
 import { StackNavigator } from 'react-navigation';
 import { bindActionCreators } from 'redux';
@@ -10,14 +10,25 @@ import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
 
 class CalendarScreen extends React.Component {
   static navigationOptions = {
-    title: 'Calendar'
+    title: '日程',
+    tabBarLabel: '日程'
   };
 
   render() {
     const { getFieldProps } = this.props.form;
     return (
       <View style={styles.container}>
-        <Calendar />
+        <WhiteSpace style={{ height: 30 }} />
+        <StatusBar barStyle="dark-content" />
+        <CalendarList
+          maxDate={new Date()}
+          current={new Date()}
+          hideExtraDays={true}
+          futureScrollRange={1}
+          onDayPress={day => {
+            console.log('day pressed', day);
+          }}
+        />
       </View>
     );
   }

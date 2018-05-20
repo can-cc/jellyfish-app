@@ -23,6 +23,27 @@ export function todo(state = { todos: [] }, action: FSAction) {
       };
     }
 
+    case Actions.DELETE_TODO.REQUEST: {
+      const udpatedTodoIndex: number = R.findIndex(todo => {
+        return todo.id === action.payload.id;
+      })(state.todos);
+
+      const todos = ~udpatedTodoIndex
+        ? R.update(
+            udpatedTodoIndex,
+            {
+              ...state.todos[udpatedTodoIndex],
+              hidden: true
+            },
+            state.todos
+          )
+        : state.todos;
+      return {
+        ...state,
+        todos
+      };
+    }
+
     default:
       return state;
   }

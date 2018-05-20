@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, StatusBar } from 'react-native';
 import { Provider } from 'react-redux';
 import { Button } from 'antd-mobile';
 import { StackNavigator, SwitchNavigator, TabNavigator } from 'react-navigation';
@@ -34,7 +34,11 @@ const MainTab = TabNavigator(
     Calendar: CalendarScreenContainer
   },
   {
-    /* initialRouteName: 'Profile' */
+    /* initialRouteName: 'Profile', */
+    tabBarPosition: 'bottom',
+    tabBarOptions: {
+      showIcon: true
+    },
     navigationOptions: ({ navigation }) => ({
       tabBarIcon: ({ focused, tintColor }) => {
         const { routeName } = navigation.state;
@@ -70,7 +74,10 @@ export default class Main extends Component {
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <PersistorContext.Provider value={persistor}>
-            <AppSwitchNavigator />
+            <View style={{ flex: 1 }}>
+              <StatusBar barStyle="dark-content" />
+              <AppSwitchNavigator />
+            </View>
           </PersistorContext.Provider>
         </PersistGate>
       </Provider>

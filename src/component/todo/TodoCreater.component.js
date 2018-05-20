@@ -2,6 +2,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { Button, List, Checkbox, InputItem, WhiteSpace, Flex } from 'antd-mobile';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import { createForm } from 'rc-form';
 
@@ -26,9 +27,20 @@ class TodoCreaterCompoent extends React.Component<{
           {...getFieldProps('todoContent', {
             rules: [{ required: true }]
           })}
+          returnKeyType="done"
           onSubmitEditing={this.submit}
           placeholder="Add Todo..."
-        />
+          clear={true}
+          style={{ height: 60 }}
+          labelNumber={2}
+        >
+          <Ionicons
+            style={{ marginTop: -1, marginLeft: 5 }}
+            color="#35caf3"
+            name="ios-add"
+            size={25}
+          />
+        </InputItem>
       </List>
     );
   }

@@ -7,7 +7,8 @@ import { StackNavigator } from 'react-navigation';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { createForm } from 'rc-form';
-import { makeActionRequestCollection } from '../action/actions';
+import Actions, { makeActionRequestCollection } from '../action/actions';
+import epicAdapterService from '../service/single/epic-adapter.service';
 import { TodoCreater } from '../component/todo/TodoCreater.component';
 
 const Item = List.Item;
@@ -18,10 +19,16 @@ class TodoListScreen extends React.Component<{
   todos: any[]
 }> {
   static navigationOptions = {
-    title: 'Todo List'
+    title: '清单',
+    tabBarLabel: '清单',
+    headerBackTitle: null
   };
 
   componentWillMount() {
+    this.getTodoList();
+  }
+
+  getTodoList() {
     this.props.actions.GET_TODO_LIST_REQUEST({
       userId: this.props.userId,
       done: false
@@ -30,6 +37,12 @@ class TodoListScreen extends React.Component<{
 
   createTodo = (content: string) => {
     this.props.actions.CREATE_TODO_REQUEST({ content });
+    epicAdapterService.input$
+      .ofType(Actions.CREATE_TODO.SUCCESS)
+      .take(1)
+      .subscribe(() => {
+        this.getTodoList();
+      });
   };
 
   onTodoClick = todo => {
@@ -74,7 +87,7 @@ export const TodoListScreenContainer = connect(
   state => {
     return {
       userId: state.auth.userId,
-      todos: state.todo.todos
+      todos: state.todo.todos.filter(todo => !todo.hidden)
     };
   },
   dispatch => {

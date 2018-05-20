@@ -21,6 +21,7 @@ function setupStore() {
   const epicMiddleware = createEpicMiddleware(rootEpic, {
     adapter: epicAdapterService
   });
+
   const store = createStore(
     persistedReducer,
     compose(applyMiddleware(epicMiddleware, logger), reduxReset())
