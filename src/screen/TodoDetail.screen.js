@@ -156,7 +156,7 @@ export const TodoDetailScreenContainer = connect(
   (state, props) => {
     const todoId = props.navigation.getParam('todoId', 'NO-ID');
     return {
-      todo: R.find(R.propEq('id', todoId))(state.todo.todos)
+      todo: state.todo.entities.todo[todoId]
     };
   },
   dispatch => {

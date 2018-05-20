@@ -26,6 +26,7 @@
     "antd-mobile": "^2.1.8",
     "date-fns": "^2.0.0-alpha.8",
     "expo": "^26.0.0",
+    "normalizr": "^3.2.4",
     "ramda": "^0.25.0",
     "rc-form": "^2.2.0",
     "react": "16.3.0",
