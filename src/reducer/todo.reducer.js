@@ -15,8 +15,8 @@ export function todo(state = { result: [], entities: { todo: {} } }, action: FSA
         result: normalizedData.result,
         entities: {
           todo: {
-            ...normalizedData.entities.todo,
-            ...state.entities.todo
+            ...state.entities.todo,
+            ...normalizedData.entities.todo
           }
         }
       };

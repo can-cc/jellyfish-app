@@ -18,7 +18,7 @@ class SignInScreen extends Component<{
   navigation: any
 }> {
   static navigationOptions = {
-    title: 'Login'
+    title: '登录'
   };
 
   submit = () => {

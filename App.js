@@ -26,19 +26,37 @@ const TodoStack = StackNavigator({
   TodoDetail: TodoDetailScreenContainer
 });
 
+const ProfileStack = StackNavigator({
+  Profile: ProfileScreenContainer,
+  About: AboutScreenContainer
+});
+
 const MainTab = TabNavigator(
   {
     Todo: {
       screen: TodoStack
     },
-    Profile: ProfileScreenContainer,
+    Profile: ProfileStack,
     Calendar: CalendarScreenContainer
   },
   {
-    /* initialRouteName: 'Profile', */
+    initialRouteName: 'Calendar',
     tabBarPosition: 'bottom',
     tabBarOptions: {
-      showIcon: true
+      showIcon: true,
+      activeTintColor: '#2d9afa',
+      inactiveTintColor: '#555',
+      allowFontScaling: false,
+      style: {
+        borderTopColor: '#ddd',
+        borderTopWidth: 1,
+        height: 55,
+        backgroundColor: '#eee'
+      },
+      labelStyle: {
+        top: -8,
+        fontSize: 12
+      }
     },
     navigationOptions: ({ navigation }) => ({
       tabBarIcon: ({ focused, tintColor }) => {
@@ -51,8 +69,7 @@ const MainTab = TabNavigator(
         } else if (routeName === 'Calendar') {
           iconName = `ios-calendar${focused ? '' : '-outline'}`;
         }
-
-        return <Ionicons name={iconName} size={25} color={tintColor} />;
+        return <Ionicons name={iconName} size={20} color={tintColor} />;
       }
     })
   }
@@ -62,8 +79,7 @@ const AppSwitchNavigator = SwitchNavigator(
   {
     AuthLoading: AuthLoadingScreenContainer,
     Main: MainTab,
-    SignIn: SignInScreenContainer,
-    About: AboutScreenContainer
+    SignIn: SignInScreenContainer
   },
   {
     initialRouteName: 'AuthLoading'
