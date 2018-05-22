@@ -2,6 +2,7 @@ import { ajax } from 'rxjs/observable/dom/ajax';
 import Actions from '../action/actions';
 import axios from 'axios';
 import { API_BASE } from '../env/env';
+import { Modal } from 'antd-mobile';
 
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/debounceTime';
@@ -11,7 +12,10 @@ export const CREATE_TODO = action$ => {
     return axios
       .post(`${API_BASE}/todo`, action.payload)
       .then(response => Actions.CREATE_TODO.success(response.data))
-      .catch(Actions.CREATE_TODO.failure);
+      .catch(caught => {
+        Toast.fail('\n新建失败，请重试');
+        return Actions.CREATE_TODO.failure(caught);
+      });
   });
 };
 

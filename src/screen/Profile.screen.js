@@ -115,7 +115,10 @@ class ProfileScreen extends React.Component {
                       </Flex>
                     </Item>
 
-                    <Item style={{ height: 60 }}>
+                    <Item
+                      style={{ height: 60 }}
+                      onClick={() => this.props.navigation.navigate('About')}
+                    >
                       <Flex>
                         <Ionicons
                           style={{ marginRight: 10 }}

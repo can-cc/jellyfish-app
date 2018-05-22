@@ -34,20 +34,16 @@ class TodoDetailScreen extends React.Component {
   };
 
   state = {
-    isDateTimePickerVisible: false,
-    deadline: null
+    isDateTimePickerVisible: false
   };
 
-  componentWillMount() {
-    this.props.navigation.setParams({ increaseCount: this._increaseCount });
-  }
+  componentWillMount() {}
 
   showDateTimePicker = () => this.setState({ isDateTimePickerVisible: true });
 
   hideDateTimePicker = () => this.setState({ isDateTimePickerVisible: false });
 
   handleDatePicked = date => {
-    this.setState({ deadline: date });
     this.props.actions.UPDATE_TODO_REQUEST({
       ...this.props.todo,
       deadline: date.getTime()
@@ -73,7 +69,6 @@ class TodoDetailScreen extends React.Component {
   };
 
   render() {
-    const { getFieldProps } = this.props.form;
     return (
       <View style={styles.container}>
         <List>
@@ -117,10 +112,12 @@ class TodoDetailScreen extends React.Component {
               />
               <Flex.Item style={{ marginLeft: 3, marginTop: 1 }}>
                 <TextareaItem
-                  onChange={value => {}}
+                  onChange={value => {
+                    this.onChangeTodo({ detail: value });
+                  }}
+                  defaultValue={this.props.todo.detail}
                   style={{ fontSize: 16 }}
                   placeholder="备注"
-                  {...getFieldProps('detail')}
                   rows={5}
                   labelNumber={0}
                 />
@@ -142,6 +139,7 @@ class TodoDetailScreen extends React.Component {
             </Flex>
           </Item>
         </List>
+
         <WhiteSpace size="lg" />
       </View>
     );
@@ -164,4 +162,4 @@ export const TodoDetailScreenContainer = connect(
       actions: bindActionCreators(makeActionRequestCollection(), dispatch)
     };
   }
-)(createForm()(TodoDetailScreen));
+)(TodoDetailScreen);

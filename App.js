@@ -13,6 +13,7 @@ import { TodoListScreenContainer } from './src/screen/TodoList.screen';
 import { TodoDetailScreenContainer } from './src/screen/TodoDetail.screen';
 import { ProfileScreenContainer } from './src/screen/Profile.screen';
 import { CalendarScreenContainer } from './src/screen/Calendar.screen';
+import { AboutScreenContainer } from './src/screen/About.screen';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
@@ -61,7 +62,8 @@ const AppSwitchNavigator = SwitchNavigator(
   {
     AuthLoading: AuthLoadingScreenContainer,
     Main: MainTab,
-    SignIn: SignInScreenContainer
+    SignIn: SignInScreenContainer,
+    About: AboutScreenContainer
   },
   {
     initialRouteName: 'AuthLoading'
