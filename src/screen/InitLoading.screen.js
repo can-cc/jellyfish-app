@@ -5,7 +5,7 @@ import { ActivityIndicator, AsyncStorage, StatusBar, StyleSheet, View } from 're
 import { makeActionRequestCollection } from '../action/actions';
 import { bindActionCreators } from 'redux';
 
-class AuthLoadingScreen extends Component<{
+class InitLoadingScreen extends Component<{
   token: string
 }> {
   constructor(props) {
@@ -26,6 +26,6 @@ class AuthLoadingScreen extends Component<{
   }
 }
 
-export const AuthLoadingScreenContainer = connect(state => {
+export const InitLoadingScreenContainer = connect(state => {
   return { token: state.auth.token };
-})(AuthLoadingScreen);
+})(InitLoadingScreen);

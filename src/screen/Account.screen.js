@@ -23,11 +23,11 @@ import R from 'ramda';
 
 const Item = List.Item;
 
-class AboutScreen extends React.Component {
+class AccountScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
     const params = navigation.state.params || {};
     return {
-      title: '',
+      title: '账号',
       tabBarLabel: '账号',
       headerBackTitle: null
     };
@@ -36,11 +36,8 @@ class AboutScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <List renderHeader={() => '链接'}>
-          <Item>水母清单网站</Item>
-        </List>
-        <List renderHeader={() => '致谢'}>
-          <Item>开发团队</Item>
+        <List renderHeader={() => '账号'}>
+          <Item extra={this.props.username}>用户名</Item>
         </List>
       </View>
     );
@@ -51,13 +48,13 @@ const styles = StyleSheet.create({
   container: {}
 });
 
-export const AboutScreenContainer = connect(
+export const AccountScreenContainer = connect(
   (state, props) => {
-    return {};
+    return { username: state.auth.username };
   },
   dispatch => {
     return {
       actions: bindActionCreators(makeActionRequestCollection(), dispatch)
     };
   }
-)(AboutScreen);
+)(AccountScreen);

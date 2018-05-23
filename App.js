@@ -7,13 +7,14 @@ import { PersistGate } from 'redux-persist/integration/react';
 
 import createStore from './src/store/store';
 
-import { AuthLoadingScreenContainer } from './src/screen/AuthLoading.screen';
+import { InitLoadingScreenContainer } from './src/screen/InitLoading.screen';
 import { SignInScreenContainer } from './src/screen/SignIn.screen';
 import { TodoListScreenContainer } from './src/screen/TodoList.screen';
 import { TodoDetailScreenContainer } from './src/screen/TodoDetail.screen';
 import { ProfileScreenContainer } from './src/screen/Profile.screen';
 import { CalendarScreenContainer } from './src/screen/Calendar.screen';
 import { AboutScreenContainer } from './src/screen/About.screen';
+import { AccountScreenContainer } from './src/screen/Account.screen';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
@@ -28,7 +29,8 @@ const TodoStack = StackNavigator({
 
 const ProfileStack = StackNavigator({
   Profile: ProfileScreenContainer,
-  About: AboutScreenContainer
+  About: AboutScreenContainer,
+  Account: AccountScreenContainer
 });
 
 const MainTab = TabNavigator(
@@ -77,12 +79,12 @@ const MainTab = TabNavigator(
 
 const AppSwitchNavigator = SwitchNavigator(
   {
-    AuthLoading: AuthLoadingScreenContainer,
+    InitLoading: InitLoadingScreenContainer,
     Main: MainTab,
     SignIn: SignInScreenContainer
   },
   {
-    initialRouteName: 'AuthLoading'
+    initialRouteName: 'InitLoading'
   }
 );
 

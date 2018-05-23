@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, ScrollView } from 'react-native';
+import { RefreshControl, StyleSheet, Text, View, TouchableOpacity, ScrollView } from 'react-native';
 import { Button, List, Checkbox, InputItem, WhiteSpace, Flex } from 'antd-mobile';
 
 import { StackNavigator } from 'react-navigation';
@@ -24,16 +24,33 @@ class TodoListScreen extends React.Component<{
     headerBackTitle: null
   };
 
+  state = {
+    refreshing: false
+  };
+
   componentWillMount() {
     this.getTodoList();
   }
 
-  getTodoList() {
+  getTodoList = () => {
+    this.setState({ refreshing: true });
     this.props.actions.GET_TODO_LIST_REQUEST({
       userId: this.props.userId,
       done: false
     });
-  }
+    epicAdapterService.input$
+      .ofType(Actions.GET_TODO_LIST.SUCCESS)
+      .take(1)
+      .subscribe(() => {
+        this.setState({ refreshing: false });
+      });
+    epicAdapterService.input$
+      .ofType(Actions.GET_TODO_LIST.FAILURE)
+      .take(1)
+      .subscribe(() => {
+        this.setState({ refreshing: false });
+      });
+  };
 
   createTodo = (content: string) => {
     this.props.actions.CREATE_TODO_REQUEST({ content });
@@ -59,7 +76,12 @@ class TodoListScreen extends React.Component<{
     return (
       <View style={styles.container}>
         <TodoCreater onSubmit={this.createTodo} />
-        <ScrollView>
+        <ScrollView
+          style={{ height: '100%' }}
+          refreshControl={
+            <RefreshControl refreshing={this.state.refreshing} onRefresh={this.getTodoList} />
+          }
+        >
           <List>
             {this.props.todos.map(todo => {
               return (

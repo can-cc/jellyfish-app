@@ -17,13 +17,18 @@ class CalendarScreen extends React.Component {
   };
 
   render() {
-    const { getFieldProps } = this.props.form;
     return (
       <View style={styles.container}>
         <WhiteSpace style={{ height: 30 }} />
         <StatusBar barStyle="dark-content" />
         <Agenda
           items={this.props.items}
+          renderEmptyDate={() => {
+            return <View />;
+          }}
+          renderEmptyData={() => {
+            return <View />;
+          }}
           renderItem={(item, firstItemInDay) => {
             let title;
             switch (item.type) {
@@ -38,14 +43,22 @@ class CalendarScreen extends React.Component {
                 break;
             }
             return (
-              <Card style={{ marginTop: 10, marginRight: 12 }}>
-                <Card.Header title={title} />
-                <Card.Body>
-                  <WingBlank>
-                    <Text>{item.todo.content}</Text>
-                  </WingBlank>
-                </Card.Body>
-              </Card>
+              <TouchableOpacity
+                onPress={() =>
+                  this.props.navigation.navigate('TodoDetail', {
+                    todoId: item.todo.id
+                  })
+                }
+              >
+                <Card style={{ marginTop: 10, marginRight: 12 }}>
+                  <Card.Header title={title} />
+                  <Card.Body>
+                    <WingBlank>
+                      <Text>{item.todo.content}</Text>
+                    </WingBlank>
+                  </Card.Body>
+                </Card>
+              </TouchableOpacity>
             );
           }}
           current={new Date()}
@@ -102,7 +115,6 @@ export const CalendarScreenContainer = connect(
         }
       }
     });
-    console.log(items);
     return {
       items
     };
@@ -112,4 +124,4 @@ export const CalendarScreenContainer = connect(
       actions: bindActionCreators(makeActionRequestCollection(), dispatch)
     };
   }
-)(createForm()(CalendarScreen));
+)(CalendarScreen);

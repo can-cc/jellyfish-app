@@ -13,7 +13,8 @@ const Item = List.Item;
 class ProfileScreen extends React.Component {
   static navigationOptions = {
     title: 'Profile',
-    tabBarLabel: '账号'
+    tabBarLabel: '账号',
+    headerBackTitle: null
   };
 
   logout = persistor => {
@@ -49,7 +50,7 @@ class ProfileScreen extends React.Component {
 
             <View>
               <Tabs
-                tabs={[{ title: '账户' }, { title: '通用' }, { title: '其他' }]}
+                tabs={[{ title: '账户' }, { title: '其他' }]}
                 swipeable={false}
                 initialPage={'t1'}
                 onChange={(tab, index) => {}}
@@ -65,7 +66,10 @@ class ProfileScreen extends React.Component {
                   }}
                 >
                   <List style={{ width: '100%' }}>
-                    <Item style={{ height: 60 }}>
+                    <Item
+                      style={{ height: 60 }}
+                      onClick={() => this.props.navigation.navigate('Account')}
+                    >
                       <Flex>
                         <Ionicons style={{ marginRight: 10 }} name="ios-contact" size={25} />
                         <Text>账号信息</Text>
@@ -90,31 +94,6 @@ class ProfileScreen extends React.Component {
                   }}
                 >
                   <List style={{ width: '100%' }}>
-                    <Item style={{ height: 60 }}>
-                      <Flex>
-                        <Ionicons style={{ marginRight: 10 }} name="ios-star-outline" size={25} />
-                        <Text>星标任务</Text>
-                      </Flex>
-                    </Item>
-                  </List>
-                </View>
-                <View
-                  style={{
-                    display: 'flex',
-                    alignItems: 'flex-start',
-                    justifyContent: 'flex-start',
-                    height: 250,
-                    backgroundColor: '#fff'
-                  }}
-                >
-                  <List style={{ width: '100%' }}>
-                    <Item style={{ height: 60 }}>
-                      <Flex>
-                        <Ionicons style={{ marginRight: 10 }} name="ios-create" size={25} />
-                        <Text>撰写评论</Text>
-                      </Flex>
-                    </Item>
-
                     <Item
                       style={{ height: 60 }}
                       onClick={() => this.props.navigation.navigate('About')}

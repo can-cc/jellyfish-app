@@ -62,7 +62,7 @@ class TodoDetailScreen extends React.Component {
         text: '确定',
         onPress: () => {
           this.props.actions.DELETE_TODO_REQUEST({ id: this.props.todo.id });
-          this.props.navigation.navigate('TodoList');
+          this.props.navigation.goBack();
         }
       }
     ]);

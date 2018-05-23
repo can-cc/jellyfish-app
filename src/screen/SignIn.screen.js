@@ -81,7 +81,7 @@ class SignInScreen extends Component<{
 
           <Flex style={{ justifyContent: 'center', alignItems: 'center' }}>
             <TouchableOpacity>
-              <Text>直接使用</Text>
+              <Text>注册</Text>
             </TouchableOpacity>
           </Flex>
         </WingBlank>

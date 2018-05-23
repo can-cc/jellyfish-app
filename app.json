@@ -1,11 +1,12 @@
 {
   "expo": {
     "name": "水母清单",
-    "slug": "水母清单",
+    "slug": "jellyfish-list",
     "sdkVersion": "26.0.0",
     "icon": "src/assets/icon.png",
     "ios": {
-      "bundleIdentifier": "org.fwchen.jellyfish"
+      "bundleIdentifier": "org.fwchen.jellyfish",
+      "supportsTablet": false
     },
     "android": {
       "package": "org.fwchen.jellyfish"
