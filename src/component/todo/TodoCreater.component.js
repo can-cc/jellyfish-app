@@ -9,28 +9,26 @@ import { createForm } from 'rc-form';
 class TodoCreaterCompoent extends React.Component<{
   onSubmit: any
 }> {
+  state = { content: '', value: '' };
+
   submit = () => {
-    this.props.form.validateFields((error, value: { todoContent: string }) => {
-      this.props.onSubmit(value.todoContent);
-      this.props.form.setFieldsValue({
-        todoContent: ''
-      });
+    this.setState({ content: this.state.value });
+    this.props.onSubmit(this.state.value);
+    setTimeout(() => {
+      this.setState({ content: '' });
     });
   };
 
   render() {
-    const { getFieldProps } = this.props.form;
-
     return (
       <List>
         <InputItem
-          {...getFieldProps('todoContent', {
-            rules: [{ required: true }]
-          })}
+          defaultValue={this.state.content}
+          onChangeText={text => this.setState({ value: text })}
+          clear
           returnKeyType="done"
           onSubmitEditing={this.submit}
           placeholder="Add Todo..."
-          clear={true}
           style={{ height: 60 }}
           labelNumber={2}
         >
@@ -38,7 +36,7 @@ class TodoCreaterCompoent extends React.Component<{
             style={{ marginTop: -1, marginLeft: 5 }}
             color="#35caf3"
             name="ios-add"
-            size={25}
+            size={30}
           />
         </InputItem>
       </List>
@@ -46,4 +44,4 @@ class TodoCreaterCompoent extends React.Component<{
   }
 }
 
-export const TodoCreater = createForm()(TodoCreaterCompoent);
+export const TodoCreater = TodoCreaterCompoent;

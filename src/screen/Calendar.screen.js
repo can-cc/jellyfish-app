@@ -67,9 +67,7 @@ class CalendarScreen extends React.Component {
             return r1.todo !== r2.todo;
           }}
           futureScrollRange={1}
-          onDayPress={day => {
-            console.log('day pressed', day);
-          }}
+          onDayPress={day => {}}
         />
       </View>
     );

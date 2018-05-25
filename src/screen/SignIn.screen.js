@@ -43,7 +43,7 @@ class SignInScreen extends Component<{
   render() {
     const { getFieldProps } = this.props.form;
     return (
-      <View>
+      <View style={{ backgroundColor: '#fff', flex: 1 }}>
         <WhiteSpace style={{ height: 100 }} />
         <View style={{ alignItems: 'center' }}>
           <Image style={{ width: 100, height: 100 }} source={require('../assets/imgs/logo.png')} />

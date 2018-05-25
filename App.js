@@ -42,7 +42,7 @@ const MainTab = TabNavigator(
     Calendar: CalendarScreenContainer
   },
   {
-    initialRouteName: 'Calendar',
+    /* initialRouteName: 'Calendar', */
     tabBarPosition: 'bottom',
     tabBarOptions: {
       showIcon: true,
@@ -88,18 +88,46 @@ const AppSwitchNavigator = SwitchNavigator(
   }
 );
 
+import { Asset, AppLoading } from 'expo';
+
 export default class Main extends Component {
+  state = { isReady: false };
+
+  guaranteePersist = () => {
+    this._unsubscribe = persistor.subscribe(this.handlePersistorState);
+  };
+
+  handlePersistorState = () => {
+    return new Promise((resolve, reject) => {
+      let { bootstrapped } = persistor.getState();
+      if (bootstrapped) {
+        setTimeout(() => {
+          resolve();
+          this.setState({ isReady: true });
+          this._unsubscribe && this._unsubscribe();
+        }, 3000);
+      }
+    });
+  };
+
   render() {
+    if (!this.state.isReady) {
+      return (
+        <AppLoading startAsync={this.guaranteePersist} onFinish={() => {}} onError={() => {}} />
+      );
+    }
+
     return (
       <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-          <PersistorContext.Provider value={persistor}>
-            <View style={{ flex: 1 }}>
-              <StatusBar barStyle="dark-content" />
-              <AppSwitchNavigator />
-            </View>
-          </PersistorContext.Provider>
-        </PersistGate>
+        <PersistorContext.Provider value={persistor}>
+          <View style={{ flex: 1 }}>
+            <StatusBar barStyle="dark-content" />
+            <AppSwitchNavigator />
+          </View>
+        </PersistorContext.Provider>
+
+        {/* <PersistGate loading={<AppLoading onError={console.warn} />} persistor={persistor}>
+            </PersistGate> */}
       </Provider>
     );
   }

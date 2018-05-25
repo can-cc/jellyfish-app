@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { ActivityIndicator, AsyncStorage, StatusBar, StyleSheet, View } from 'react-native';
 import { makeActionRequestCollection } from '../action/actions';
 import { bindActionCreators } from 'redux';
+import { Asset, AppLoading } from 'expo';
 
 class InitLoadingScreen extends Component<{
   token: string
@@ -12,6 +13,8 @@ class InitLoadingScreen extends Component<{
     super(props);
     this.bootstrap();
   }
+
+  componentDidMount() {}
 
   bootstrap = () => {
     this.props.navigation.navigate(this.props.token ? 'Main' : 'SignIn');

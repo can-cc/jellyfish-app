@@ -6,6 +6,7 @@ import { Toast } from 'antd-mobile';
 
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
 
 export const CREATE_TODO = action$ => {
   return action$.ofType(Actions.CREATE_TODO.REQUEST).mergeMap(action => {
@@ -22,6 +23,7 @@ export const CREATE_TODO = action$ => {
 export const UPDATE_TODO = action$ => {
   return action$
     .ofType(Actions.UPDATE_TODO.REQUEST)
+    .distinctUntilChanged()
     .debounceTime(1000)
     .mergeMap(action => {
       return axios

@@ -12,8 +12,8 @@ const Item = List.Item;
 
 class ProfileScreen extends React.Component {
   static navigationOptions = {
-    title: 'Profile',
-    tabBarLabel: '账号',
+    title: '账户',
+    tabBarLabel: '账户',
     headerBackTitle: null
   };
 

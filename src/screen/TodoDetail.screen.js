@@ -34,10 +34,24 @@ class TodoDetailScreen extends React.Component {
   };
 
   state = {
+    content: '',
+    detail: '',
     isDateTimePickerVisible: false
   };
 
-  componentWillMount() {}
+  contentTouched = false;
+  detailTouched = false;
+
+  componentWillMount() {
+    const didBlurSubscription = this.props.navigation.addListener('willBlur', payload => {
+      this.onChangeTodo({
+        content: this.contentTouched ? this.state.content : this.props.todo.content,
+        detail: this.detailTouched ? this.state.detail : this.props.todo.detail
+      });
+    });
+  }
+
+  componentWillUnmount() {}
 
   showDateTimePicker = () => this.setState({ isDateTimePickerVisible: true });
 
@@ -75,7 +89,11 @@ class TodoDetailScreen extends React.Component {
           <InputItem
             defaultValue={this.props.todo.content}
             placeholder="Todo"
-            onChange={value => this.onChangeTodo({ content: value })}
+            onBlur={() => this.onChangeTodo({ content: this.state.content })}
+            onChangeText={value => {
+              this.contentTouched = true;
+              this.setState({ content: value });
+            }}
           />
 
           <Item>
@@ -113,7 +131,11 @@ class TodoDetailScreen extends React.Component {
               <Flex.Item style={{ marginLeft: 3, marginTop: 1 }}>
                 <TextareaItem
                   onChange={value => {
-                    this.onChangeTodo({ detail: value });
+                    this.setState({ detail: value });
+                    this.detailTouched = true;
+                  }}
+                  onBlur={() => {
+                    this.onChangeTodo({ detail: this.state.detail });
                   }}
                   defaultValue={this.props.todo.detail}
                   style={{ fontSize: 16 }}

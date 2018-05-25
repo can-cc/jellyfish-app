@@ -1,1 +1,1 @@
-export const API_BASE = 'http://jellyfish.octopuese.xyz:8000';
+export const API_BASE = 'https://jellyfish.octopuese.xyz/api';
