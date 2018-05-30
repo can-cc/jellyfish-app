@@ -1,6 +1,6 @@
 // @flow
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, Linking, Text, View, Image, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { StackNavigator } from 'react-navigation';
 import { bindActionCreators } from 'redux';
@@ -9,6 +9,7 @@ import { createForm } from 'rc-form';
 import { makeActionRequestCollection } from '../action/actions';
 import epicAdapterService from '../service/single/epic-adapter.service';
 import Actions from '../action/actions';
+import { WEBSITE } from '../env/env';
 
 import 'rxjs/add/operator/take';
 
@@ -37,6 +38,16 @@ class SignInScreen extends Component<{
         .subscribe(() => {
           Toast.fail('\n登录失败，请重试');
         });
+    });
+  };
+
+  handleSignUpClick = () => {
+    Linking.canOpenURL(WEBSITE).then(supported => {
+      if (supported) {
+        Linking.openURL(WEBSITE + '/signup');
+      } else {
+        console.log("Don't know how to open URI: " + this.props.url);
+      }
     });
   };
 
@@ -80,7 +91,7 @@ class SignInScreen extends Component<{
           <WhiteSpace style={{ height: 40 }} />
 
           <Flex style={{ justifyContent: 'center', alignItems: 'center' }}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={this.handleSignUpClick}>
               <Text>注册</Text>
             </TouchableOpacity>
           </Flex>

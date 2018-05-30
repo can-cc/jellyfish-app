@@ -99,12 +99,13 @@ export default class Main extends Component {
 
   handlePersistorState = () => {
     return new Promise((resolve, reject) => {
+      return resolve();
       let { bootstrapped } = persistor.getState();
       if (bootstrapped) {
         setTimeout(() => {
-          resolve();
           this.setState({ isReady: true });
           this._unsubscribe && this._unsubscribe();
+          resolve();
         }, 3000);
       }
     });
@@ -113,7 +114,13 @@ export default class Main extends Component {
   render() {
     if (!this.state.isReady) {
       return (
-        <AppLoading startAsync={this.guaranteePersist} onFinish={() => {}} onError={() => {}} />
+        <AppLoading
+          startAsync={this.guaranteePersist}
+          onFinish={() => {
+            this.setState({ isReady: true });
+          }}
+          onError={() => {}}
+        />
       );
     }
 

@@ -10,8 +10,9 @@ import 'rxjs/add/operator/ignoreElements';
 
 export const signin = action$ => {
   return action$.ofType(Actions.SIGNIN.REQUEST).mergeMap(action => {
+    /* removeAxiosJwtHeader(); */
     return axios
-      .post(`${API_BASE}/auth/signin`, action.payload)
+      .post(`${API_BASE}/signin`, action.payload)
       .then(response => {
         setupAxiosJwtHeader(response.data.token);
         return Actions.SIGNIN.success(response.data);

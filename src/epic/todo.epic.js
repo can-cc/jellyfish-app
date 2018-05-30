@@ -11,7 +11,7 @@ import 'rxjs/add/operator/distinctUntilChanged';
 export const CREATE_TODO = action$ => {
   return action$.ofType(Actions.CREATE_TODO.REQUEST).mergeMap(action => {
     return axios
-      .post(`${API_BASE}/todo`, action.payload)
+      .post(`${API_BASE}/auth/todo`, action.payload)
       .then(response => Actions.CREATE_TODO.success(response.data))
       .catch(caught => {
         Toast.fail('\n新建失败，请重试');
@@ -27,7 +27,7 @@ export const UPDATE_TODO = action$ => {
     .debounceTime(1000)
     .mergeMap(action => {
       return axios
-        .put(`${API_BASE}/todo/${action.payload.id}`, action.payload)
+        .put(`${API_BASE}/auth/todo/${action.payload.id}`, action.payload)
         .then(response => Actions.UPDATE_TODO.success(response.data))
         .catch(Actions.UPDATE_TODO.failure);
     });
@@ -36,7 +36,7 @@ export const UPDATE_TODO = action$ => {
 export const DELETE_TODO = action$ => {
   return action$.ofType(Actions.DELETE_TODO.REQUEST).mergeMap(action => {
     return axios
-      .delete(`${API_BASE}/todo/${action.payload.id}`)
+      .delete(`${API_BASE}/auth/todo/${action.payload.id}`)
       .then(response => Actions.DELETE_TODO.success({ id: action.payload.id }))
       .catch(Actions.DELETE_TODO.failure);
   });
@@ -45,7 +45,7 @@ export const DELETE_TODO = action$ => {
 export const GET_TODO_LIST = action$ => {
   return action$.ofType(Actions.GET_TODO_LIST.REQUEST).mergeMap(action => {
     return axios
-      .get(`${API_BASE}/todo?userId=${action.payload.userId}`)
+      .get(`${API_BASE}/auth/todo?userId=${action.payload.userId}`)
       .then(response => {
         return Actions.GET_TODO_LIST.success(response.data);
       })
