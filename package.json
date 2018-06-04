@@ -18,6 +18,7 @@
     "ios": "react-native-scripts ios",
     "test": "jest",
     "proxy": "mitmproxy -R http://127.0.0.1:8000 -p 8888 --anticache",
+    "mproxy": "mitmproxy  -p 8888 --mode reverse:http://127.0.0.1:8000",
     "proxy-prod": "mitmproxy -R http://jellyfish.octopuese.xyz:8000 -p 8888 --anticache"
   },
   "jest": {
