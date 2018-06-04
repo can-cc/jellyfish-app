@@ -56,24 +56,41 @@ class SignInScreen extends Component<{
     return (
       <View style={{ backgroundColor: '#fff', flex: 1 }}>
         <WhiteSpace style={{ height: 100 }} />
-        <View style={{ alignItems: 'center' }}>
-          <Image style={{ width: 100, height: 100 }} source={require('../assets/imgs/logo.png')} />
-        </View>
+
         <WhiteSpace style={{ height: 30 }} />
 
         <WingBlank>
-          <List>
+          <Flex style={{ justifyContent: 'flex-start', alignItems: 'center' }}>
+            <Text style={{ fontSize: 33, color: '#398aff', fontWeight: '600' }}>Hello </Text>
+
+            <TouchableOpacity onPress={this.handleSignUpClick}>
+              <Text style={{ color: '#909090' }}>注册</Text>
+            </TouchableOpacity>
+          </Flex>
+
+          <List style={{ borderTopWidth: 0, borderBottomWidth: 0 }} renderHeader={() => {}}>
             <InputItem
               labelNumber={5}
+              autoCapitalize="none"
+              placeholderTextColor="#565656"
+              style={{
+                borderTopWidth: 0,
+                borderBottomColor: 'rgb(218, 218, 218)',
+                borderBottomWidth: 1
+              }}
               {...getFieldProps('username', {
                 rules: [{ required: true }]
               })}
             >
               用户名
             </InputItem>
+
             <InputItem
               labelNumber={5}
+              autoCapitalize="none"
               type="password"
+              placeholderTextColor="#565656"
+              style={{ borderBottomColor: 'rgb(218, 218, 218)', borderBottomWidth: 1 }}
               {...getFieldProps('password', {
                 rules: [{ required: true }]
               })}
@@ -84,17 +101,19 @@ class SignInScreen extends Component<{
 
           <WhiteSpace style={{ height: 50 }} />
 
-          <Button type="warning" onClick={this.submit}>
-            登录
-          </Button>
+          <Flex style={{ justifyContent: 'flex-end', alignItems: 'center' }}>
+            <Button
+              type="primary"
+              inline
+              size="small"
+              style={{ width: 64, height: 45 }}
+              onClick={this.submit}
+            >
+              ->
+            </Button>
+          </Flex>
 
           <WhiteSpace style={{ height: 40 }} />
-
-          <Flex style={{ justifyContent: 'center', alignItems: 'center' }}>
-            <TouchableOpacity onPress={this.handleSignUpClick}>
-              <Text>注册</Text>
-            </TouchableOpacity>
-          </Flex>
         </WingBlank>
       </View>
     );
