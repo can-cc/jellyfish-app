@@ -670,17 +670,16 @@ ansi@^0.3.0, ansi@~0.3.1:
   version "0.3.1"
   resolved "http://registry.npm.taobao.org/ansi/download/ansi-0.3.1.tgz#0c42d4fb17160d5a9af1e484bace1c66922c1b21"
 
-antd-mobile@^2.1.8:
-  version "2.1.8"
-  resolved "http://registry.npm.taobao.org/antd-mobile/download/antd-mobile-2.1.8.tgz#054efda2105d9bf603a0730b8602a8fb21c81c02"
+antd-mobile@^2.1.11:
+  version "2.1.11"
+  resolved "http://registry.npm.taobao.org/antd-mobile/download/antd-mobile-2.1.11.tgz#24bf37ab73497d20284088ed629d150691066154"
   dependencies:
     array-tree-filter "~2.1.0"
     babel-runtime "6.x"
     classnames "^2.2.1"
     normalize.css "^7.0.0"
     rc-checkbox "~2.0.0"
-    rc-collapse "~1.7.0"
-    rc-drawer "~0.4.9"
+    rc-collapse "~1.9.1"
     rc-slider "~8.2.0"
     rc-swipeout "~2.0.0"
     react-native-camera-roll-picker "^1.2.1"
@@ -689,9 +688,10 @@ antd-mobile@^2.1.8:
     react-native-menu "^0.23.0"
     rmc-calendar "^1.0.0"
     rmc-cascader "~5.0.0"
-    rmc-date-picker "~6.0.6"
+    rmc-date-picker "^6.0.8"
     rmc-dialog "^1.0.1"
-    rmc-feedback "^1.0.0"
+    rmc-drawer "^0.4.11"
+    rmc-feedback "^2.0.0"
     rmc-input-number "^1.0.0"
     rmc-list-view "^0.11.0"
     rmc-notification "~1.0.0"
@@ -5116,22 +5116,14 @@ rc-checkbox@~2.0.0:
     prop-types "15.x"
     rc-util "^4.0.4"
 
-rc-collapse@~1.7.0:
-  version "1.7.7"
-  resolved "http://registry.npm.taobao.org/rc-collapse/download/rc-collapse-1.7.7.tgz#16c9fe691f0191f16c9c2eda39989bfc1a19fa2b"
+rc-collapse@~1.9.1:
+  version "1.9.2"
+  resolved "http://registry.npm.taobao.org/rc-collapse/download/rc-collapse-1.9.2.tgz#baa88a724ebbf444ad1f7776fe912f2f894e4099"
   dependencies:
     classnames "2.x"
     css-animation "1.x"
     prop-types "^15.5.6"
     rc-animate "2.x"
-
-rc-drawer@~0.4.9:
-  version "0.4.11"
-  resolved "http://registry.npm.taobao.org/rc-drawer/download/rc-drawer-0.4.11.tgz#94faaec28183ab90f135f0dfe244dca14cfee799"
-  dependencies:
-    babel-runtime "6.x"
-    classnames "^2.2.4"
-    prop-types "^15.5.10"
 
 rc-form@^2.2.0:
   version "2.2.0"
@@ -5872,7 +5864,14 @@ rmc-cascader@~5.0.0:
     babel-runtime "6.x"
     rmc-picker "~5.0.0"
 
-rmc-date-picker@~6.0.0-alpha.10, rmc-date-picker@~6.0.6:
+rmc-date-picker@^6.0.8:
+  version "6.0.8"
+  resolved "http://registry.npm.taobao.org/rmc-date-picker/download/rmc-date-picker-6.0.8.tgz#9aab87b3aa8dc9c5a57349d8f0b05de4e8f4808a"
+  dependencies:
+    babel-runtime "6.x"
+    rmc-picker "~5.0.0"
+
+rmc-date-picker@~6.0.0-alpha.10:
   version "6.0.6"
   resolved "http://registry.npm.taobao.org/rmc-date-picker/download/rmc-date-picker-6.0.6.tgz#b18be72ff86f654fea1050ac8d5899f0d23efe00"
   dependencies:
@@ -5886,9 +5885,24 @@ rmc-dialog@^1.0.1:
     babel-runtime "6.x"
     rc-animate "2.x"
 
+rmc-drawer@^0.4.11:
+  version "0.4.11"
+  resolved "http://registry.npm.taobao.org/rmc-drawer/download/rmc-drawer-0.4.11.tgz#9a8c6125a4ccd37b916f32f7e8b477d11d413ee3"
+  dependencies:
+    babel-runtime "6.x"
+    classnames "^2.2.4"
+    prop-types "^15.5.10"
+
 rmc-feedback@^1.0.0:
   version "1.0.4"
   resolved "http://registry.npm.taobao.org/rmc-feedback/download/rmc-feedback-1.0.4.tgz#fba066059ae2057ac0e0b53ea7ce982c8f4f7f19"
+  dependencies:
+    babel-runtime "6.x"
+    classnames "^2.2.5"
+
+rmc-feedback@^2.0.0:
+  version "2.0.0"
+  resolved "http://registry.npm.taobao.org/rmc-feedback/download/rmc-feedback-2.0.0.tgz#cbc6cb3ae63c7a635eef0e25e4fbaf5ac366eeaa"
   dependencies:
     babel-runtime "6.x"
     classnames "^2.2.5"
