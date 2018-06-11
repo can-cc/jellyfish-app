@@ -1,6 +1,15 @@
 // @flow
 import React, { Component } from 'react';
-import { StyleSheet, Linking, Text, View, Image, TouchableOpacity, PixelRatio } from 'react-native';
+import {
+  StyleSheet,
+  Linking,
+  Text,
+  View,
+  Image,
+  TouchableOpacity,
+  PixelRatio,
+  Platform
+} from 'react-native';
 import { connect } from 'react-redux';
 import { StackNavigator } from 'react-navigation';
 import { bindActionCreators } from 'redux';
@@ -53,6 +62,7 @@ class SignInScreen extends Component<{
 
   render() {
     const { getFieldProps } = this.props.form;
+    alert(PixelRatio.get());
     return (
       <View style={{ backgroundColor: '#fff', flex: 1 }}>
         <WhiteSpace style={{ height: 100 }} />
@@ -84,39 +94,37 @@ class SignInScreen extends Component<{
             renderHeader={() => {}}
           >
             <InputItem
-              labelNumber={5}
               autoCapitalize="none"
               placeholderTextColor="#565656"
+              placeholder="用户名"
               style={{
                 borderTopWidth: 0,
                 borderBottomColor: 'rgb(218, 218, 218)',
                 borderBottomWidth: 1,
-                marginLeft: 0
+                marginLeft: 0,
+                height: 60
               }}
               {...getFieldProps('username', {
                 rules: [{ required: true }]
               })}
-            >
-              用户名
-            </InputItem>
+            />
 
             <InputItem
-              labelNumber={5}
               autoCapitalize="none"
               type="password"
+              placeholder="密码"
               placeholderTextColor="#565656"
               style={{
                 borderTopWidth: 0,
                 borderBottomColor: 'rgb(218, 218, 218)',
                 borderBottomWidth: 1,
-                marginLeft: 0
+                marginLeft: 0,
+                height: 60
               }}
               {...getFieldProps('password', {
                 rules: [{ required: true }]
               })}
-            >
-              密码
-            </InputItem>
+            />
           </List>
 
           <WhiteSpace style={{ height: 50 }} />
@@ -131,15 +139,15 @@ class SignInScreen extends Component<{
                 height: 45,
                 borderRadius: 22.5,
                 borderWidth: 0,
-                paddingTop: 4.5,
+                paddingTop: Platform.OS === 'ios' ? 4.5 : 0,
                 position: 'relative'
               }}
               onClick={this.submit}
             >
               <Image
                 style={{
-                  width: 21.3,
-                  height: 23.3
+                  width: Platform.OS === 'ios' ? 16 : 40,
+                  height: Platform.OS === 'ios' ? 17.5 : 43.75
                 }}
                 source={require('../assets/arrow-right.png')}
               />
