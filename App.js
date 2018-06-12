@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, StatusBar } from 'react-native';
+import { StyleSheet, Text, View, StatusBar, Image } from 'react-native';
 import { Provider } from 'react-redux';
 import { Button } from 'antd-mobile';
 import { StackNavigator, SwitchNavigator, TabNavigator } from 'react-navigation';
@@ -38,8 +38,8 @@ const MainTab = TabNavigator(
     Todo: {
       screen: TodoStack
     },
-    Profile: ProfileStack,
-    Calendar: CalendarScreenContainer
+    Calendar: CalendarScreenContainer,
+    Profile: ProfileStack
   },
   {
     /* initialRouteName: 'Calendar', */
@@ -65,13 +65,13 @@ const MainTab = TabNavigator(
         const { routeName } = navigation.state;
         let iconName;
         if (routeName === 'Todo') {
-          iconName = `ios-paper${focused ? '' : '-outline'}`;
+          iconName = `list${focused ? '-active' : ''}`;
         } else if (routeName === 'Profile') {
-          iconName = `ios-person${focused ? '' : '-outline'}`;
+          iconName = `jellyfish${focused ? '-active' : ''}`;
         } else if (routeName === 'Calendar') {
-          iconName = `ios-calendar${focused ? '' : '-outline'}`;
+          iconName = `calendar${focused ? '-active' : ''}`;
         }
-        return <Ionicons name={iconName} size={20} color={tintColor} />;
+        return <Image source={require(`./assets/icons/${iconName}.png`)} />;
       }
     })
   }

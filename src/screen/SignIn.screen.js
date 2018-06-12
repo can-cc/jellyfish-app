@@ -62,12 +62,10 @@ class SignInScreen extends Component<{
 
   render() {
     const { getFieldProps } = this.props.form;
-    alert(PixelRatio.get());
-    return (
-      <View style={{ backgroundColor: '#fff', flex: 1 }}>
-        <WhiteSpace style={{ height: 100 }} />
 
-        <WhiteSpace style={{ height: 30 }} />
+    return (
+      <View style={{ backgroundColor: '#fafafa', flex: 1 }}>
+        <WhiteSpace style={{ height: 130 }} />
 
         <WingBlank
           style={{
@@ -83,6 +81,7 @@ class SignInScreen extends Component<{
             </TouchableOpacity>
           </Flex>
 
+          <WhiteSpace style={{ height: 40 }} />
           <List
             style={{ borderTopWidth: 0, borderBottomWidth: 0 }}
             styles={{
