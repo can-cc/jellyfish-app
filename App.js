@@ -65,13 +65,42 @@ const MainTab = TabNavigator(
         const { routeName } = navigation.state;
         let iconName;
         if (routeName === 'Todo') {
-          iconName = `list${focused ? '-active' : ''}`;
+          return focused ? (
+            <Image
+              style={{ width: 23, height: 23 }}
+              source={require(`./src/assets/icons/list-active.png`)}
+            />
+          ) : (
+            <Image
+              style={{ width: 23, height: 23 }}
+              source={require(`./src/assets/icons/list.png`)}
+            />
+          );
         } else if (routeName === 'Profile') {
-          iconName = `jellyfish${focused ? '-active' : ''}`;
+          return focused ? (
+            <Image
+              style={{ width: 23, height: 23 }}
+              source={require(`./src/assets/icons/jellyfish-active.png`)}
+            />
+          ) : (
+            <Image
+              style={{ width: 23, height: 23 }}
+              source={require(`./src/assets/icons/jellyfish.png`)}
+            />
+          );
         } else if (routeName === 'Calendar') {
-          iconName = `calendar${focused ? '-active' : ''}`;
+          return focused ? (
+            <Image
+              style={{ width: 23, height: 23 }}
+              source={require(`./src/assets/icons/calendar-active.png`)}
+            />
+          ) : (
+            <Image
+              style={{ width: 23, height: 23 }}
+              source={require(`./src/assets/icons/calendar.png`)}
+            />
+          );
         }
-        return <Image source={require(`./assets/icons/${iconName}.png`)} />;
       }
     })
   }
@@ -132,9 +161,6 @@ export default class Main extends Component {
             <AppSwitchNavigator />
           </View>
         </PersistorContext.Provider>
-
-        {/* <PersistGate loading={<AppLoading onError={console.warn} />} persistor={persistor}>
-            </PersistGate> */}
       </Provider>
     );
   }
