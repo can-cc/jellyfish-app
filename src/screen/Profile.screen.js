@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, StatusBar, StyleSheet, Text, View } from 'react-native';
+import { Image, StatusBar, StyleSheet, Text, View, Dimensions } from 'react-native';
 import { Flex, Modal, Button, WhiteSpace, Tabs, List } from 'antd-mobile';
 import { StackNavigator } from 'react-navigation';
 import { bindActionCreators } from 'redux';
@@ -38,6 +38,10 @@ class ProfileScreen extends React.Component {
           <View style={styles.container}>
             <StatusBar barStyle="dark-content" />
             <WhiteSpace style={{ height: 50 }} />
+            <Image
+              style={{ width: '100%', height: Dimensions.get('window').width / 2.718 }}
+              source={require('../assets/3bg.jpg')}
+            />
             <View>
               <Image
                 style={{ width: 80, height: 80 }}
