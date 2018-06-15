@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, StatusBar, StyleSheet, Text, View, Dimensions } from 'react-native';
+import { Image, StatusBar, StyleSheet, Text, View, Dimensions, PixelRatio } from 'react-native';
 import { Flex, Modal, Button, WhiteSpace, Tabs, List } from 'antd-mobile';
 import { StackNavigator } from 'react-navigation';
 import { bindActionCreators } from 'redux';
@@ -9,6 +9,9 @@ import { PersistorContext } from '../component/context/PersistorContext';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const Item = List.Item;
+
+const dp2px = dp => PixelRatio.getPixelSizeForLayoutSize(dp);
+const px2dp = px => PixelRatio.roundToNearestPixel(px);
 
 class ProfileScreen extends React.Component {
   static navigationOptions = {
@@ -37,20 +40,29 @@ class ProfileScreen extends React.Component {
         {persistor => (
           <View style={styles.container}>
             <StatusBar barStyle="dark-content" />
-            <WhiteSpace style={{ height: 50 }} />
             <Image
-              style={{ width: '100%', height: Dimensions.get('window').width / 2.718 }}
+              style={{
+                width: Dimensions.get('window').width,
+                height: Dimensions.get('window').width / 2.071,
+                opacity: 0.8
+              }}
               source={require('../assets/3bg.jpg')}
             />
-            <View>
-              <Image
-                style={{ width: 80, height: 80 }}
-                source={require('../assets/imgs/default-avatar.jpeg')}
-              />
+            <View
+              style={{
+                position: 'absolute',
+                top: 30
+              }}
+            >
+              <View style={{ width: 80, height: 80, borderRadius: 40, overflow: 'hidden' }}>
+                <Image
+                  style={{ width: 80, height: 80 }}
+                  source={require('../assets/imgs/default-avatar.jpeg')}
+                />
+              </View>
               <WhiteSpace style={{ height: 10 }} />
-              <Text style={{ alignSelf: 'center' }}>{this.props.username}</Text>
+              <Text style={{ alignSelf: 'center', color: 'white' }}>{this.props.username}</Text>
             </View>
-            <WhiteSpace style={{ height: 30 }} />
 
             <View>
               <Tabs
