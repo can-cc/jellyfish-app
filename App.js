@@ -128,14 +128,11 @@ export default class Main extends Component {
 
   handlePersistorState = () => {
     return new Promise((resolve, reject) => {
-      return resolve();
       let { bootstrapped } = persistor.getState();
       if (bootstrapped) {
-        setTimeout(() => {
-          this.setState({ isReady: true });
-          this._unsubscribe && this._unsubscribe();
-          resolve();
-        }, 3000);
+        this.setState({ isReady: true });
+        this._unsubscribe && this._unsubscribe();
+        resolve();
       }
     });
   };
