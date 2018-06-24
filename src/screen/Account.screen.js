@@ -10,7 +10,7 @@ import {
   List,
   InputItem,
   DatePicker
-} from 'antd-mobile';
+} from 'antd-mobile-rn';
 import { StackNavigator } from 'react-navigation';
 import { bindActionCreators } from 'redux';
 import { createForm } from 'rc-form';

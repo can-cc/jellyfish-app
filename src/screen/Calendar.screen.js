@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, StatusBar, Text, View, TouchableOpacity } from 'react-native';
-import { Card, WingBlank, WhiteSpace, Button, List, InputItem } from 'antd-mobile';
+import { Card, WingBlank, WhiteSpace, Button, List, InputItem } from 'antd-mobile-rn';
 import { StackNavigator } from 'react-navigation';
 import { bindActionCreators } from 'redux';
 import { createForm } from 'rc-form';

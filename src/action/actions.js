@@ -1,7 +1,14 @@
 // @flow
 import { values } from 'ramda';
 
-const actionNames = ['SIGNIN', 'CREATE_TODO', 'GET_TODO_LIST', 'UPDATE_TODO', 'DELETE_TODO'];
+const actionNames = [
+  'SIGNIN',
+  'GET_USER_INFO',
+  'CREATE_TODO',
+  'GET_TODO_LIST',
+  'UPDATE_TODO',
+  'DELETE_TODO'
+];
 
 export const actions: { [*]: * } = actionNames.reduce((result: Object, actionName: string): {
   [string]: ActionAdapter

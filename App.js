@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, StatusBar, Image } from 'react-native';
+import { StyleSheet, Text, View, StatusBar, Image, Platform } from 'react-native';
 import { Provider } from 'react-redux';
-import { Button } from 'antd-mobile';
+import { Button } from 'antd-mobile-rn';
 import { StackNavigator, SwitchNavigator, TabNavigator } from 'react-navigation';
 import { PersistGate } from 'redux-persist/integration/react';
 
@@ -56,8 +56,8 @@ const MainTab = TabNavigator(
         backgroundColor: '#eee'
       },
       labelStyle: {
-        top: -8,
-        fontSize: 12
+        top: Platform.OS === 'ios' ? -3 : -5,
+        fontSize: 11
       }
     },
     navigationOptions: ({ navigation }) => ({
@@ -123,19 +123,24 @@ export default class Main extends Component {
   state = { isReady: false };
 
   guaranteePersist = () => {
-    this._unsubscribe = persistor.subscribe(this.handlePersistorState);
-  };
-
-  handlePersistorState = () => {
-    return new Promise((resolve, reject) => {
-      let { bootstrapped } = persistor.getState();
-      if (bootstrapped) {
-        this.setState({ isReady: true });
-        this._unsubscribe && this._unsubscribe();
-        resolve();
-      }
+    return new Promise(resolve => {
+      this._unsubscribe = persistor.subscribe(() => {
+        let { bootstrapped } = persistor.getState();
+        if (bootstrapped) {
+          this._unsubscribe && this._unsubscribe();
+          resolve();
+        } else {
+          reject();
+        }
+      });
     });
   };
+
+  handlePersistorState() {}
+
+  componentWillUnmount() {
+    this._unsubscribe && this._unsubscribe();
+  }
 
   render() {
     if (!this.state.isReady) {
@@ -143,21 +148,22 @@ export default class Main extends Component {
         <AppLoading
           startAsync={this.guaranteePersist}
           onFinish={() => {
+            console.log('finish');
             this.setState({ isReady: true });
           }}
-          onError={() => {}}
+          onError={console.warn}
         />
       );
     }
 
     return (
       <Provider store={store}>
-        <PersistorContext.Provider value={persistor}>
-          <View style={{ flex: 1 }}>
-            <StatusBar barStyle="dark-content" />
-            <AppSwitchNavigator />
-          </View>
-        </PersistorContext.Provider>
+        {/* <PersistorContext.Provider value={persistor}>
+            </PersistorContext.Provider> */}
+        <View style={{ flex: 1 }}>
+          <StatusBar barStyle="dark-content" />
+          <AppSwitchNavigator />
+        </View>
       </Provider>
     );
   }

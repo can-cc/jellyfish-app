@@ -2,7 +2,7 @@ import { ajax } from 'rxjs/observable/dom/ajax';
 import Actions from '../action/actions';
 import axios from 'axios';
 import { API_BASE } from '../env/env';
-import { Toast } from 'antd-mobile';
+import { Toast } from 'antd-mobile-rn';
 
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/debounceTime';

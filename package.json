@@ -1,6 +1,6 @@
 {
   "name": "jellyfish-app",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "private": true,
   "devDependencies": {
     "babel-plugin-import": "^1.7.0",
@@ -25,10 +25,9 @@
     "preset": "jest-expo"
   },
   "dependencies": {
-    "antd-mobile": "^2.1.11",
-    "antd-mobile-rn": "^2.2.0-beta.1",
+    "antd-mobile-rn": "^2.2.0",
     "date-fns": "^2.0.0-alpha.8",
-    "expo": "^26.0.0",
+    "expo": "^28.0.0",
     "normalizr": "^3.2.4",
     "ramda": "^0.25.0",
     "rc-form": "^2.2.0",
@@ -44,7 +43,7 @@
     "redux-devtools-log-monitor": "^1.4.0",
     "redux-logger": "^3.0.6",
     "redux-observable": "0.16",
-    "redux-persist": "5.6.12",
+    "redux-persist": "^5.10.0",
     "redux-reset": "^0.3.0",
     "rxjs": "^5.5.10"
   }

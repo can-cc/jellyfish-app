@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import { Button, List, Checkbox, InputItem, WhiteSpace, Flex } from 'antd-mobile';
+import { Button, List, Checkbox, InputItem, WhiteSpace, Flex } from 'antd-mobile-rn';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import { createForm } from 'rc-form';

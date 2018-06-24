@@ -1,12 +1,14 @@
+// @flow
 import React from 'react';
 import { Image, StatusBar, StyleSheet, Text, View, Dimensions, PixelRatio } from 'react-native';
-import { Flex, Modal, Button, WhiteSpace, Tabs, List } from 'antd-mobile';
+import { Flex, Modal, Button, WhiteSpace, Tabs, List } from 'antd-mobile-rn';
 import { StackNavigator } from 'react-navigation';
 import { bindActionCreators } from 'redux';
 import { makeActionRequestCollection } from '../action/actions';
 import { connect } from 'react-redux';
 import { PersistorContext } from '../component/context/PersistorContext';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { API_BASE } from '../env/env';
 
 const Item = List.Item;
 
@@ -19,6 +21,12 @@ class ProfileScreen extends React.Component {
     tabBarLabel: '账户',
     headerBackTitle: null
   };
+
+  componentWillMount() {
+    this.props.actions.GET_USER_INFO_REQUEST({
+      userId: this.props.userId
+    });
+  }
 
   logout = persistor => {
     Modal.alert('登出', '确定登出吗？', [
@@ -55,10 +63,17 @@ class ProfileScreen extends React.Component {
               }}
             >
               <View style={{ width: 80, height: 80, borderRadius: 40, overflow: 'hidden' }}>
-                <Image
-                  style={{ width: 80, height: 80 }}
-                  source={require('../assets/imgs/default-avatar.jpeg')}
-                />
+                {this.props.avatar ? (
+                  <Image
+                    style={{ width: 80, height: 80 }}
+                    source={{ uri: `${API_BASE}/${this.props.avatar}` }}
+                  />
+                ) : (
+                  <Image
+                    style={{ width: 80, height: 80 }}
+                    source={require('../assets/imgs/default-avatar.jpeg')}
+                  />
+                )}
               </View>
               <WhiteSpace style={{ height: 10 }} />
               <Text style={{ alignSelf: 'center', color: 'white' }}>{this.props.username}</Text>
@@ -144,7 +159,7 @@ const styles = StyleSheet.create({
 
 export const ProfileScreenContainer = connect(
   state => {
-    return { username: state.auth.username };
+    return { username: state.auth.username, userId: state.auth.userId, avatar: state.auth.avatar };
   },
   dispatch => {
     return {

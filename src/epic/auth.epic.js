@@ -8,7 +8,7 @@ import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/ignoreElements';
 
-export const signin = action$ => {
+export const SIGNIN = action$ => {
   return action$.ofType(Actions.SIGNIN.REQUEST).mergeMap(action => {
     /* removeAxiosJwtHeader(); */
     return axios
@@ -18,6 +18,17 @@ export const signin = action$ => {
         return Actions.SIGNIN.success(response.data);
       })
       .catch(Actions.SIGNIN.failure);
+  });
+};
+
+export const GET_USER_INFO = action$ => {
+  return action$.ofType(Actions.GET_USER_INFO.REQUEST).mergeMap(action => {
+    return axios
+      .get(`${API_BASE}/auth/user/${action.payload.userId}`)
+      .then(resp => {
+        return Actions.GET_USER_INFO.success(resp.data);
+      })
+      .catch(Actions.GET_USER_INFO.failure);
   });
 };
 

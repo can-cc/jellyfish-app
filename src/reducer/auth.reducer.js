@@ -14,6 +14,12 @@ export function auth(state = { token: null, userId: null }, action: FSAction) {
         token: action.payload.token,
         userId: action.payload.id
       };
+
+    case Actions.GET_USER_INFO.SUCCESS:
+      return {
+        ...state,
+        avatar: action.payload.avatar
+      };
     default:
       return state;
   }

@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
 import { RefreshControl, StyleSheet, Text, View, TouchableOpacity, ScrollView } from 'react-native';
-import { Button, List, Checkbox, InputItem, WhiteSpace, Flex } from 'antd-mobile';
+import { Button, List, Checkbox, InputItem, WhiteSpace, Flex } from 'antd-mobile-rn';
 
 import { StackNavigator } from 'react-navigation';
 import { bindActionCreators } from 'redux';
