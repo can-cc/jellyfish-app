@@ -3,16 +3,20 @@ import Actions from '../action/actions';
 import axios from 'axios';
 import { API_BASE } from '../env/env';
 import { Toast } from 'antd-mobile-rn';
+import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/observable/of';
 
 export const CREATE_TODO = action$ => {
   return action$.ofType(Actions.CREATE_TODO.REQUEST).mergeMap(action => {
     return axios
       .post(`${API_BASE}/auth/todo`, action.payload)
-      .then(response => Actions.CREATE_TODO.success(response.data))
+      .then(response => {
+        return Actions.CREATE_TODO.success(response.data);
+      })
       .catch(caught => {
         Toast.fail('\n新建失败，请重试');
         return Actions.CREATE_TODO.failure(caught);

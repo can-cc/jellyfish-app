@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
 import { RefreshControl, StyleSheet, Text, View, TouchableOpacity, ScrollView } from 'react-native';
-import { Button, List, Checkbox, InputItem, WhiteSpace, Flex } from 'antd-mobile-rn';
+import { Button, List, Tag, Checkbox, InputItem, WhiteSpace, Flex } from 'antd-mobile-rn';
 
 import { StackNavigator } from 'react-navigation';
 import { bindActionCreators } from 'redux';
@@ -89,6 +89,7 @@ class TodoListScreen extends React.Component<{
                   <Flex>
                     <Checkbox checked={todo.done} onChange={() => this.onCheckClick(todo)} />
                     <Text style={{ color: 'black', marginLeft: 15 }}>{todo.content}</Text>
+                    {todo.deadline ? <Tag>{todo.deadline}</Tag> : null}
                   </Flex>
                 </Item>
               );
