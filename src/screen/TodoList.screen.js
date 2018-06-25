@@ -38,28 +38,29 @@ class TodoListScreen extends React.Component<{
       userId: this.props.userId,
       done: false
     });
-    epicAdapterService.input$
-      .ofType(Actions.GET_TODO_LIST.SUCCESS)
-      .take(1)
-      .subscribe(() => {
-        this.setState({ refreshing: false });
-      });
-    epicAdapterService.input$
-      .ofType(Actions.GET_TODO_LIST.FAILURE)
-      .take(1)
-      .subscribe(() => {
-        this.setState({ refreshing: false });
-      });
+    /* epicAdapterService.input$
+     *   .ofType(Actions.GET_TODO_LIST.SUCCESS)
+     *   .take(1)
+     *   .subscribe(() => {
+     *     this.setState({ refreshing: false });
+     *   }); */
+
+    /* epicAdapterService.input$
+     *   .ofType(Actions.GET_TODO_LIST.FAILURE)
+     *   .take(1)
+     *   .subscribe(() => {
+     *     this.setState({ refreshing: false });
+     *   }); */
   };
 
   createTodo = (content: string) => {
     this.props.actions.CREATE_TODO_REQUEST({ content });
-    epicAdapterService.input$
-      .ofType(Actions.CREATE_TODO.SUCCESS)
-      .take(1)
-      .subscribe(() => {
-        this.getTodoList();
-      });
+    /* epicAdapterService.input$
+     *   .ofType(Actions.CREATE_TODO.SUCCESS)
+     *   .take(1)
+     *   .subscribe(() => {
+     *     this.getTodoList();
+     *   }); */
   };
 
   onTodoClick = todo => {

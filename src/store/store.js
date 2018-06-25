@@ -18,19 +18,22 @@ const persistConfig = {
 
 function setupStore() {
   const persistedReducer = persistReducer(persistConfig, combineReducers(reducers));
-  const epicMiddleware = createEpicMiddleware(rootEpic, {
-    adapter: epicAdapterService
-  });
+  const epicMiddleware = createEpicMiddleware();
 
   const store = createStore(
     persistedReducer,
     compose(applyMiddleware(epicMiddleware, logger), reduxReset())
   );
-  return store;
+  return { store, epicMiddleware };
 }
 
 export default () => {
-  const store = setupStore();
+  const { store, epicMiddleware } = setupStore();
+
   const persistor = persistStore(store, null, () => {});
+
+  epicMiddleware.run(rootEpic, {
+    /* adapter: epicAdapterService */
+  });
   return { store, persistor };
 };

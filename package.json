@@ -43,9 +43,10 @@
     "redux-devtools": "^3.4.1",
     "redux-devtools-log-monitor": "^1.4.0",
     "redux-logger": "^3.0.6",
-    "redux-observable": "0.16",
+    "redux-observable": "^1.0.0",
     "redux-persist": "^5.10.0",
     "redux-reset": "^0.3.0",
-    "rxjs": "^5.5.10"
+    "rxjs": "^6.2.1",
+    "rxjs-compat": "^6.2.1"
   }
 }
