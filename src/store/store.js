@@ -24,6 +24,7 @@ function setupStore() {
     persistedReducer,
     compose(applyMiddleware(epicMiddleware, logger), reduxReset())
   );
+
   return { store, epicMiddleware };
 }
 
@@ -32,8 +33,13 @@ export default () => {
 
   const persistor = persistStore(store, null, () => {});
 
+  /* store.dispatch({ type: 'RESET' });
+   * persistor.purge();
+   */
   epicMiddleware.run(rootEpic, {
     /* adapter: epicAdapterService */
   });
+  console.log('epicMiddleware', epicMiddleware);
+  console.log(store);
   return { store, persistor };
 };

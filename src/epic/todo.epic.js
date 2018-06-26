@@ -5,6 +5,8 @@ import { API_BASE } from '../env/env';
 import { Toast } from 'antd-mobile-rn';
 import { Observable } from 'rxjs/Observable';
 
+import { Notifications } from 'expo';
+
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
@@ -12,18 +14,36 @@ import 'rxjs/add/observable/of';
 
 export const CREATE_TODO = action$ => {
   return action$.ofType(Actions.CREATE_TODO.REQUEST).mergeMap(action => {
+    if (action.deadline) {
+      const localNotification = {
+        title: '你的任务快到到期时间了',
+        body: `${action.content}`
+      };
+      let t = new Date(action.deadline);
+      t.setSeconds(t.getSeconds() + 10 * 1000);
+      const schedulingOptions = {
+        time: t // (date or number) — A Date object representing when to fire the notification or a number in Unix epoch time. Example: (new Date()).getTime() + 1000 is one second from now.
+      };
+      Notifications.scheduleLocalNotificationAsync(localNotification, schedulingOptions);
+    }
+
     return axios
       .post(`${API_BASE}/auth/todo`, action.payload)
       .then(response => {
         return Actions.CREATE_TODO.success(response.data);
       })
       .catch(caught => {
-        Toast.fail('\n新建失败，请重试');
-        return Actions.CREATE_TODO.failure(caught);
+        /* Toast.fail('\n新建失败，请重试'); */
+        return Actions.CREATE_TODO.failure(aciton.payload, caught);
       });
   });
 };
 
+/* export const CREATE_TODO_SUCCESS = action$ => {
+ *   return action$.ofType(Actions.CREATE_TODO.SUCCESS).do(action => {
+ *   });
+ * };
+ *  */
 export const UPDATE_TODO = action$ => {
   return action$
     .ofType(Actions.UPDATE_TODO.REQUEST)

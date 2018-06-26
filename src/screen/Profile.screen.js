@@ -29,6 +29,7 @@ class ProfileScreen extends React.Component {
   }
 
   logout = persistor => {
+    console.log(persistor);
     Modal.alert('登出', '确定登出吗？', [
       { text: '取消' },
       {

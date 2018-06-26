@@ -7,6 +7,8 @@ import { PersistGate } from 'redux-persist/integration/react';
 
 import createStore from './src/store/store';
 
+import NavigationService from './src/service/single/navigation.service';
+
 import { InitLoadingScreenContainer } from './src/screen/InitLoading.screen';
 import { SignInScreenContainer } from './src/screen/SignIn.screen';
 import { TodoListScreenContainer } from './src/screen/TodoList.screen';
@@ -158,12 +160,16 @@ export default class Main extends Component {
 
     return (
       <Provider store={store}>
-        {/* <PersistorContext.Provider value={persistor}>
-            </PersistorContext.Provider> */}
-        <View style={{ flex: 1 }}>
-          <StatusBar barStyle="dark-content" />
-          <AppSwitchNavigator />
-        </View>
+        <PersistorContext.Provider value={persistor}>
+          <View style={{ flex: 1 }}>
+            <StatusBar barStyle="dark-content" />
+            <AppSwitchNavigator
+              ref={navigatorRef => {
+                NavigationService.setTopLevelNavigator(navigatorRef);
+              }}
+            />
+          </View>
+        </PersistorContext.Provider>
       </Provider>
     );
   }

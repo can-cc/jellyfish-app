@@ -33,20 +33,21 @@ class SignInScreen extends Component<{
 
   submit = () => {
     this.props.form.validateFields((error, value: { uername: string, password: string }) => {
-      this.props.actions.SIGNIN_REQUEST(value);
-      this.props.epicAdapterService.input$
-        .ofType(Actions.SIGNIN.SUCCESS)
-        .take(1)
-        .subscribe(() => {
-          this.props.navigation.navigate('Main');
-        });
+      const x = this.props.actions.SIGNIN_REQUEST(value);
+      console.log('------------>', x);
+      /* this.props.epicAdapterService.input$
+       *   .ofType(Actions.SIGNIN.SUCCESS)
+       *   .take(1)
+       *   .subscribe(() => {
+       *     this.props.navigation.navigate('Main');
+       *   });
 
-      this.props.epicAdapterService.input$
-        .ofType(Actions.SIGNIN.FAILURE)
-        .take(1)
-        .subscribe(() => {
-          Toast.fail('\n登录失败，请重试');
-        });
+       * this.props.epicAdapterService.input$
+       *   .ofType(Actions.SIGNIN.FAILURE)
+       *   .take(1)
+       *   .subscribe(() => {
+       *     Toast.fail('\n登录失败，请重试');
+       *   }); */
     });
   };
 
@@ -161,10 +162,12 @@ class SignInScreen extends Component<{
 }
 
 export const SignInScreenContainer = connect(
-  state => {
+  (state, xxx, x) => {
+    console.log('xx', xxx, x);
     return {};
   },
-  dispatch => {
+  (dispatch, xx, x) => {
+    console.log('xx', xx, x);
     return {
       actions: bindActionCreators(makeActionRequestCollection(), dispatch),
       epicAdapterService

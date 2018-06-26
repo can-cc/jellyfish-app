@@ -8,7 +8,8 @@ import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/ignoreElements';
 
-export const SIGNIN = action$ => {
+export const SIGNIN = (action$, x, x1, x2) => {
+  console.log(x, x1, x2);
   return action$.ofType(Actions.SIGNIN.REQUEST).mergeMap(action => {
     /* removeAxiosJwtHeader(); */
     return axios
