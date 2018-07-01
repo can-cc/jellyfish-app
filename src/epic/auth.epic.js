@@ -3,13 +3,13 @@ import Actions from '../action/actions';
 import axios from 'axios';
 import { setupAxiosJwtHeader } from '../helper/http-intercetor';
 import { API_BASE } from '../env/env';
+import NavigationService from '../service/single/navigation.service';
 
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/ignoreElements';
 
 export const SIGNIN = (action$, x, x1, x2) => {
-  console.log(x, x1, x2);
   return action$.ofType(Actions.SIGNIN.REQUEST).mergeMap(action => {
     /* removeAxiosJwtHeader(); */
     return axios
@@ -18,9 +18,19 @@ export const SIGNIN = (action$, x, x1, x2) => {
         setupAxiosJwtHeader(response.data.token);
         return Actions.SIGNIN.success(response.data);
       })
-      .catch(Actions.SIGNIN.failure);
+      .catch(error => {
+        return Actions.SIGNIN.failure(error);
+      });
   });
 };
+
+export const SIGNIN_SUCCESS = action$ =>
+  action$
+    .ofType(Actions.SIGNIN.SUCCESS)
+    .do(() => {
+      NavigationService.navigate('Main');
+    })
+    .ignoreElements();
 
 export const GET_USER_INFO = action$ => {
   return action$.ofType(Actions.GET_USER_INFO.REQUEST).mergeMap(action => {

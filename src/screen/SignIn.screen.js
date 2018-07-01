@@ -33,8 +33,7 @@ class SignInScreen extends Component<{
 
   submit = () => {
     this.props.form.validateFields((error, value: { uername: string, password: string }) => {
-      const x = this.props.actions.SIGNIN_REQUEST(value);
-      console.log('------------>', x);
+      this.props.actions.SIGNIN_REQUEST(value);
       /* this.props.epicAdapterService.input$
        *   .ofType(Actions.SIGNIN.SUCCESS)
        *   .take(1)

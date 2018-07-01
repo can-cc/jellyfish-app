@@ -2,6 +2,7 @@
 import React from 'react';
 import { RefreshControl, StyleSheet, Text, View, TouchableOpacity, ScrollView } from 'react-native';
 import { Button, List, Tag, Checkbox, InputItem, WhiteSpace, Flex } from 'antd-mobile-rn';
+import { Permissions, Constants, Notifications } from 'expo';
 
 import { StackNavigator } from 'react-navigation';
 import { bindActionCreators } from 'redux';
@@ -28,8 +29,34 @@ class TodoListScreen extends React.Component<{
     refreshing: false
   };
 
+  async grad() {
+    const { status: existingStatus } = await Permissions.getAsync(Permissions.NOTIFICATIONS);
+    let finalStatus = existingStatus;
+
+    // only ask if permissions have not already been determined, because
+    // iOS won't necessarily prompt the user a second time.
+    if (existingStatus !== 'granted') {
+      // Android remote notification permissions are granted during the app
+      // install, so this will only ask on iOS
+      const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
+      finalStatus = status;
+    }
+
+    // Stop here if the user did not grant permissions
+    if (finalStatus !== 'granted') {
+      console.log('不允许通知');
+      return;
+    }
+
+    let token = await Notifications.getExpoPushTokenAsync();
+    console.log('token', token);
+
+    // Get the token that uniquely identifies this device
+  }
+
   componentWillMount() {
     this.getTodoList();
+    this.grad();
   }
 
   getTodoList = () => {
@@ -54,7 +81,7 @@ class TodoListScreen extends React.Component<{
   };
 
   createTodo = (content: string) => {
-    this.props.actions.CREATE_TODO_REQUEST({ content });
+    this.props.actions.CREATE_TODO_REQUEST({ content, deadline: new Date().getTime() });
     /* epicAdapterService.input$
      *   .ofType(Actions.CREATE_TODO.SUCCESS)
      *   .take(1)

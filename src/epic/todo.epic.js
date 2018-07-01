@@ -14,13 +14,15 @@ import 'rxjs/add/observable/of';
 
 export const CREATE_TODO = action$ => {
   return action$.ofType(Actions.CREATE_TODO.REQUEST).mergeMap(action => {
-    if (action.deadline) {
+    console.log(action);
+    if (action.payload.deadline) {
       const localNotification = {
         title: '你的任务快到到期时间了',
-        body: `${action.content}`
+        body: `${action.payload.content}`
       };
-      let t = new Date(action.deadline);
-      t.setSeconds(t.getSeconds() + 10 * 1000);
+      let t = new Date(action.payload.deadline);
+      t.setSeconds(t.getSeconds() + 10);
+      console.log(t);
       const schedulingOptions = {
         time: t // (date or number) — A Date object representing when to fire the notification or a number in Unix epoch time. Example: (new Date()).getTime() + 1000 is one second from now.
       };

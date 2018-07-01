@@ -12,7 +12,7 @@ class TodoCreaterCompoent extends React.Component<{
   state = { content: '', value: '' };
 
   submit = () => {
-    this.setState({ content: this.state.value, deadline: new Date().getTime() });
+    this.setState({ content: this.state.value });
     this.props.onSubmit(this.state.value);
     setTimeout(() => {
       this.setState({ content: '' });

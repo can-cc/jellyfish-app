@@ -150,7 +150,6 @@ export default class Main extends Component {
         <AppLoading
           startAsync={this.guaranteePersist}
           onFinish={() => {
-            console.log('finish');
             this.setState({ isReady: true });
           }}
           onError={console.warn}
