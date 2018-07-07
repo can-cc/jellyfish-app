@@ -1,6 +1,6 @@
 {
   "name": "jellyfish-app",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "private": true,
   "devDependencies": {
     "babel-plugin-import": "^1.7.0",
