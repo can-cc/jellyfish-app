@@ -50,6 +50,60 @@ class TodoCreaterCompoent extends React.Component<{
             value={this.state.text}
           />
 
+          <List>
+            <Item>
+              <Flex>
+                <Ionicons name="ios-time-outline" size={25} />
+
+                <TouchableOpacity
+                  style={{ marginLeft: 10, width: '100%' }}
+                  onPress={this.showDateTimePicker}
+                >
+                  <Text style={{ color: '#cdcdd1', fontSize: 16 }}>
+                    {this.props.todo.deadline
+                      ? format(this.props.todo.deadline, 'YYYY/MM/dd HH:mm')
+                      : '请选择'}
+                  </Text>
+                </TouchableOpacity>
+              </Flex>
+
+              <DateTimePicker
+                mode="datetime"
+                date={this.props.todo.deadline ? new Date(this.props.todo.deadline) : new Date()}
+                isVisible={this.state.isDateTimePickerVisible}
+                onConfirm={this.handleDatePicked}
+                onCancel={this.hideDateTimePicker}
+              />
+            </Item>
+
+            <Item>
+              <Flex style={{ alignItems: 'flex-start' }}>
+                <Ionicons
+                  style={{ marginLeft: 3, marginTop: 2 }}
+                  name="ios-clipboard-outline"
+                  size={25}
+                />
+                <Flex.Item style={{ marginLeft: 3, marginTop: 1 }}>
+                  <TextareaItem
+                    onChange={value => {
+                      this.setState({ detail: value });
+                      this.detailTouched = true;
+                    }}
+                    onBlur={() => {
+                      this.onChangeTodo({ detail: this.state.detail });
+                    }}
+                    defaultValue={this.props.todo.detail}
+                    style={{ fontSize: 16 }}
+                    placeholder="备注"
+                    rows={5}
+                    labelNumber={0}
+                  />
+                </Flex.Item>
+              </Flex>
+            </Item>
+          </List>
+          <WhiteSpace style={{ height: 20 }} />
+
           <Button
             style={{
               height: 45,
