@@ -33,22 +33,23 @@ class TodoCreaterCompoent extends React.Component<{
           transparent
           maskClosable={false}
           onClose={this.onClose}
-          closable={true}
+          closable={false}
           style={{ top: -180 }}
-          title="Title"
+          title={null}
           footer={null}
           wrapProps={{ onTouchStart: this.onWrapTouchStart }}
         >
           <TextInput
             placeholder="您希望做什么？"
-            style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
+            style={{
+              height: 40,
+              borderColor: 'gray',
+              borderBottomWidth: 1
+            }}
             onChangeText={text => this.setState({ text })}
             value={this.state.text}
           />
 
-          <Text>hihi</Text>
-          <Text>hihi</Text>
-          <Text>hihi</Text>
           <Button
             style={{
               height: 45,
