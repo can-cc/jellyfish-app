@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import { Button, List, Checkbox, InputItem, WhiteSpace, Flex } from 'antd-mobile-rn';
+import { StyleSheet, Text, View, TouchableOpacity, TextInput } from 'react-native';
+import { Button, List, Checkbox, InputItem, WhiteSpace, Flex, Modal } from 'antd-mobile-rn';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import { createForm } from 'rc-form';
@@ -19,27 +19,69 @@ class TodoCreaterCompoent extends React.Component<{
     });
   };
 
+  onClose = () => {
+    this.setState({
+      modal1: false
+    });
+  };
+
   render() {
     return (
-      <List>
-        <InputItem
-          defaultValue={this.state.content}
-          onChangeText={text => this.setState({ value: text })}
-          clear
-          returnKeyType="done"
-          onSubmitEditing={this.submit}
-          placeholder="Add Todo..."
-          style={{ height: 60 }}
-          labelNumber={2}
+      <View>
+        <Modal
+          visible={this.state.modal1}
+          transparent
+          maskClosable={false}
+          onClose={this.onClose}
+          closable={true}
+          style={{ top: -180 }}
+          title="Title"
+          footer={null}
+          wrapProps={{ onTouchStart: this.onWrapTouchStart }}
         >
-          <Ionicons
-            style={{ marginTop: -1, marginLeft: 5 }}
-            color="#35caf3"
-            name="ios-add"
-            size={30}
+          <TextInput
+            placeholder="您希望做什么？"
+            style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
+            onChangeText={text => this.setState({ text })}
+            value={this.state.text}
           />
-        </InputItem>
-      </List>
+
+          <Text>hihi</Text>
+          <Text>hihi</Text>
+          <Text>hihi</Text>
+          <Button
+            style={{
+              height: 45,
+              backgroundColor: '#c2ddff',
+              borderWidth: 0,
+              shadowColor: 'rgb(194, 221, 255)',
+              shadowOpacity: 0.58,
+              shadowRadius: 10,
+              shadowOffset: { width: 0, height: 7 }
+            }}
+            onClick={e => {}}
+          >
+            <Text
+              style={{
+                color: '#4295ff'
+              }}
+            >
+              OK
+            </Text>
+          </Button>
+        </Modal>
+
+        <Button
+          onClick={e => {
+            e.preventDefault();
+            this.setState({
+              modal1: true
+            });
+          }}
+        >
+          default
+        </Button>
+      </View>
     );
   }
 }
