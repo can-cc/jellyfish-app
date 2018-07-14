@@ -1,6 +1,14 @@
 // @flow
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, TextInput, Image } from 'react-native';
+import {
+  Button as RNButton,
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  TextInput,
+  Image
+} from 'react-native';
 import { Button, List, Checkbox, InputItem, WhiteSpace, Flex, Modal } from 'antd-mobile-rn';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -39,7 +47,7 @@ class TodoCreaterCompoent extends React.Component<{
 
   render() {
     return (
-      <View>
+      <View style={{ width: '100%' }}>
         <Modal
           visible={this.state.modal1}
           transparent
@@ -49,7 +57,6 @@ class TodoCreaterCompoent extends React.Component<{
           style={{ top: -120, width: '90%', paddingLeft: 30, paddingRight: 30, paddingBottom: 20 }}
           title={null}
           footer={null}
-          wrapProps={{ onTouchStart: this.onWrapTouchStart }}
         >
           <TouchableOpacity onPress={this.onClose}>
             <Image
@@ -129,7 +136,7 @@ class TodoCreaterCompoent extends React.Component<{
                 }}
                 style={{ marginTop: 3, fontSize: 16, width: '100%', height: '100%' }}
                 placeholder="+备注"
-                autoCapitalize={false}
+                autoCapitalize="none"
                 multiline={true}
               />
             </Flex.Item>
@@ -159,6 +166,21 @@ class TodoCreaterCompoent extends React.Component<{
         </Modal>
 
         <Button
+          style={{
+            width: 110,
+            height: 50,
+            alignItems: 'center',
+            borderWidth: 0,
+            borderRadius: 25,
+            shadowColor: 'rgba(64, 64, 64, 0.05)',
+            shadowRadius: 9,
+            shadowOffset: { width: 0, height: 5 },
+            position: 'absolute',
+            left: '50%',
+            top: '0%',
+            marginLeft: -55,
+            marginTop: -25
+          }}
           onClick={e => {
             e.preventDefault();
             this.setState({
@@ -166,7 +188,15 @@ class TodoCreaterCompoent extends React.Component<{
             });
           }}
         >
-          default
+          <Image
+            style={{
+              width: 20,
+              height: 20,
+              position: 'relative'
+            }}
+            source={require('../../assets/icons/pencil.png')}
+          />
+          <Text style={{ fontSize: 16, fontWeight: '200' }}>新任务</Text>
         </Button>
       </View>
     );

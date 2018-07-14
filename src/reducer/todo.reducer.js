@@ -11,10 +11,17 @@ export function todo(
   action: FSAction
 ) {
   switch (action.type) {
+    case Actions.GET_TODO_LIST.REQUEST:
+      return {
+        ...state,
+        refreshing: true
+      };
+
     case Actions.GET_TODO_LIST.SUCCESS: {
       const normalizedData = normalize(action.payload, STodos);
       return {
         ...state,
+        refreshing: false,
         result: normalizedData.result,
         entities: {
           todo: {
@@ -22,6 +29,13 @@ export function todo(
             ...normalizedData.entities.todo
           }
         }
+      };
+    }
+
+    case Actions.GET_TODO_LIST.FAILURE: {
+      return {
+        ...state,
+        refreshing: false
       };
     }
 
