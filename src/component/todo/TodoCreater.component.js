@@ -1,16 +1,7 @@
 // @flow
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, TextInput, Image } from 'react-native';
-import {
-  Button,
-  TextareaItem,
-  List,
-  Checkbox,
-  InputItem,
-  WhiteSpace,
-  Flex,
-  Modal
-} from 'antd-mobile-rn';
+import { Button, List, Checkbox, InputItem, WhiteSpace, Flex, Modal } from 'antd-mobile-rn';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 const Item = List.Item;
@@ -55,7 +46,7 @@ class TodoCreaterCompoent extends React.Component<{
           maskClosable={false}
           onClose={this.onClose}
           closable={false}
-          style={{ top: -130, width: '90%', paddingLeft: 30, paddingRight: 30, paddingBottom: 20 }}
+          style={{ top: -120, width: '90%', paddingLeft: 30, paddingRight: 30, paddingBottom: 20 }}
           title={null}
           footer={null}
           wrapProps={{ onTouchStart: this.onWrapTouchStart }}
@@ -82,77 +73,67 @@ class TodoCreaterCompoent extends React.Component<{
             value={this.state.text}
           />
 
-          <List
+          <Item
             style={{
-              borderBottomWidth: 0
-            }}
-            styles={{
-              Body: {
-                borderBottomWidth: 0,
-                borderTopWidth: 0
-              }
+              marginTop: 20,
+              marginLeft: 0,
+              paddingLeft: 0,
+              borderBottomWidth: 0.7,
+              borderColor: '#dadada'
             }}
           >
-            <Item
-              style={{
-                marginTop: 20,
-                marginLeft: 0,
-                paddingLeft: 0,
-                borderBottomWidth: 0.8,
-                borderColor: '#dadada'
-              }}
-            >
-              <Flex>
-                <Image
-                  style={{ width: 20, height: 20 }}
-                  source={require('../../assets/icons/clock.png')}
-                />
-
-                <TouchableOpacity
-                  style={{ marginLeft: 10, width: '100%' }}
-                  onPress={this.showDateTimePicker}
-                >
-                  <Text style={{ color: '#9b9b9b', fontSize: 16 }}>
-                    {this.state.deadline
-                      ? format(this.state.deadline, 'YYYY/MM/dd HH:mm')
-                      : '任务deadline'}
-                  </Text>
-                </TouchableOpacity>
-              </Flex>
-
-              <DateTimePicker
-                mode="datetime"
-                date={this.state.deadline ? new Date(this.state.deadline) : new Date()}
-                isVisible={this.state.isDateTimePickerVisible}
-                onConfirm={this.handleDatePicked}
-                onCancel={this.hideDateTimePicker}
+            <Flex>
+              <Image
+                style={{ width: 20, height: 20 }}
+                source={require('../../assets/icons/clock.png')}
               />
-            </Item>
 
-            <Item>
-              <Flex style={{ alignItems: 'flex-start' }}>
-                <Ionicons
-                  style={{ marginLeft: 3, marginTop: 2 }}
-                  name="ios-clipboard-outline"
-                  size={25}
-                />
-                <Flex.Item style={{ marginLeft: 3, marginTop: 1 }}>
-                  <TextareaItem
-                    onChange={value => {
-                      this.setState({ detail: value });
-                      this.detailTouched = true;
-                    }}
-                    onBlur={() => {}}
-                    defaultValue={this.state.detail}
-                    style={{ fontSize: 16 }}
-                    placeholder="备注"
-                    rows={5}
-                    labelNumber={0}
-                  />
-                </Flex.Item>
-              </Flex>
-            </Item>
-          </List>
+              <TouchableOpacity
+                style={{ marginLeft: 10, width: '100%' }}
+                onPress={this.showDateTimePicker}
+              >
+                <Text style={{ color: '#9b9b9b', fontSize: 16 }}>
+                  {this.state.deadline
+                    ? format(this.state.deadline, 'YYYY/MM/dd HH:mm')
+                    : '任务deadline'}
+                </Text>
+              </TouchableOpacity>
+            </Flex>
+
+            <DateTimePicker
+              mode="datetime"
+              date={this.state.deadline ? new Date(this.state.deadline) : new Date()}
+              isVisible={this.state.isDateTimePickerVisible}
+              onConfirm={this.handleDatePicked}
+              onCancel={this.hideDateTimePicker}
+            />
+          </Item>
+
+          <Flex style={{ alignItems: 'flex-start' }}>
+            <Image
+              style={{
+                width: 20,
+                height: 20,
+                position: 'relative',
+                top: 5,
+                marginRight: 7,
+                marginLeft: 1
+              }}
+              source={require('../../assets/icons/pencil.png')}
+            />
+
+            <Flex.Item style={{ height: 60 }}>
+              <TextInput
+                onChange={value => {
+                  this.setState({ detail: value });
+                }}
+                style={{ marginTop: 3, fontSize: 16, width: '100%', height: '100%' }}
+                placeholder="+备注"
+                autoCapitalize={false}
+                multiline={true}
+              />
+            </Flex.Item>
+          </Flex>
           <WhiteSpace style={{ height: 20 }} />
 
           <Button
