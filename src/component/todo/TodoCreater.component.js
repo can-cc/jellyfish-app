@@ -142,10 +142,8 @@ class TodoCreaterCompoent extends React.Component<{
                       this.setState({ detail: value });
                       this.detailTouched = true;
                     }}
-                    onBlur={() => {
-                      this.onChangeTodo({ detail: this.state.detail });
-                    }}
-                    defaultValue={this.props.todo.detail}
+                    onBlur={() => {}}
+                    defaultValue={this.state.detail}
                     style={{ fontSize: 16 }}
                     placeholder="备注"
                     rows={5}
