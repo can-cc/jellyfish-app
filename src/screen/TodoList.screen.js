@@ -9,9 +9,8 @@ import {
   TouchableOpacity,
   ScrollView
 } from 'react-native';
-import { Button, List, Tag, Checkbox, InputItem, WhiteSpace, Flex } from 'antd-mobile-rn';
+import { Button, Tag, Checkbox, InputItem, WhiteSpace, Flex } from 'antd-mobile-rn';
 import { Permissions, Constants, Notifications } from 'expo';
-
 import { StackNavigator } from 'react-navigation';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -20,7 +19,6 @@ import Actions, { makeActionRequestCollection } from '../action/actions';
 import epicAdapterService from '../service/single/epic-adapter.service';
 import { TodoCreater } from '../component/todo/TodoCreater.component';
 
-const Item = List.Item;
 const CheckboxItem = Checkbox.CheckboxItem;
 
 class TodoListScreen extends React.Component<{
@@ -100,7 +98,7 @@ class TodoListScreen extends React.Component<{
               left: 13
             }}
           >
-            代办清单
+            待办清单
           </Text>
           <TodoCreater onSubmit={this.createTodo} />
         </Flex>
@@ -112,14 +110,17 @@ class TodoListScreen extends React.Component<{
         >
           <FlatList
             data={this.props.todos}
-            renderItem={todo => {
+            renderItem={({ item }) => {
+              const todo = item;
               return (
                 <TouchableOpacity onPress={() => this.onTodoClick(todo)}>
-                  <Flex>
-                    <Checkbox checked={todo.done} onChange={() => this.onCheckClick(todo)} />
-                    <Text style={{ color: 'black', marginLeft: 15 }}>{todo.content}</Text>
-                    {todo.deadline ? <Tag>{todo.deadline}</Tag> : null}
-                  </Flex>
+                  <View style={{ paddingLeft: 10, paddingRight: 10, paddingBottom: 5 }}>
+                    <Flex>
+                      <Checkbox checked={todo.done} onChange={() => this.onCheckClick(todo)} />
+                      <Text style={{ color: 'black', marginLeft: 15 }}>{todo.content}</Text>
+                      {todo.deadline ? <Tag>{todo.deadline}</Tag> : null}
+                    </Flex>
+                  </View>
                 </TouchableOpacity>
               );
             }}
@@ -132,7 +133,9 @@ class TodoListScreen extends React.Component<{
 }
 
 const styles = StyleSheet.create({
-  container: {}
+  container: {
+    backgroundColor: '#fafafa'
+  }
 });
 
 export const TodoListScreenContainer = connect(
