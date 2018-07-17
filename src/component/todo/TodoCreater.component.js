@@ -20,13 +20,22 @@ import { createForm } from 'rc-form';
 class TodoCreaterCompoent extends React.Component<{
   onSubmit: any
 }> {
-  state = { content: '', value: '', deadline: null, isDateTimePickerVisible: false };
+  state = { content: '', value: '', deadline: null, isDateTimePickerVisible: false, modal1: false };
 
   submit = () => {
     this.setState({ content: this.state.value });
-    this.props.onSubmit(this.state.value);
+    this.props.onSubmit({
+      content: this.state.content,
+      deadline: this.state.deadline,
+      detail: this.state.detail
+    });
     setTimeout(() => {
-      this.setState({ content: '' });
+      this.setState({
+        content: '',
+        deadline: null,
+        detail: '',
+        modal1: false
+      });
     });
   };
 
@@ -76,8 +85,7 @@ class TodoCreaterCompoent extends React.Component<{
               fontWeight: '800',
               fontSize: 18
             }}
-            onChangeText={text => this.setState({ text })}
-            value={this.state.text}
+            onChangeText={text => this.setState({ content: text })}
           />
 
           <Item
@@ -153,7 +161,9 @@ class TodoCreaterCompoent extends React.Component<{
               shadowRadius: 10,
               shadowOffset: { width: 0, height: 7 }
             }}
-            onClick={e => {}}
+            onClick={e => {
+              this.submit();
+            }}
           >
             <Text
               style={{
@@ -167,12 +177,14 @@ class TodoCreaterCompoent extends React.Component<{
 
         <Button
           style={{
-            width: 110,
+            width: 115,
             height: 50,
             alignItems: 'center',
+            justifyContent: 'center',
             borderWidth: 0,
             borderRadius: 25,
-            shadowColor: 'rgba(64, 64, 64, 0.05)',
+            shadowColor: 'rgba(64, 64, 64, 0.15)',
+            shadowOpacity: 1,
             shadowRadius: 9,
             shadowOffset: { width: 0, height: 5 },
             position: 'absolute',
@@ -190,13 +202,14 @@ class TodoCreaterCompoent extends React.Component<{
         >
           <Image
             style={{
-              width: 20,
-              height: 20,
+              width: 10,
+              height: 10,
               position: 'relative'
             }}
-            source={require('../../assets/icons/pencil.png')}
+            source={require('../../assets/icons/+.png')}
           />
-          <Text style={{ fontSize: 16, fontWeight: '200' }}>新任务</Text>
+          <View style={{ width: 8 }} />
+          <Text style={{ marginLeft: 5, fontSize: 15, fontWeight: '200' }}>新任务</Text>
         </Button>
       </View>
     );

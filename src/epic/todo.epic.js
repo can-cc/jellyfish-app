@@ -49,9 +49,8 @@ export const CREATE_TODO = action$ => {
 export const UPDATE_TODO = action$ => {
   return action$
     .ofType(Actions.UPDATE_TODO.REQUEST)
-    .distinctUntilChanged()
-    .debounceTime(1000)
-    .mergeMap(action => {
+    .distinctUntilChanged() // TODO distinctUntilChanged mix debounceTime
+    /* .debounceTime(1000) */ .mergeMap(action => {
       return axios
         .put(`${API_BASE}/auth/todo/${action.payload.id}`, action.payload)
         .then(response => Actions.UPDATE_TODO.success(response.data))
