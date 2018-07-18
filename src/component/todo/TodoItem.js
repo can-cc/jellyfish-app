@@ -2,9 +2,11 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, TextInput, Image } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { Button, Tag, Checkbox, InputItem, WhiteSpace, Flex } from 'antd-mobile-rn';
+import { Button, Tag, InputItem, WhiteSpace, Flex } from 'antd-mobile-rn';
 
 import { createForm } from 'rc-form';
+import { CheckBox } from '../CheckBox';
+import { Deadline } from '../Deadline.component';
 
 export class TodoItem extends React.Component<{
   todo: any,
@@ -26,7 +28,7 @@ export class TodoItem extends React.Component<{
               alignItems: 'center'
             }}
           >
-            <Checkbox checked={todo.done} onChange={() => this.props.onCheckClick(todo)} />
+            <CheckBox checked={todo.done} onChange={() => this.props.onCheckClick(todo)} />
             <Text
               style={{
                 color: 'black',

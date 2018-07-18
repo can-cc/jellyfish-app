@@ -121,7 +121,20 @@ class TodoListScreen extends React.Component<{
                 <TodoItem
                   todo={todo}
                   onTodoClick={this.onTodoClick}
-                  onCheckClick={this.props.onCheckClick}
+                  onCheckClick={this.onCheckClick}
+                />
+              );
+            }}
+          />
+          <FlatList
+            data={this.props.todos.filter(t => t.done).map(t => ({ ...t, key: t.id.toString() }))}
+            renderItem={({ item }) => {
+              const todo = item;
+              return (
+                <TodoItem
+                  todo={todo}
+                  onTodoClick={this.onTodoClick}
+                  onCheckClick={this.onCheckClick}
                 />
               );
             }}
