@@ -36,7 +36,7 @@ export const CREATE_TODO = action$ => {
       })
       .catch(caught => {
         /* Toast.fail('\n新建失败，请重试'); */
-        return Actions.CREATE_TODO.failure(aciton.payload, caught);
+        return Actions.CREATE_TODO.failure(action.payload, caught);
       });
   });
 };

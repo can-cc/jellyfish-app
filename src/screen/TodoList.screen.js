@@ -20,6 +20,8 @@ import Actions, { makeActionRequestCollection } from '../action/actions';
 import epicAdapterService from '../service/single/epic-adapter.service';
 import { TodoCreater } from '../component/todo/TodoCreater.component';
 import { Deadline } from '../component/Deadline.component';
+import { ListEmpty } from '../component/ListEmpty';
+import { TodoItem } from '../component/todo/TodoItem';
 
 const CheckboxItem = Checkbox.CheckboxItem;
 
@@ -110,48 +112,17 @@ class TodoListScreen extends React.Component<{
             <RefreshControl refreshing={this.props.refreshing} onRefresh={this.getTodoList} />
           }
         >
-          {!this.props.todos.filter(t => !t.done).length && (
-            <Image
-              style={{
-                width: 246,
-                height: 218
-              }}
-              source={require('../assets/empty-list.png')}
-            />
-          )}
+          {!this.props.todos.filter(t => !t.done).length && <ListEmpty />}
           <FlatList
             data={this.props.todos.filter(t => !t.done).map(t => ({ ...t, key: t.id.toString() }))}
             renderItem={({ item }) => {
               const todo = item;
               return (
-                <TouchableOpacity onPress={() => this.onTodoClick(todo)}>
-                  <View style={{ paddingLeft: 10, paddingRight: 10, paddingBottom: 20 }}>
-                    <Flex
-                      style={{
-                        flex: 1,
-                        flexDirection: 'row',
-                        justifyContent: 'space-between',
-                        alignItems: 'center'
-                      }}
-                    >
-                      <Checkbox checked={todo.done} onChange={() => this.onCheckClick(todo)} />
-                      <Text
-                        style={{
-                          color: 'black',
-                          flexShrink: 1,
-                          marginLeft: 15,
-                          width: '100%'
-                        }}
-                      >
-                        {todo.content}
-                      </Text>
-
-                      {todo.deadline ? (
-                        <Deadline style={{ flexShrink: 0 }} deadline={todo.deadline} />
-                      ) : null}
-                    </Flex>
-                  </View>
-                </TouchableOpacity>
+                <TodoItem
+                  todo={todo}
+                  onTodoClick={this.onTodoClick}
+                  onCheckClick={this.props.onCheckClick}
+                />
               );
             }}
           />
