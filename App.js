@@ -24,10 +24,20 @@ import { PersistorContext } from './src/component/context/PersistorContext';
 
 const { store, persistor } = createStore();
 
-const TodoStack = StackNavigator({
-  TodoList: TodoListScreenContainer,
-  TodoDetail: TodoDetailScreenContainer
-});
+const TodoStack = StackNavigator(
+  {
+    TodoList: TodoListScreenContainer,
+    TodoDetail: TodoDetailScreenContainer
+  },
+  {
+    navigationOptions: {
+      headerStyle: {
+        backgroundColor: '#fff',
+        borderBottomColor: '#e8e8e8'
+      }
+    }
+  }
+);
 
 const ProfileStack = StackNavigator({
   Profile: ProfileScreenContainer,
