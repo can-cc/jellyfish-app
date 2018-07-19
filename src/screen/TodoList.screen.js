@@ -8,9 +8,10 @@ import {
   View,
   TouchableOpacity,
   ScrollView,
-  Image
+  Image,
+  Button as RNButton
 } from 'react-native';
-import { Button, Tag, Checkbox, InputItem, WhiteSpace, Flex } from 'antd-mobile-rn';
+import { Tag, Checkbox, InputItem, WhiteSpace, Flex } from 'antd-mobile-rn';
 import { Permissions, Constants, Notifications } from 'expo';
 import { StackNavigator } from 'react-navigation';
 import { bindActionCreators } from 'redux';
@@ -22,6 +23,7 @@ import { TodoCreater } from '../component/todo/TodoCreater.component';
 import { Deadline } from '../component/Deadline.component';
 import { ListEmpty } from '../component/ListEmpty';
 import { TodoItem } from '../component/todo/TodoItem';
+import { Button } from '../component/Button';
 
 const CheckboxItem = Checkbox.CheckboxItem;
 
@@ -35,7 +37,9 @@ class TodoListScreen extends React.Component<{
     headerBackTitle: null
   };
 
-  state = {};
+  state = {
+    showDone: false
+  };
 
   async grad() {
     const { status: existingStatus } = await Permissions.getAsync(Permissions.NOTIFICATIONS);
@@ -113,6 +117,7 @@ class TodoListScreen extends React.Component<{
           }
         >
           {!this.props.todos.filter(t => !t.done).length && <ListEmpty />}
+
           <FlatList
             data={this.props.todos.filter(t => !t.done).map(t => ({ ...t, key: t.id.toString() }))}
             renderItem={({ item }) => {
@@ -126,19 +131,41 @@ class TodoListScreen extends React.Component<{
               );
             }}
           />
-          <FlatList
-            data={this.props.todos.filter(t => t.done).map(t => ({ ...t, key: t.id.toString() }))}
-            renderItem={({ item }) => {
-              const todo = item;
-              return (
-                <TodoItem
-                  todo={todo}
-                  onTodoClick={this.onTodoClick}
-                  onCheckClick={this.onCheckClick}
-                />
-              );
+
+          <View
+            style={{
+              flex: 1,
+              justifyContent: 'center',
+              alignItems: 'center',
+              marginTop: 15
             }}
-          />
+          >
+            <Button
+              onPress={e => {
+                this.setState({ showDone: !this.state.showDone });
+              }}
+            >
+              <Text style={{ color: '#4295ff', fontSize: 14 }}>
+                {this.state.showDone ? '收起' : '显示已完成'}
+              </Text>
+            </Button>
+          </View>
+
+          {this.state.showDone && (
+            <FlatList
+              data={this.props.todos.filter(t => t.done).map(t => ({ ...t, key: t.id.toString() }))}
+              renderItem={({ item }) => {
+                const todo = item;
+                return (
+                  <TodoItem
+                    todo={todo}
+                    onTodoClick={this.onTodoClick}
+                    onCheckClick={this.onCheckClick}
+                  />
+                );
+              }}
+            />
+          )}
           <WhiteSpace size="xl" style={{ height: 80 }} />
         </ScrollView>
       </View>

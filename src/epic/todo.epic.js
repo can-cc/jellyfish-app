@@ -14,15 +14,13 @@ import 'rxjs/add/observable/of';
 
 export const CREATE_TODO = action$ => {
   return action$.ofType(Actions.CREATE_TODO.REQUEST).mergeMap(action => {
-    console.log(action);
     if (action.payload.deadline) {
       const localNotification = {
         title: '你的任务快到到期时间了',
         body: `${action.payload.content}`
       };
       let t = new Date(action.payload.deadline);
-      t.setSeconds(t.getSeconds() + 10);
-      console.log(t);
+      t.setSeconds(t.getSeconds() - 1000);
       const schedulingOptions = {
         time: t // (date or number) — A Date object representing when to fire the notification or a number in Unix epoch time. Example: (new Date()).getTime() + 1000 is one second from now.
       };
@@ -32,7 +30,11 @@ export const CREATE_TODO = action$ => {
     return axios
       .post(`${API_BASE}/auth/todo`, action.payload)
       .then(response => {
-        return Actions.CREATE_TODO.success(response.data);
+        console.log(response.data);
+        return Actions.CREATE_TODO.success({
+          ...response.data,
+          ...action.payload
+        });
       })
       .catch(caught => {
         /* Toast.fail('\n新建失败，请重试'); */

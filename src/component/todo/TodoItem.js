@@ -34,7 +34,8 @@ export class TodoItem extends React.Component<{
                 color: 'black',
                 flexShrink: 1,
                 marginLeft: 15,
-                width: '100%'
+                width: '100%',
+                textDecorationLine: todo.done ? 'line-through' : 'none'
               }}
             >
               {todo.content}

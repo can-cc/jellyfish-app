@@ -10,7 +10,14 @@ export class ListEmpty extends React.Component<{}> {
 
   render() {
     return (
-      <View style={{ flex: 1, width: '100%', justifyContent: 'center', alignItems: 'center' }}>
+      <View
+        style={{
+          flex: 1,
+          width: '100%',
+          justifyContent: 'center',
+          alignItems: 'center'
+        }}
+      >
         <Image
           style={{
             width: 175,

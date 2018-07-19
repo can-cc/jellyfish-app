@@ -27,7 +27,9 @@ export class CheckBox extends React.Component<{}> {
           this.props.onChange(!this.props.checked);
         }}
         isChecked={this.props.checked}
-        checkedImage={<Image source={require('../assets/check.png')} style={{}} />}
+        checkedImage={
+          <Image source={require('../assets/check.png')} style={{ width: 13, height: 13 }} />
+        }
         unCheckedImage={
           <View style={{ width: 15, height: 15, borderWidth: 1, borderColor: '#999' }} />
         }
