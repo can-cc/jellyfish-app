@@ -63,19 +63,22 @@ export function todo(
        *     tempIdCursor: state.tempIdCursor + 1
        *   };
        * }
-
-       * case Actions.CREATE_TODO.SUCCESS: {
-       *   return {
-       *     ...state,
-       *     entities: {
-       *       todo: {
-       *         ...state.entities.todo,
-       *         [action.payload.id]: action.payload
-       *       }
-       *     }
-       *   };
-       * }
        */
+    case Actions.CREATE_TODO.SUCCESS: {
+      console.log('hihihhhhhhhhhhhh');
+      console.log(action);
+      const normalizedData = normalize(action.payload, STodo);
+      console.log('normalizeddata', normalizedData);
+      return {
+        ...state,
+        result: state.result.concat(normalizedData.result),
+        entities: {
+          ...state.entities,
+          ...normalizedData.entities
+        }
+      };
+    }
+
     case Actions.DELETE_TODO.REQUEST: {
       return {
         ...state,
