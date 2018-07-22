@@ -73,8 +73,10 @@ export function todo(
         ...state,
         result: state.result.concat(normalizedData.result),
         entities: {
-          ...state.entities,
-          ...normalizedData.entities
+          todo: {
+            ...state.entities.todo,
+            ...normalizedData.entities.todo
+          }
         }
       };
     }
