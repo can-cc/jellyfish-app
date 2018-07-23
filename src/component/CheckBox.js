@@ -31,7 +31,9 @@ export class CheckBox extends React.Component<{}> {
           <Image source={require('../assets/check.png')} style={{ width: 13, height: 13 }} />
         }
         unCheckedImage={
-          <View style={{ width: 15, height: 15, borderWidth: 1, borderColor: '#999' }} />
+          <View
+            style={{ width: 15, height: 15, borderWidth: 1, borderColor: '#999', borderRadius: 4 }}
+          />
         }
       />
     );

@@ -24,6 +24,7 @@ import { Deadline } from '../component/Deadline.component';
 import { ListEmpty } from '../component/ListEmpty';
 import { TodoItem } from '../component/todo/TodoItem';
 import { Button } from '../component/Button';
+import { AppText } from '../component/AppText';
 
 const CheckboxItem = Checkbox.CheckboxItem;
 
@@ -96,7 +97,7 @@ class TodoListScreen extends React.Component<{
             width: '100%'
           }}
         >
-          <Text
+          <AppText
             style={{
               color: '#4295ff',
               letterSpacing: 1,
@@ -107,7 +108,7 @@ class TodoListScreen extends React.Component<{
             }}
           >
             待办清单
-          </Text>
+          </AppText>
           <TodoCreater onSubmit={this.createTodo} />
         </Flex>
         <ScrollView
@@ -145,7 +146,7 @@ class TodoListScreen extends React.Component<{
                 this.setState({ showDone: !this.state.showDone });
               }}
             >
-              <Text style={{ color: '#4295ff', fontSize: 14 }}>
+              <Text style={{ color: '#4295ff', fontSize: 14, paddingRight: 10, paddingLeft: 10 }}>
                 {this.state.showDone ? '收起' : '显示已完成'}
               </Text>
             </Button>
@@ -166,7 +167,7 @@ class TodoListScreen extends React.Component<{
               }}
             />
           )}
-          <WhiteSpace size="xl" style={{ height: 80 }} />
+          <WhiteSpace size="xl" style={{ height: 180 }} />
         </ScrollView>
       </View>
     );

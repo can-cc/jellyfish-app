@@ -7,6 +7,7 @@ import { Button, Tag, InputItem, WhiteSpace, Flex } from 'antd-mobile-rn';
 import { createForm } from 'rc-form';
 import { CheckBox } from '../CheckBox';
 import { Deadline } from '../Deadline.component';
+import { AppText } from '../AppText';
 
 export class TodoItem extends React.Component<{
   todo: any,
@@ -19,7 +20,7 @@ export class TodoItem extends React.Component<{
     const todo = this.props.todo;
     return (
       <TouchableOpacity onPress={() => this.props.onTodoClick(todo)}>
-        <View style={{ paddingLeft: 10, paddingRight: 10, paddingBottom: 20 }}>
+        <View style={{ paddingLeft: 10, paddingRight: 10, paddingBottom: 15 }}>
           <Flex
             style={{
               flex: 1,
@@ -29,7 +30,7 @@ export class TodoItem extends React.Component<{
             }}
           >
             <CheckBox checked={todo.done} onChange={() => this.props.onCheckClick(todo)} />
-            <Text
+            <AppText
               style={{
                 color: 'black',
                 flexShrink: 1,
@@ -39,7 +40,7 @@ export class TodoItem extends React.Component<{
               }}
             >
               {todo.content}
-            </Text>
+            </AppText>
 
             {todo.deadline ? <Deadline style={{ flexShrink: 0 }} deadline={todo.deadline} /> : null}
           </Flex>

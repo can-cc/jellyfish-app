@@ -32,7 +32,7 @@ export class Button extends React.Component<> {
           this.props.style
         ]}
         activeOpacity={1}
-        underlayColor="#000"
+        underlayColor="#C0D9FA"
         onPress={(e?: any) => this.props.onPress(e)}
       >
         {this.props.children}
