@@ -39,7 +39,5 @@ export default () => {
   epicMiddleware.run(rootEpic, {
     /* adapter: epicAdapterService */
   });
-  console.log('epicMiddleware', epicMiddleware);
-  console.log(store);
   return { store, persistor };
 };

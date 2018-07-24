@@ -161,12 +161,10 @@ class SignInScreen extends Component<{
 }
 
 export const SignInScreenContainer = connect(
-  (state, xxx, x) => {
-    console.log('xx', xxx, x);
+  state => {
     return {};
   },
-  (dispatch, xx, x) => {
-    console.log('xx', xx, x);
+  dispatch => {
     return {
       actions: bindActionCreators(makeActionRequestCollection(), dispatch),
       epicAdapterService

@@ -3,7 +3,6 @@ import React from 'react';
 import {
   Button as RNButton,
   StyleSheet,
-  Text,
   View,
   TouchableOpacity,
   TextInput,
@@ -14,6 +13,7 @@ import DateTimePicker from 'react-native-modal-datetime-picker';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 const Item = List.Item;
 import format from 'date-fns/format';
+import { AppText } from '../AppText';
 
 import { createForm } from 'rc-form';
 
@@ -23,19 +23,17 @@ class TodoCreaterCompoent extends React.Component<{
   state = { content: '', value: '', deadline: null, isDateTimePickerVisible: false, modal1: false };
 
   submit = () => {
-    this.setState({ content: this.state.value });
+    /* this.setState({ content: this.state.value }); */
     this.props.onSubmit({
       content: this.state.content,
       deadline: this.state.deadline,
       detail: this.state.detail
     });
-    setTimeout(() => {
-      this.setState({
-        content: '',
-        deadline: null,
-        detail: '',
-        modal1: false
-      });
+    this.setState({
+      content: '',
+      deadline: null,
+      detail: '',
+      modal1: false
     });
   };
 
@@ -85,6 +83,10 @@ class TodoCreaterCompoent extends React.Component<{
               fontWeight: '800',
               fontSize: 18
             }}
+            autoCapitalize="none"
+            placeholderStyle={{
+              fontFamily: 'PingFang TC'
+            }}
             onChangeText={text => this.setState({ content: text })}
           />
 
@@ -93,7 +95,7 @@ class TodoCreaterCompoent extends React.Component<{
               marginTop: 20,
               marginLeft: 0,
               paddingLeft: 0,
-              borderBottomWidth: 0.7,
+              borderBottomWidth: 0.2,
               borderColor: '#dadada'
             }}
           >
@@ -107,11 +109,19 @@ class TodoCreaterCompoent extends React.Component<{
                 style={{ marginLeft: 10, width: '100%' }}
                 onPress={this.showDateTimePicker}
               >
-                <Text style={{ color: '#9b9b9b', fontSize: 16 }}>
+                <AppText
+                  style={{
+                    color: this.state.deadline ? '#333' : '#bbb',
+                    fontSize: 16,
+                    letterSpacing: 1.3,
+                    fontWeight: '400',
+                    marginLeft: 1
+                  }}
+                >
                   {this.state.deadline
                     ? format(this.state.deadline, 'YYYY/MM/dd HH:mm')
                     : '任务deadline'}
-                </Text>
+                </AppText>
               </TouchableOpacity>
             </Flex>
 
@@ -124,7 +134,7 @@ class TodoCreaterCompoent extends React.Component<{
             />
           </Item>
 
-          <Flex style={{ alignItems: 'flex-start' }}>
+          <Flex style={{ alignItems: 'flex-start', marginTop: 5 }}>
             <Image
               style={{
                 width: 20,
@@ -132,7 +142,8 @@ class TodoCreaterCompoent extends React.Component<{
                 position: 'relative',
                 top: 5,
                 marginRight: 7,
-                marginLeft: 1
+                marginLeft: 0,
+                marginTop: 5
               }}
               source={require('../../assets/icons/pencil.png')}
             />
@@ -142,8 +153,20 @@ class TodoCreaterCompoent extends React.Component<{
                 onChange={value => {
                   this.setState({ detail: value });
                 }}
-                style={{ marginTop: 3, fontSize: 16, width: '100%', height: '100%' }}
+                style={{
+                  fontFamily: 'PingFang TC',
+                  marginTop: 3,
+                  fontSize: 16,
+                  width: '100%',
+                  height: '100%',
+                  fontWeight: '400',
+                  letterSpacing: 2
+                }}
                 placeholder="+备注"
+                placeholderColor="#bbb"
+                placeholderStyle={{
+                  fontFamily: 'PingFang TC'
+                }}
                 autoCapitalize="none"
                 multiline={true}
               />
@@ -165,13 +188,13 @@ class TodoCreaterCompoent extends React.Component<{
               this.submit();
             }}
           >
-            <Text
+            <AppText
               style={{
                 color: '#4295ff'
               }}
             >
               OK
-            </Text>
+            </AppText>
           </Button>
         </Modal>
 
@@ -209,7 +232,7 @@ class TodoCreaterCompoent extends React.Component<{
             source={require('../../assets/icons/+.png')}
           />
           <View style={{ width: 8 }} />
-          <Text style={{ marginLeft: 5, fontSize: 15, fontWeight: '200' }}>新任务</Text>
+          <AppText style={{ marginLeft: 5, fontSize: 15, fontWeight: '200' }}>新任务</AppText>
         </Button>
       </View>
     );

@@ -20,14 +20,15 @@ export class Button extends React.Component<> {
       <TouchableHighlight
         style={[
           {
-            height: 50,
+            height: 40,
             paddingLeft: 10,
             paddingRight: 10,
             alignItems: 'center',
             justifyContent: 'center',
             borderWidth: 0,
             borderRadius: 16,
-            backgroundColor: '#ddecff'
+            backgroundColor: '#ddecff',
+            flex: 1
           },
           this.props.style
         ]}

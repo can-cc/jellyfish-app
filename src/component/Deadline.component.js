@@ -3,7 +3,6 @@ import React from 'react';
 import {
   Button as RNButton,
   StyleSheet,
-  Text,
   View,
   TouchableOpacity,
   TextInput,
@@ -14,6 +13,7 @@ import format from 'date-fns/format';
 import isSameDay from 'date-fns/isSameDay';
 import addDays from 'date-fns/addDays';
 import isBefore from 'date-fns/isBefore';
+import { AppText } from './AppText';
 
 import { createForm } from 'rc-form';
 
@@ -27,9 +27,11 @@ export class Deadline extends React.Component<{ deadline: number, style: any }> 
     const deadlineText = isOutDay
       ? '过期'
       : isToday ? '今天' : isTomorrow ? '明天' : format(this.props.deadline, 'M.d');
+
+    const color = isOutDay ? '#ff644b' : isTomorrow ? '#4295ff' : '#9b9b9b';
     return (
       <View style={[this.props.style]}>
-        <Text>{deadlineText}</Text>
+        <AppText style={{ color }}>{deadlineText}</AppText>
       </View>
     );
   }

@@ -104,7 +104,8 @@ class TodoListScreen extends React.Component<{
               fontSize: 16,
               position: 'absolute',
               fontWeight: '500',
-              left: 13
+              left: 13,
+              paddingLeft: 5
             }}
           >
             待办清单
@@ -146,11 +147,28 @@ class TodoListScreen extends React.Component<{
                 this.setState({ showDone: !this.state.showDone });
               }}
             >
-              <Text style={{ color: '#4295ff', fontSize: 14, paddingRight: 10, paddingLeft: 10 }}>
-                {this.state.showDone ? '收起' : '显示已完成'}
-              </Text>
+              <View
+                style={{
+                  flex: 1,
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
+              >
+                <Text style={{ color: '#4295ff', fontSize: 14, paddingRight: 10, paddingLeft: 10 }}>
+                  {this.state.showDone ? '收起' : '显示已完成'}
+                </Text>
+                {this.state.showDone && (
+                  <Image
+                    style={{ width: 13, height: 13 }}
+                    source={require('../assets/arrow-top.png')}
+                  />
+                )}
+              </View>
             </Button>
           </View>
+
+          <WhiteSpace size="xl" style={{ height: 20 }} />
 
           {this.state.showDone && (
             <FlatList
@@ -167,7 +185,7 @@ class TodoListScreen extends React.Component<{
               }}
             />
           )}
-          <WhiteSpace size="xl" style={{ height: 180 }} />
+          <WhiteSpace size="xl" style={{ height: 100 }} />
         </ScrollView>
       </View>
     );
@@ -176,7 +194,9 @@ class TodoListScreen extends React.Component<{
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#fafafa'
+    backgroundColor: '#fafafa',
+    paddingRight: 10,
+    paddingLeft: 10
   }
 });
 
