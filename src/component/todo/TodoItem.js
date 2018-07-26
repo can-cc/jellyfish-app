@@ -29,7 +29,11 @@ export class TodoItem extends React.Component<{
               alignItems: 'center'
             }}
           >
-            <CheckBox checked={todo.done} onChange={() => this.props.onCheckClick(todo)} />
+            <CheckBox
+              style={{ marginTop: 2 }}
+              checked={todo.done}
+              onChange={() => this.props.onCheckClick(todo)}
+            />
             <AppText
               style={{
                 color: 'black',

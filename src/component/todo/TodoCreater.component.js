@@ -202,8 +202,6 @@ class TodoCreaterCompoent extends React.Component<{
           style={{
             width: 115,
             height: 50,
-            alignItems: 'center',
-            justifyContent: 'center',
             borderWidth: 0,
             borderRadius: 25,
             shadowColor: 'rgba(64, 64, 64, 0.15)',
@@ -223,16 +221,25 @@ class TodoCreaterCompoent extends React.Component<{
             });
           }}
         >
-          <Image
+          <View
             style={{
-              width: 10,
-              height: 10,
-              position: 'relative'
+              flex: 1,
+              alignItems: 'center',
+              justifyContent: 'center',
+              flexDirection: 'row',
+              paddingTop: 5
             }}
-            source={require('../../assets/icons/+.png')}
-          />
-          <View style={{ width: 8 }} />
-          <AppText style={{ marginLeft: 5, fontSize: 15, fontWeight: '200' }}>新任务</AppText>
+          >
+            <Image
+              style={{
+                width: 10,
+                height: 10
+              }}
+              source={require('../../assets/icons/+.png')}
+            />
+            <View style={{ width: 3, height: 10 }} />
+            <AppText style={{ marginLeft: 5, fontSize: 15, fontWeight: '200' }}>新任务</AppText>
+          </View>
         </Button>
       </View>
     );
