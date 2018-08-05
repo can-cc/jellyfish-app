@@ -6,7 +6,6 @@ import storage from 'redux-persist/lib/storage';
 import { combineReducers } from 'redux';
 import reduxReset from 'redux-reset';
 import logger from 'redux-logger';
-import epicAdapterService from '../service/single/epic-adapter.service';
 
 import { reducers } from '../reducer';
 import rootEpic from '../epic';
@@ -36,8 +35,6 @@ export default () => {
   /* store.dispatch({ type: 'RESET' });
    * persistor.purge();
    */
-  epicMiddleware.run(rootEpic, {
-    /* adapter: epicAdapterService */
-  });
+  epicMiddleware.run(rootEpic);
   return { store, persistor };
 };
