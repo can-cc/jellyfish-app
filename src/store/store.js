@@ -1,5 +1,4 @@
 import { compose, createStore, applyMiddleware } from 'redux';
-import { Provider } from 'react-redux';
 import { createEpicMiddleware } from 'redux-observable';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';

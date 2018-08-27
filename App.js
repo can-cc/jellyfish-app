@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, StatusBar, Image, Platform } from 'react-native';
+import { View, StatusBar, Image, Platform } from 'react-native';
 import { Provider } from 'react-redux';
-import { Button } from 'antd-mobile-rn';
 import { StackNavigator, SwitchNavigator, TabNavigator } from 'react-navigation';
-import { PersistGate } from 'redux-persist/integration/react';
 
 import createStore from './src/store/store';
 
@@ -18,7 +16,6 @@ import { CalendarScreenContainer } from './src/screen/Calendar.screen';
 import { AboutScreenContainer } from './src/screen/About.screen';
 import { AccountScreenContainer } from './src/screen/Account.screen';
 
-import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import { PersistorContext } from './src/component/context/PersistorContext';
 
