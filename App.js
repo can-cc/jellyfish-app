@@ -16,12 +16,17 @@ import { CalendarScreenContainer } from './src/screen/Calendar.screen';
 import { AboutScreenContainer } from './src/screen/About.screen';
 import { AccountScreenContainer } from './src/screen/Account.screen';
 
+import {
+  createStackNavigator,
+  createSwitchNavigator,
+  createBottomTabNavigator
+} from 'react-navigation';
 
 import { PersistorContext } from './src/component/context/PersistorContext';
 
 const { store, persistor } = createStore();
 
-const TodoStack = StackNavigator(
+const TodoStack = createStackNavigator(
   {
     TodoList: TodoListScreenContainer,
     TodoDetail: TodoDetailScreenContainer
@@ -36,13 +41,13 @@ const TodoStack = StackNavigator(
   }
 );
 
-const ProfileStack = StackNavigator({
+const ProfileStack = createStackNavigator({
   Profile: ProfileScreenContainer,
   About: AboutScreenContainer,
   Account: AccountScreenContainer
 });
 
-const MainTab = TabNavigator(
+const MainTab = createBottomTabNavigator(
   {
     Todo: {
       screen: TodoStack
@@ -115,7 +120,7 @@ const MainTab = TabNavigator(
   }
 );
 
-const AppSwitchNavigator = SwitchNavigator(
+const AppSwitchNavigator = createSwitchNavigator(
   {
     InitLoading: InitLoadingScreenContainer,
     Main: MainTab,

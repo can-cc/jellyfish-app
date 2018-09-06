@@ -7,7 +7,7 @@ const STodo = new schema.Entity('todo');
 const STodos = new schema.Array(STodo);
 
 export function todo(
-  state = { result: [], entities: { todo: {} }, tempIdCursor: 0 },
+  state = { refreshing: false, result: [], entities: { todo: {} }, tempIdCursor: 0 },
   action: FSAction
 ) {
   switch (action.type) {

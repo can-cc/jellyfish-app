@@ -134,6 +134,42 @@ class TodoCreaterCompoent extends React.Component<{
             />
           </Item>
 
+          <Item
+            style={{
+              marginTop: 20,
+              marginLeft: 0,
+              paddingLeft: 0,
+              borderBottomWidth: 0.2,
+              borderColor: '#dadada'
+            }}
+          >
+            <Flex>
+              <Image
+                style={{ width: 20, height: 20 }}
+                source={require('../../assets/icons/clock.png')}
+              />
+
+              <TouchableOpacity
+                style={{ marginLeft: 10, width: '100%' }}
+                onPress={this.showDateTimePicker}
+              >
+                <AppText
+                  style={{
+                    color: this.state.deadline ? '#333' : '#bbb',
+                    fontSize: 16,
+                    letterSpacing: 1.3,
+                    fontWeight: '400',
+                    marginLeft: 1
+                  }}
+                >
+                  {this.state.deadline
+                    ? format(this.state.deadline, 'YYYY/MM/dd HH:mm')
+                    : '任务deadline'}
+                </AppText>
+              </TouchableOpacity>
+            </Flex>
+          </Item>
+
           <Flex style={{ alignItems: 'flex-start', marginTop: 5 }}>
             <Image
               style={{
