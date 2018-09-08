@@ -71,6 +71,8 @@ class TodoListScreen extends React.Component<{
     });
   };
 
+  getTodoCycleStatus = () => {};
+
   createTodo = (initalTodo: { content: string, title: string, deadline: Date | null }) => {
     this.props.actions.CREATE_TODO_REQUEST(initalTodo);
   };
