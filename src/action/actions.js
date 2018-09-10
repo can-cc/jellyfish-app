@@ -6,6 +6,7 @@ const actionNames = [
   'GET_USER_INFO',
   'CREATE_TODO',
   'GET_TODO_LIST',
+  'GET_TODO_CYCLE_STATUS_LIST',
   'UPDATE_TODO',
   'DELETE_TODO'
 ];

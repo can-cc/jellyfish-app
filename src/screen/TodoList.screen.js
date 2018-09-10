@@ -60,6 +60,7 @@ class TodoListScreen extends React.Component<{
 
   componentWillMount() {
     this.getTodoList();
+    this.getTodoCycleStatus();
     this.grad();
   }
 
@@ -71,7 +72,12 @@ class TodoListScreen extends React.Component<{
     });
   };
 
-  getTodoCycleStatus = () => {};
+  getTodoCycleStatus = () => {
+    this.props.actions.GET_TODO_CYCLE_STATUS_LIST_REQUEST({
+      userId: this.props.userId,
+      done: false
+    });
+  };
 
   createTodo = (initalTodo: { content: string, title: string, deadline: Date | null }) => {
     this.props.actions.CREATE_TODO_REQUEST(initalTodo);
