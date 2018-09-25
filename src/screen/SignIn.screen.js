@@ -19,6 +19,7 @@ import { makeActionRequestCollection } from '../action/actions';
 import epicAdapterService from '../service/single/epic-adapter.service';
 import Actions from '../action/actions';
 import { WEBSITE } from '../env/env';
+import { AsyncStorage } from 'react-native';
 
 import 'rxjs/add/operator/take';
 
@@ -27,9 +28,7 @@ class SignInScreen extends Component<{
   epicAdapterService: any,
   navigation: any
 }> {
-  static navigationOptions = {
-    title: '登录'
-  };
+  componentWillMount() {}
 
   submit = () => {
     this.props.form.validateFields((error, value: { uername: string, password: string }) => {
