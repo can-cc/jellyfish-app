@@ -28,24 +28,37 @@ class SignInScreen extends Component<{
   epicAdapterService: any,
   navigation: any
 }> {
-  componentWillMount() {}
+  componentWillMount() {
+    this._retrieveData();
+  }
+
+  _storeData = async username => {
+    try {
+      await AsyncStorage.setItem('SIGNIN_USERNAME', username);
+    } catch (error) {
+      // Error saving data
+    }
+  };
+
+  _retrieveData = async () => {
+    try {
+      const value = await AsyncStorage.getItem('SIGNIN_USERNAME');
+      if (value !== null) {
+        // We have data!!
+        console.log(value);
+        this.props.form.setFieldsValue({
+          username: value
+        });
+      }
+    } catch (error) {
+      // Error retrieving data
+    }
+  };
 
   submit = () => {
     this.props.form.validateFields((error, value: { uername: string, password: string }) => {
+      this._storeData(value.username);
       this.props.actions.SIGNIN_REQUEST(value);
-      /* this.props.epicAdapterService.input$
-       *   .ofType(Actions.SIGNIN.SUCCESS)
-       *   .take(1)
-       *   .subscribe(() => {
-       *     this.props.navigation.navigate('Main');
-       *   });
-
-       * this.props.epicAdapterService.input$
-       *   .ofType(Actions.SIGNIN.FAILURE)
-       *   .take(1)
-       *   .subscribe(() => {
-       *     Toast.fail('\n登录失败，请重试');
-       *   }); */
     });
   };
 

@@ -37,6 +37,7 @@
     "react-native-calendars": "^1.19.3",
     "react-native-check-box": "^2.1.0",
     "react-native-modal-datetime-picker": "^5.1.0",
+    "react-native-picker-select": "^4.4.0",
     "react-native-vector-icons": "^4.6.0",
     "react-navigation": "^2.9.3",
     "react-redux": "^5.0.7",

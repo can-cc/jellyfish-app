@@ -5464,6 +5464,12 @@ react-native-modal@^5.4.0:
     prop-types "^15.6.1"
     react-native-animatable "^1.2.4"
 
+react-native-picker-select@^4.4.0:
+  version "4.4.0"
+  resolved "http://registry.npm.taobao.org/react-native-picker-select/download/react-native-picker-select-4.4.0.tgz#48454e16cd9496bbedceb180d10b8ec7c20be7f7"
+  dependencies:
+    lodash.isequal "^4.5.0"
+
 react-native-reanimated@1.0.0-alpha.3:
   version "1.0.0-alpha.3"
   resolved "http://registry.npm.taobao.org/react-native-reanimated/download/react-native-reanimated-1.0.0-alpha.3.tgz#42983aa41911791cd3186fd3a18a788c3d4c3601"

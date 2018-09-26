@@ -14,13 +14,31 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 const Item = List.Item;
 import format from 'date-fns/format';
 import { AppText } from '../AppText';
-
+import RNPickerSelect from 'react-native-picker-select';
 import { createForm } from 'rc-form';
+
+const TODO_TYPE_ITEMS = [
+  {
+    label: '代办',
+    value: 'TODO'
+  },
+  {
+    label: '习惯',
+    value: 'HABIT'
+  }
+];
 
 class TodoCreaterCompoent extends React.Component<{
   onSubmit: any
 }> {
-  state = { content: '', value: '', deadline: null, isDateTimePickerVisible: false, modal1: false };
+  state = {
+    content: '',
+    value: '',
+    deadline: null,
+    isDateTimePickerVisible: false,
+    modal1: false,
+    type: 'TODO'
+  };
 
   submit = () => {
     /* this.setState({ content: this.state.value }); */
@@ -134,6 +152,7 @@ class TodoCreaterCompoent extends React.Component<{
             />
           </Item>
 
+          {/*TODO_TYPE*/}
           <Item
             style={{
               marginTop: 20,
@@ -153,19 +172,17 @@ class TodoCreaterCompoent extends React.Component<{
                 style={{ marginLeft: 10, width: '100%' }}
                 onPress={this.showDateTimePicker}
               >
-                <AppText
-                  style={{
-                    color: this.state.deadline ? '#333' : '#bbb',
-                    fontSize: 16,
-                    letterSpacing: 1.3,
-                    fontWeight: '400',
-                    marginLeft: 1
+                <RNPickerSelect
+                  placeholder={{}}
+                  hideIcon={true}
+                  items={TODO_TYPE_ITEMS}
+                  onValueChange={value => {
+                    this.setState({
+                      type: value
+                    });
                   }}
-                >
-                  {this.state.deadline
-                    ? format(this.state.deadline, 'YYYY/MM/dd HH:mm')
-                    : '任务deadline'}
-                </AppText>
+                  value={this.state.type}
+                />
               </TouchableOpacity>
             </Flex>
           </Item>
