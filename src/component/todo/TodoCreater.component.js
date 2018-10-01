@@ -155,7 +155,7 @@ class TodoCreaterCompoent extends React.Component<{
           {/*TODO_TYPE*/}
           <Item
             style={{
-              marginTop: 20,
+              marginTop: 7,
               marginLeft: 0,
               paddingLeft: 0,
               borderBottomWidth: 0.2,
@@ -168,22 +168,30 @@ class TodoCreaterCompoent extends React.Component<{
                 source={require('../../assets/icons/clock.png')}
               />
 
-              <TouchableOpacity
-                style={{ marginLeft: 10, width: '100%' }}
-                onPress={this.showDateTimePicker}
-              >
-                <RNPickerSelect
-                  placeholder={{}}
-                  hideIcon={true}
-                  items={TODO_TYPE_ITEMS}
-                  onValueChange={value => {
-                    this.setState({
-                      type: value
-                    });
-                  }}
-                  value={this.state.type}
-                />
-              </TouchableOpacity>
+              <RNPickerSelect
+                placeholder={{}}
+                placeholderTextColor="#333"
+                style={{
+                  inputIOS: {
+                    width: '100%',
+                    marginLeft: 10,
+                    marginTop: 2.5,
+                    color: '#333',
+                    fontSize: 16,
+                    letterSpacing: 1.3,
+                    fontWeight: '400'
+                  }
+                }}
+                hideIcon={true}
+                hideDoneBar={true}
+                items={TODO_TYPE_ITEMS}
+                onValueChange={value => {
+                  this.setState({
+                    type: value
+                  });
+                }}
+                value={this.state.type}
+              />
             </Flex>
           </Item>
 
