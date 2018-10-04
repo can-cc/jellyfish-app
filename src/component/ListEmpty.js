@@ -26,9 +26,7 @@ export class ListEmpty extends React.Component<{}> {
           }}
           source={require('../assets/empty-list.png')}
         />
-        <Text style={{ color: '#888', letterSpacing: 1, fontSize: 16, marginTop: 25 }}>
-          - 暂无代办 -
-        </Text>
+        <Text style={{ color: '#888', letterSpacing: 1, fontSize: 16, marginTop: 25 }}>- 暂无代办 -</Text>
       </View>
     );
   }

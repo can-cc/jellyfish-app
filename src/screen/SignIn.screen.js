@@ -1,15 +1,6 @@
 // @flow
 import React, { Component } from 'react';
-import {
-  StyleSheet,
-  Linking,
-  Text,
-  View,
-  Image,
-  TouchableOpacity,
-  PixelRatio,
-  Platform
-} from 'react-native';
+import { StyleSheet, Linking, Text, View, Image, TouchableOpacity, PixelRatio, Platform } from 'react-native';
 import { connect } from 'react-redux';
 import { StackNavigator } from 'react-navigation';
 import { bindActionCreators } from 'redux';
@@ -45,7 +36,6 @@ class SignInScreen extends Component<{
       const value = await AsyncStorage.getItem('SIGNIN_USERNAME');
       if (value !== null) {
         // We have data!!
-        console.log(value);
         this.props.form.setFieldsValue({
           username: value
         });

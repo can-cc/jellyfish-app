@@ -1,5 +1,5 @@
 /* export const API_BASE = 'http://99.1.185.141:8888'; */
-export const API_BASE = 'http://192.168.50.77:8888';
+export const API_BASE = 'http://192.168.1.203:8888';
 /* export const API_BASE = 'http://127.0.0.1:8000'; */
 /* export const API_BASE = 'http://192.168.50.77:8888'; */
 /* export const API_BASE = 'https://jellyfish.octopuese.xyz/api'; */
