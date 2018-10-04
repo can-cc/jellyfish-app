@@ -30,7 +30,7 @@ export class TodoItem extends React.Component<{
             }}
           >
             <CheckBox
-              style={{ marginTop: 2 }}
+              style={{ marginTop: 2, flexShrink: 0 }}
               checked={todo.done}
               onChange={() => this.props.onCheckClick(todo)}
             />
@@ -38,8 +38,9 @@ export class TodoItem extends React.Component<{
               style={{
                 color: 'black',
                 flexShrink: 1,
-                marginLeft: 15,
+                paddingLeft: 8,
                 width: '100%',
+                fontSize: 15,
                 textDecorationLine: todo.done ? 'line-through' : 'none'
               }}
             >

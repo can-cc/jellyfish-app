@@ -23,7 +23,7 @@ import { createForm } from 'rc-form';
 const TODO_TYPE_ITEMS = [
   {
     label: '代办',
-    value: 'TODO'
+    value: 'NORMAL'
   },
   {
     label: '习惯',
@@ -40,7 +40,7 @@ class TodoCreaterCompoent extends React.Component<{
     deadline: null,
     isDateTimePickerVisible: false,
     modal1: false,
-    type: 'TODO'
+    type: 'NORMAL'
   };
 
   componentWillUnmount() {
