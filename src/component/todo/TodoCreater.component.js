@@ -1,6 +1,15 @@
 // @flow
 import React from 'react';
-import { Button as RNButton, StyleSheet, View, TouchableOpacity, TextInput, Image } from 'react-native';
+import {
+  Button as RNButton,
+  StyleSheet,
+  View,
+  TouchableOpacity,
+  KeyboardAvoidingView,
+  TextInput,
+  Image,
+  Platform
+} from 'react-native';
 import { Button, List, Checkbox, InputItem, WhiteSpace, Flex } from 'antd-mobile-rn';
 import Modal from 'react-native-modal';
 import DateTimePicker from 'react-native-modal-datetime-picker';
@@ -43,7 +52,8 @@ class TodoCreaterCompoent extends React.Component<{
     this.props.onSubmit({
       content: this.state.content,
       deadline: this.state.deadline,
-      detail: this.state.detail
+      detail: this.state.detail,
+      type: this.state.type
     });
     this.setState({
       content: '',
@@ -73,14 +83,14 @@ class TodoCreaterCompoent extends React.Component<{
       <View style={{ width: '100%' }}>
         <Modal
           visible={this.state.modal1}
-          maskClosable={false}
-          avoidKeyboard={true}
+          avoidKeyboard={false}
           backdropColor="transparent"
           onBackButtonPress={this.onClose}
           onBackdropPress={this.onClose}
           style={{
-            paddingRight: 10,
-            paddingLeft: 10,
+            top: -10,
+            paddingRight: 5,
+            paddingLeft: 5,
             shadowColor: 'rgba(64, 64, 64, 0.15)',
             shadowOpacity: 1,
             shadowRadius: 9,
@@ -94,9 +104,9 @@ class TodoCreaterCompoent extends React.Component<{
           <View
             style={{
               backgroundColor: '#fff',
-              padding: 10,
+              padding: 15,
               borderRadius: 8,
-              elevation: 10,
+              elevation: 5,
               position: 'relative'
             }}
           >
@@ -104,8 +114,8 @@ class TodoCreaterCompoent extends React.Component<{
               onPress={this.onClose}
               style={{
                 position: 'absolute',
-                right: 5,
-                top: 5
+                right: 8,
+                top: 8
               }}
             >
               <Image style={{ width: 20, height: 20 }} source={require('../../assets/icons/x.png')} />
@@ -191,6 +201,15 @@ class TodoCreaterCompoent extends React.Component<{
                       fontSize: 16,
                       letterSpacing: 1.3,
                       fontWeight: '400'
+                    },
+                    inputAndroid: {
+                      width: 100,
+                      marginLeft: 4,
+                      height: 18,
+                      color: '#333'
+                    },
+                    underline: {
+                      borderTopWidth: 0
                     }
                   }}
                   hideIcon={true}
@@ -227,7 +246,7 @@ class TodoCreaterCompoent extends React.Component<{
                   }}
                   style={{
                     fontFamily: appFont,
-                    marginTop: 3,
+                    marginTop: Platform.OS === 'ios' ? 3 : -9,
                     fontSize: 16,
                     width: '100%',
                     height: '100%',

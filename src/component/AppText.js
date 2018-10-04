@@ -2,7 +2,7 @@
 import React from 'react';
 import { Text, Platform } from 'react-native';
 
-export const appFont = Platform.OS === 'ios' ? 'PingFang TC' : 'monospace';
+export const appFont = Platform.OS === 'ios' ? 'PingFang TC' : 'normal';
 
 export class AppText extends React.Component<{
   children: any,

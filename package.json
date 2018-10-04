@@ -9,6 +9,7 @@
     "eslint-plugin-flowtype": "^2.41.0",
     "eslint-plugin-prettier": "^2.5.0",
     "eslint-plugin-react": "^7.5.1",
+    "prettier": "^1.14.3",
     "react-native-scripts": "^1.14.0"
   },
   "license": "BSD",
