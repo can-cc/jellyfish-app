@@ -55,7 +55,10 @@ class TodoListScreen extends React.Component<{
       return;
     }
 
-    await Notifications.getExpoPushTokenAsync();
+    try {
+      await Notifications.getExpoPushTokenAsync();
+      // TODO
+    } catch (error) {}
   }
 
   componentWillMount() {
@@ -122,9 +125,7 @@ class TodoListScreen extends React.Component<{
         </Flex>
         <ScrollView
           style={{ height: '100%' }}
-          refreshControl={
-            <RefreshControl refreshing={this.props.refreshing} onRefresh={this.getTodoList} />
-          }
+          refreshControl={<RefreshControl refreshing={this.props.refreshing} onRefresh={this.getTodoList} />}
         >
           {!this.props.todos.filter(t => !t.done).length && <ListEmpty />}
 
@@ -132,13 +133,7 @@ class TodoListScreen extends React.Component<{
             data={this.props.todos.filter(t => !t.done).map(t => ({ ...t, key: t.id.toString() }))}
             renderItem={({ item }) => {
               const todo = item;
-              return (
-                <TodoItem
-                  todo={todo}
-                  onTodoClick={this.onTodoClick}
-                  onCheckClick={this.onCheckClick}
-                />
-              );
+              return <TodoItem todo={todo} onTodoClick={this.onTodoClick} onCheckClick={this.onCheckClick} />;
             }}
           />
 
@@ -167,10 +162,7 @@ class TodoListScreen extends React.Component<{
                   {this.state.showDone ? '收起' : '显示已完成'}
                 </Text>
                 {this.state.showDone && (
-                  <Image
-                    style={{ width: 13, height: 13 }}
-                    source={require('../assets/arrow-top.png')}
-                  />
+                  <Image style={{ width: 13, height: 13 }} source={require('../assets/arrow-top.png')} />
                 )}
               </View>
             </Button>
@@ -183,13 +175,7 @@ class TodoListScreen extends React.Component<{
               data={this.props.todos.filter(t => t.done).map(t => ({ ...t, key: t.id.toString() }))}
               renderItem={({ item }) => {
                 const todo = item;
-                return (
-                  <TodoItem
-                    todo={todo}
-                    onTodoClick={this.onTodoClick}
-                    onCheckClick={this.onCheckClick}
-                  />
-                );
+                return <TodoItem todo={todo} onTodoClick={this.onTodoClick} onCheckClick={this.onCheckClick} />;
               }}
             />
           )}

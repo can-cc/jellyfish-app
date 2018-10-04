@@ -10,7 +10,7 @@ import { reducers } from '../reducer';
 import rootEpic from '../epic';
 
 const persistConfig = {
-  key: 'jellyfish',
+  key: '@jellyfish',
   storage
 };
 
@@ -18,10 +18,7 @@ function setupStore() {
   const persistedReducer = persistReducer(persistConfig, combineReducers(reducers));
   const epicMiddleware = createEpicMiddleware();
 
-  const store = createStore(
-    persistedReducer,
-    compose(applyMiddleware(epicMiddleware, logger), reduxReset())
-  );
+  const store = createStore(persistedReducer, compose(applyMiddleware(epicMiddleware, logger), reduxReset()));
 
   return { store, epicMiddleware };
 }

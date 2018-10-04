@@ -3,6 +3,7 @@
   "version": "0.1.13",
   "private": true,
   "devDependencies": {
+    "babel-eslint": "^10.0.1",
     "babel-plugin-import": "^1.7.0",
     "eslint": "^4.16.0",
     "eslint-plugin-flowtype": "^2.41.0",
@@ -36,6 +37,7 @@
     "react-native": "https://github.com/expo/react-native/archive/sdk-29.0.0.tar.gz",
     "react-native-calendars": "^1.19.3",
     "react-native-check-box": "^2.1.0",
+    "react-native-modal": "^6.5.0",
     "react-native-modal-datetime-picker": "^5.1.0",
     "react-native-picker-select": "^4.4.0",
     "react-native-vector-icons": "^4.6.0",
