@@ -10,7 +10,7 @@ import { reducers } from '../reducer';
 import rootEpic from '../epic';
 
 const persistConfig = {
-  key: '@jellyfish',
+  key: 'jellyfish',
   storage
 };
 
