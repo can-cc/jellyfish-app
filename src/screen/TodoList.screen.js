@@ -105,8 +105,6 @@ class TodoListScreen extends React.Component<{
           style={{
             marginTop: 5,
             marginBottom: 8,
-            paddingRight: 10,
-            paddingLeft: 10,
             height: 70,
             position: 'relative',
             width: '100%'
@@ -128,7 +126,11 @@ class TodoListScreen extends React.Component<{
           <TodoCreater onSubmit={this.createTodo} />
         </Flex>
         <ScrollView
-          style={{ height: '100%' }}
+          style={{
+            height: '100%',
+            paddingRight: 10,
+            paddingLeft: 10
+          }}
           refreshControl={<RefreshControl refreshing={this.props.refreshing} onRefresh={this.getTodoList} />}
         >
           {!this.props.todos.filter(t => !t.done).length && <ListEmpty />}
