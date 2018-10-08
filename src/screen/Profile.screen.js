@@ -65,15 +65,9 @@ class ProfileScreen extends React.Component {
             >
               <View style={{ width: 80, height: 80, borderRadius: 40, overflow: 'hidden' }}>
                 {this.props.avatar ? (
-                  <Image
-                    style={{ width: 80, height: 80 }}
-                    source={{ uri: `${API_BASE}/${this.props.avatar}` }}
-                  />
+                  <Image style={{ width: 80, height: 80 }} source={{ uri: `${API_BASE}/${this.props.avatar}` }} />
                 ) : (
-                  <Image
-                    style={{ width: 80, height: 80 }}
-                    source={require('../assets/imgs/default-avatar.jpeg')}
-                  />
+                  <Image style={{ width: 80, height: 80 }} source={require('../assets/imgs/default-avatar.jpeg')} />
                 )}
               </View>
               <WhiteSpace style={{ height: 10 }} />
@@ -98,10 +92,7 @@ class ProfileScreen extends React.Component {
                   }}
                 >
                   <List style={{ width: '100%' }}>
-                    <Item
-                      style={{ height: 60 }}
-                      onClick={() => this.props.navigation.navigate('Account')}
-                    >
+                    <Item style={{ height: 60 }} onClick={() => this.props.navigation.navigate('Account')}>
                       <Flex>
                         <Ionicons style={{ marginRight: 10 }} name="ios-contact" size={25} />
                         <Text>账号信息</Text>
@@ -126,16 +117,9 @@ class ProfileScreen extends React.Component {
                   }}
                 >
                   <List style={{ width: '100%' }}>
-                    <Item
-                      style={{ height: 60 }}
-                      onClick={() => this.props.navigation.navigate('About')}
-                    >
+                    <Item style={{ height: 60 }} onClick={() => this.props.navigation.navigate('About')}>
                       <Flex>
-                        <Ionicons
-                          style={{ marginRight: 10 }}
-                          name="ios-information-circle"
-                          size={25}
-                        />
+                        <Ionicons style={{ marginRight: 10 }} name="ios-information-circle" size={25} />
                         <Text>关于</Text>
                       </Flex>
                     </Item>

@@ -16,6 +16,7 @@ import { CalendarScreenContainer } from './src/screen/Calendar.screen';
 import { AboutScreenContainer } from './src/screen/About.screen';
 import { AccountScreenContainer } from './src/screen/Account.screen';
 
+import { Asset, AppLoading } from 'expo';
 import { createStackNavigator, createSwitchNavigator, createBottomTabNavigator } from 'react-navigation';
 
 import { PersistorContext } from './src/component/context/PersistorContext';
@@ -109,8 +110,6 @@ const AppSwitchNavigator = createSwitchNavigator(
   }
 );
 
-import { Asset, AppLoading } from 'expo';
-
 export default class Main extends Component {
   state = { isReady: false };
 
@@ -128,6 +127,23 @@ export default class Main extends Component {
     });
   };
 
+  loadResourcesAsync = () => {
+    return Promise.all([
+      this.guaranteePersist(),
+      Asset.loadAsync([
+        require('./src/assets/icons/list-active.png'),
+        require('./src/assets/icons/list.png'),
+        require('./src/assets/icons/jellyfish-active.png'),
+        require('./src/assets/icons/jellyfish.png'),
+        require('./src/assets/icons/calendar-active.png'),
+        require('./src/assets/icons/calendar.png'),
+        require('./src/assets/3bg.jpg'),
+        require('./src/assets/arrow-right.png'),
+        require('./src/assets/hello.png')
+      ])
+    ]);
+  };
+
   handlePersistorState() {}
 
   componentWillUnmount() {
@@ -138,7 +154,7 @@ export default class Main extends Component {
     if (!this.state.isReady) {
       return (
         <AppLoading
-          startAsync={this.guaranteePersist}
+          startAsync={this.loadResourcesAsync}
           onFinish={() => {
             this.setState({ isReady: true });
           }}

@@ -58,7 +58,9 @@ class TodoListScreen extends React.Component<{
     try {
       await Notifications.getExpoPushTokenAsync();
       // TODO
-    } catch (error) {}
+    } catch (error) {
+      /* console.error(error); */
+    }
   }
 
   componentWillMount() {
@@ -103,6 +105,8 @@ class TodoListScreen extends React.Component<{
           style={{
             marginTop: 5,
             marginBottom: 8,
+            paddingRight: 10,
+            paddingLeft: 10,
             height: 70,
             position: 'relative',
             width: '100%'
@@ -188,9 +192,7 @@ class TodoListScreen extends React.Component<{
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#fafafa',
-    paddingRight: 10,
-    paddingLeft: 10
+    backgroundColor: '#fafafa'
   }
 });
 
