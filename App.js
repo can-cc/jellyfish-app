@@ -1,12 +1,18 @@
+// @flow
 import React, { Component } from 'react';
 import { View, StatusBar, Image, Platform } from 'react-native';
 import { Provider } from 'react-redux';
-import { StackNavigator, SwitchNavigator, TabNavigator } from 'react-navigation';
-
+import { Asset, AppLoading } from 'expo';
+import {
+  StackNavigator,
+  SwitchNavigator,
+  TabNavigator,
+  createStackNavigator,
+  createSwitchNavigator,
+  createBottomTabNavigator
+} from 'react-navigation';
 import createStore from './src/store/store';
-
 import NavigationService from './src/service/single/navigation.service';
-
 import { InitLoadingScreenContainer } from './src/screen/InitLoading.screen';
 import { SignInScreenContainer } from './src/screen/SignIn.screen';
 import { TodoListScreenContainer } from './src/screen/TodoList.screen';
@@ -15,10 +21,6 @@ import { ProfileScreenContainer } from './src/screen/Profile.screen';
 import { CalendarScreenContainer } from './src/screen/Calendar.screen';
 import { AboutScreenContainer } from './src/screen/About.screen';
 import { AccountScreenContainer } from './src/screen/Account.screen';
-
-import { Asset, AppLoading } from 'expo';
-import { createStackNavigator, createSwitchNavigator, createBottomTabNavigator } from 'react-navigation';
-
 import { PersistorContext } from './src/component/context/PersistorContext';
 
 const { store, persistor } = createStore();
@@ -38,11 +40,23 @@ const TodoStack = createStackNavigator(
   }
 );
 
+TodoStack.navigationOptions = ({ navigation }) => {
+  return {
+    tabBarLabel: '清单'
+  };
+};
+
 const ProfileStack = createStackNavigator({
   Profile: ProfileScreenContainer,
   About: AboutScreenContainer,
   Account: AccountScreenContainer
 });
+
+ProfileStack.navigationOptions = ({ navigation }) => {
+  return {
+    tabBarLabel: '账户'
+  };
+};
 
 const MainTab = createBottomTabNavigator(
   {
@@ -110,8 +124,9 @@ const AppSwitchNavigator = createSwitchNavigator(
   }
 );
 
-export default class Main extends Component {
+export default class Main extends Component<{}, { isReady: boolean }> {
   state = { isReady: false };
+  persistorUnsubscribe: Subcription;
 
   guaranteePersist = () => {
     return new Promise(resolve => {

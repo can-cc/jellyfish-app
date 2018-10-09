@@ -18,7 +18,6 @@ const px2dp = px => PixelRatio.roundToNearestPixel(px);
 class ProfileScreen extends React.Component {
   static navigationOptions = {
     title: '账户',
-    tabBarLabel: '账户',
     headerBackTitle: null
   };
 

@@ -30,11 +30,11 @@ const CheckboxItem = Checkbox.CheckboxItem;
 
 class TodoListScreen extends React.Component<{
   userId: string,
-  todos: any[]
+  todos: any[],
+  actions: any
 }> {
   static navigationOptions = {
     title: '清单',
-    tabBarLabel: '清单',
     headerBackTitle: null
   };
 
