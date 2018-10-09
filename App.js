@@ -152,7 +152,7 @@ export default class Main extends Component<{}, { isReady: boolean }> {
         require('./src/assets/icons/jellyfish.png'),
         require('./src/assets/icons/calendar-active.png'),
         require('./src/assets/icons/calendar.png'),
-        require('./src/assets/icons/empty-list.png'),
+        require('./src/assets/empty-list.png'),
         require('./src/assets/icons/+.png'),
         require('./src/assets/3bg.jpg'),
         require('./src/assets/arrow-right.png'),

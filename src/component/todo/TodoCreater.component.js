@@ -47,20 +47,14 @@ class TodoCreaterCompoent extends React.Component<{
     this.onClose();
   }
 
-  submit = () => {
-    /* this.setState({ content: this.state.value }); */
+  submit = event => {
     this.props.onSubmit({
       content: this.state.content,
       deadline: this.state.deadline,
       detail: this.state.detail,
       type: this.state.type
     });
-    this.setState({
-      content: '',
-      deadline: null,
-      detail: '',
-      modal1: false
-    });
+    this.onClose();
   };
 
   onClose = () => {
@@ -83,10 +77,9 @@ class TodoCreaterCompoent extends React.Component<{
       <View style={{ width: '100%' }}>
         <Modal
           visible={this.state.modal1}
-          avoidKeyboard={false}
+          avoidKeyboard={true}
           backdropColor="transparent"
           onBackButtonPress={this.onClose}
-          onBackdropPress={this.onClose}
           style={{
             top: -10,
             paddingRight: 5,
@@ -277,7 +270,7 @@ class TodoCreaterCompoent extends React.Component<{
                 shadowOffset: { width: 0, height: 7 }
               }}
               onClick={e => {
-                this.submit();
+                this.submit(e);
               }}
             >
               <AppText
@@ -306,6 +299,9 @@ class TodoCreaterCompoent extends React.Component<{
           onPress={e => {
             e.preventDefault();
             this.setState({
+              content: '',
+              deadline: null,
+              detail: '',
               modal1: true
             });
           }}
