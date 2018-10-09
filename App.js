@@ -17,11 +17,7 @@ import { AboutScreenContainer } from './src/screen/About.screen';
 import { AccountScreenContainer } from './src/screen/Account.screen';
 
 import { Asset, AppLoading } from 'expo';
-import {
-  createStackNavigator,
-  createSwitchNavigator,
-  createBottomTabNavigator
-} from 'react-navigation';
+import { createStackNavigator, createSwitchNavigator, createBottomTabNavigator } from 'react-navigation';
 
 import { PersistorContext } from './src/component/context/PersistorContext';
 
@@ -81,39 +77,21 @@ const MainTab = createBottomTabNavigator(
         let iconName;
         if (routeName === 'Todo') {
           return focused ? (
-            <Image
-              style={{ width: 23, height: 23 }}
-              source={require(`./src/assets/icons/list-active.png`)}
-            />
+            <Image style={{ width: 23, height: 23 }} source={require(`./src/assets/icons/list-active.png`)} />
           ) : (
-            <Image
-              style={{ width: 23, height: 23 }}
-              source={require(`./src/assets/icons/list.png`)}
-            />
+            <Image style={{ width: 23, height: 23 }} source={require(`./src/assets/icons/list.png`)} />
           );
         } else if (routeName === 'Profile') {
           return focused ? (
-            <Image
-              style={{ width: 23, height: 23 }}
-              source={require(`./src/assets/icons/jellyfish-active.png`)}
-            />
+            <Image style={{ width: 23, height: 23 }} source={require(`./src/assets/icons/jellyfish-active.png`)} />
           ) : (
-            <Image
-              style={{ width: 23, height: 23 }}
-              source={require(`./src/assets/icons/jellyfish.png`)}
-            />
+            <Image style={{ width: 23, height: 23 }} source={require(`./src/assets/icons/jellyfish.png`)} />
           );
         } else if (routeName === 'Calendar') {
           return focused ? (
-            <Image
-              style={{ width: 23, height: 23 }}
-              source={require(`./src/assets/icons/calendar-active.png`)}
-            />
+            <Image style={{ width: 23, height: 23 }} source={require(`./src/assets/icons/calendar-active.png`)} />
           ) : (
-            <Image
-              style={{ width: 23, height: 23 }}
-              source={require(`./src/assets/icons/calendar.png`)}
-            />
+            <Image style={{ width: 23, height: 23 }} source={require(`./src/assets/icons/calendar.png`)} />
           );
         }
       }
@@ -137,7 +115,7 @@ export default class Main extends Component {
 
   guaranteePersist = () => {
     return new Promise(resolve => {
-      this._unsubscribe = persistor.subscribe(() => {
+      this.persistorUnsubscribe = persistor.subscribe(() => {
         let { bootstrapped } = persistor.getState();
         if (bootstrapped) {
           this._unsubscribe && this._unsubscribe();
@@ -161,7 +139,8 @@ export default class Main extends Component {
         require('./src/assets/icons/calendar.png'),
         require('./src/assets/3bg.jpg'),
         require('./src/assets/arrow-right.png'),
-        require('./src/assets/hello.png')
+        require('./src/assets/hello.png'),
+        require('./src/assets/check.png')
       ])
     ]);
   };
@@ -169,7 +148,7 @@ export default class Main extends Component {
   handlePersistorState() {}
 
   componentWillUnmount() {
-    this._unsubscribe && this._unsubscribe();
+    this.persistorUnsubscribe && this.persistorUnsubscribe();
   }
 
   render() {
