@@ -1,16 +1,13 @@
 // @flow
 import React from 'react';
-import { Button as RNButton, StyleSheet, Text, View, TouchableOpacity, TextInput, Image } from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import format from 'date-fns/format';
-import isSameDay from 'date-fns/isSameDay';
-import addDays from 'date-fns/addDays';
-import isBefore from 'date-fns/isBefore';
+import { Image, StyleSheet, Text, View } from 'react-native';
 import RNCheckBox from 'react-native-check-box';
 
-import { createForm } from 'rc-form';
-
-export class CheckBox extends React.Component<{}> {
+export class CheckBox extends React.Component<{
+  style: any,
+  checked: boolean,
+  onChange: any
+}> {
   render() {
     return (
       <RNCheckBox
