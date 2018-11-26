@@ -14,7 +14,7 @@
       "resizeMode": "cover"
     },
     "updates": {
-      "fallbackToCacheTimeout": 0
+      "fallbackToCacheTimeout": 7000
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
