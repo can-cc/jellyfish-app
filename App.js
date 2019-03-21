@@ -1,4 +1,4 @@
-// @flow
+//      
 import React, { Component } from 'react';
 import { View, StatusBar, Image, Platform } from 'react-native';
 import { Provider } from 'react-redux';
@@ -124,9 +124,9 @@ const AppSwitchNavigator = createSwitchNavigator(
   }
 );
 
-export default class Main extends Component<{}, { isReady: boolean }> {
+export default class Main extends Component                           {
   state = { isReady: false };
-  persistorUnsubscribe: Subcription;
+                                    
 
   guaranteePersist = () => {
     return new Promise(resolve => {

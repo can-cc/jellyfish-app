@@ -9,9 +9,6 @@
     "browser": true,
     "node": true
   },
-  "extends": [
-    "plugin:flowtype/recommended"
-  ],
   "rules": {
     "react/jsx-uses-react": 1,
     "react/jsx-uses-vars": 1,
