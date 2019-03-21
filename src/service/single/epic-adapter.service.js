@@ -1,20 +1,17 @@
-//      
+//
 
 import { Observable } from 'rxjs/Observable';
-                                                          
 
 import 'rxjs/add/operator/publish';
 
 export class EpicAdapterService {
-                                      
-
-  input(input$                             )                              {
+  input(input$) {
     this.input$ = input$.publish();
     this.input$.connect();
     return input$;
   }
 
-  output(output                 )                  {
+  output(output) {
     return output;
   }
 }

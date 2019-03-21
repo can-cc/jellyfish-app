@@ -1,16 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import {
-  WingBlank,
-  TextareaItem,
-  Flex,
-  Modal,
-  WhiteSpace,
-  Button,
-  List,
-  InputItem,
-  DatePicker
-} from 'antd-mobile-rn';
+import { WingBlank, TextareaItem, Flex, Modal, WhiteSpace, Button, List, InputItem, DatePicker } from 'antd-mobile-rn';
 import { StackNavigator } from 'react-navigation';
 import { bindActionCreators } from 'redux';
 import { createForm } from 'rc-form';

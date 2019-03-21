@@ -1,17 +1,7 @@
-//      
+//
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import {
-  WingBlank,
-  TextareaItem,
-  Flex,
-  Modal,
-  WhiteSpace,
-  Button,
-  List,
-  InputItem,
-  DatePicker
-} from 'antd-mobile-rn';
+import { WingBlank, TextareaItem, Flex, Modal, WhiteSpace, Button, List, InputItem, DatePicker } from 'antd-mobile-rn';
 import { StackNavigator } from 'react-navigation';
 import { bindActionCreators } from 'redux';
 import { createForm } from 'rc-form';
@@ -101,14 +91,9 @@ class TodoDetailScreen extends React.Component {
             <Flex>
               <Ionicons name="ios-time-outline" size={25} />
 
-              <TouchableOpacity
-                style={{ marginLeft: 10, width: '100%' }}
-                onPress={this.showDateTimePicker}
-              >
+              <TouchableOpacity style={{ marginLeft: 10, width: '100%' }} onPress={this.showDateTimePicker}>
                 <Text style={{ color: '#cdcdd1', fontSize: 16 }}>
-                  {this.props.todo.deadline
-                    ? format(this.props.todo.deadline, 'YYYY/MM/dd HH:mm')
-                    : '请选择'}
+                  {this.props.todo.deadline ? format(this.props.todo.deadline, 'YYYY/MM/dd HH:mm') : '请选择'}
                 </Text>
               </TouchableOpacity>
             </Flex>
@@ -124,11 +109,7 @@ class TodoDetailScreen extends React.Component {
 
           <Item>
             <Flex style={{ alignItems: 'flex-start' }}>
-              <Ionicons
-                style={{ marginLeft: 3, marginTop: 2 }}
-                name="ios-clipboard-outline"
-                size={25}
-              />
+              <Ionicons style={{ marginLeft: 3, marginTop: 2 }} name="ios-clipboard-outline" size={25} />
               <Flex.Item style={{ marginLeft: 3, marginTop: 1 }}>
                 <TextareaItem
                   onChange={value => {

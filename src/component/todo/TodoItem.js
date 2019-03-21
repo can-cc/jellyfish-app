@@ -1,4 +1,4 @@
-//      
+//
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, TextInput, Image } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -9,11 +9,7 @@ import { CheckBox } from '../CheckBox';
 import { Deadline } from '../Deadline.component';
 import { AppText } from '../AppText';
 
-export class TodoItem extends React.Component  
-            
-                   
-                   
-   {
+export class TodoItem extends React.Component {
   state = {};
 
   render() {

@@ -1,4 +1,4 @@
-//      
+//
 import React from 'react';
 import { Image, StatusBar, StyleSheet, Text, View, Dimensions, PixelRatio } from 'react-native';
 import { Flex, Modal, Button, WhiteSpace, Tabs, List } from 'antd-mobile-rn';

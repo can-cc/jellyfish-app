@@ -1,4 +1,4 @@
-//      
+//
 import React from 'react';
 import {
   Button as RNButton,
@@ -31,9 +31,7 @@ const TODO_TYPE_ITEMS = [
   }
 ];
 
-class TodoCreaterCompoent extends React.Component  
-               
-   {
+class TodoCreaterCompoent extends React.Component {
   state = {
     content: '',
     value: '',

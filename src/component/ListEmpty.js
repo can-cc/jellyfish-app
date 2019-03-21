@@ -1,11 +1,11 @@
-//      
+//
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, TextInput, Image } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import { createForm } from 'rc-form';
 
-export class ListEmpty extends React.Component     {
+export class ListEmpty extends React.Component {
   state = {};
 
   render() {

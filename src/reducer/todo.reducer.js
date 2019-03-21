@@ -1,4 +1,4 @@
-//      
+//
 import Actions from '../action/actions';
 import { normalize, schema } from 'normalizr';
 import R from 'ramda';
@@ -6,10 +6,7 @@ import R from 'ramda';
 const STodo = new schema.Entity('todo');
 const STodos = new schema.Array(STodo);
 
-export function todo(
-  state = { refreshing: false, result: [], entities: { todo: {} }, tempIdCursor: 0 },
-  action          
-) {
+export function todo(state = { refreshing: false, result: [], entities: { todo: {} }, tempIdCursor: 0 }, action) {
   switch (action.type) {
     case Actions.GET_TODO_LIST.REQUEST:
       return {

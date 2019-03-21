@@ -1,9 +1,7 @@
-//      
+//
 import { NavigationActions } from 'react-navigation';
 
 export class NavigationService {
-               
-
   setTopLevelNavigator(navigatorRef) {
     this.navigatorRef = navigatorRef;
   }

@@ -1,13 +1,9 @@
-//      
+//
 import React from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
 import RNCheckBox from 'react-native-check-box';
 
-export class CheckBox extends React.Component  
-             
-                   
-               
-   {
+export class CheckBox extends React.Component {
   render() {
     return (
       <RNCheckBox

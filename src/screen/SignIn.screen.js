@@ -1,4 +1,4 @@
-//      
+//
 import React, { Component } from 'react';
 import { StyleSheet, Linking, Text, View, Image, TouchableOpacity, PixelRatio, Platform } from 'react-native';
 import { connect } from 'react-redux';
@@ -14,11 +14,7 @@ import { AsyncStorage } from 'react-native';
 
 import 'rxjs/add/operator/take';
 
-class SignInScreen extends Component  
-               
-                          
-                 
-   {
+class SignInScreen extends Component {
   componentWillMount() {
     this._retrieveData();
   }
@@ -46,7 +42,7 @@ class SignInScreen extends Component
   };
 
   submit = () => {
-    this.props.form.validateFields((error, value                                       ) => {
+    this.props.form.validateFields((error, value) => {
       this._storeData(value.username);
       this.props.actions.SIGNIN_REQUEST(value);
     });
