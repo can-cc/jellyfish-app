@@ -1,15 +1,6 @@
 //
 import React from 'react';
-import {
-  Button as RNButton,
-  StyleSheet,
-  View,
-  TouchableOpacity,
-  KeyboardAvoidingView,
-  TextInput,
-  Image,
-  Platform
-} from 'react-native';
+import { View, TouchableOpacity, TextInput, Image, Platform } from 'react-native';
 import { Button, List, Checkbox, InputItem, WhiteSpace, Flex } from 'antd-mobile-rn';
 import Modal from 'react-native-modal';
 import DateTimePicker from 'react-native-modal-datetime-picker';
@@ -76,10 +67,9 @@ class TodoCreaterCompoent extends React.Component {
         <Modal
           visible={this.state.modal1}
           avoidKeyboard={true}
-          backdropColor="transparent"
           onBackButtonPress={this.onClose}
           style={{
-            top: -10,
+            bottom: 0,
             paddingRight: 5,
             paddingLeft: 5,
             shadowColor: 'rgba(64, 64, 64, 0.15)',

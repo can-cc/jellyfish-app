@@ -100,7 +100,7 @@ class ProfileScreen extends React.Component {
 
                     <Item style={{ height: 60 }} onClick={() => this.logout(persistor)}>
                       <Flex>
-                        <Ionicons style={{ marginRight: 10 }} name="ios-exit-outline" size={25} />
+                        <Ionicons style={{ marginRight: 10 }} name="ios-exit" size={25} />
                         <Text>登出</Text>
                       </Flex>
                     </Item>
