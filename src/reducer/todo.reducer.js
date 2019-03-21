@@ -1,4 +1,4 @@
-// @flow
+//      
 import Actions from '../action/actions';
 import { normalize, schema } from 'normalizr';
 import R from 'ramda';
@@ -8,7 +8,7 @@ const STodos = new schema.Array(STodo);
 
 export function todo(
   state = { refreshing: false, result: [], entities: { todo: {} }, tempIdCursor: 0 },
-  action: FSAction
+  action          
 ) {
   switch (action.type) {
     case Actions.GET_TODO_LIST.REQUEST:

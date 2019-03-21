@@ -1,4 +1,4 @@
-// @flow
+//      
 import React from 'react';
 import {
   Button as RNButton,
@@ -31,9 +31,9 @@ const TODO_TYPE_ITEMS = [
   }
 ];
 
-class TodoCreaterCompoent extends React.Component<{
-  onSubmit: any
-}> {
+class TodoCreaterCompoent extends React.Component  
+               
+   {
   state = {
     content: '',
     value: '',

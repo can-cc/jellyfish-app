@@ -1,4 +1,4 @@
-// @flow
+//      
 import React from 'react';
 import { Button as RNButton, StyleSheet, View, TouchableOpacity, TextInput, Image } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -10,7 +10,7 @@ import { AppText } from './AppText';
 
 import { createForm } from 'rc-form';
 
-export class Deadline extends React.Component<{ deadline: number, style: any }> {
+export class Deadline extends React.Component                                   {
   state = {};
 
   render() {

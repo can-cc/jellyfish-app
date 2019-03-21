@@ -1,4 +1,4 @@
-// @flow
+//      
 import React from 'react';
 import {
   FlatList,
@@ -28,11 +28,11 @@ import { AppText } from '../component/AppText';
 
 const CheckboxItem = Checkbox.CheckboxItem;
 
-class TodoListScreen extends React.Component<{
-  userId: string,
-  todos: any[],
-  actions: any
-}> {
+class TodoListScreen extends React.Component  
+                 
+               
+              
+   {
   static navigationOptions = {
     title: '清单',
     headerBackTitle: null
@@ -84,7 +84,7 @@ class TodoListScreen extends React.Component<{
     });
   };
 
-  createTodo = (initalTodo: { content: string, title: string, deadline: Date | null }) => {
+  createTodo = (initalTodo                                                           ) => {
     this.props.actions.CREATE_TODO_REQUEST(initalTodo);
   };
 

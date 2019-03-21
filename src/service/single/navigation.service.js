@@ -1,8 +1,8 @@
-// @flow
+//      
 import { NavigationActions } from 'react-navigation';
 
 export class NavigationService {
-  navigatorRef;
+               
 
   setTopLevelNavigator(navigatorRef) {
     this.navigatorRef = navigatorRef;

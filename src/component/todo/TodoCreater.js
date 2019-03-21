@@ -1,4 +1,4 @@
-// @flow
+//      
 import React from 'react';
 import {
   Button as RNButton,
@@ -31,12 +31,12 @@ const TODO_TYPE_ITEMS = [
   }
 ];
 
-export class TodoCreater extends React.Component<
+export class TodoCreater extends React.Component 
+   
+                 
+    
+                    
   {
-    onSubmit: any
-  },
-  { modal: boolean }
-> {
   state = {
     content: '',
     value: '',

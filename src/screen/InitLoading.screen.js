@@ -1,4 +1,4 @@
-// @flow
+//      
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { ActivityIndicator, AsyncStorage, StatusBar, StyleSheet, View } from 'react-native';
@@ -6,9 +6,9 @@ import { makeActionRequestCollection } from '../action/actions';
 import { bindActionCreators } from 'redux';
 import { Asset, AppLoading } from 'expo';
 
-class InitLoadingScreen extends Component<{
-  token: string
-}> {
+class InitLoadingScreen extends Component  
+               
+   {
   constructor(props) {
     super(props);
     this.bootstrap();
