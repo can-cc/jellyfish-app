@@ -9,7 +9,6 @@ const Item = List.Item;
 import format from 'date-fns/format';
 import { appFont, AppText } from '../AppText';
 import RNPickerSelect from 'react-native-picker-select';
-import { createForm } from 'rc-form';
 
 const TODO_TYPE_ITEMS = [
   {

@@ -1,24 +1,7 @@
 //
 import React from 'react';
-import {
-  Button as RNButton,
-  StyleSheet,
-  View,
-  TouchableOpacity,
-  KeyboardAvoidingView,
-  TextInput,
-  Image,
-  Platform
-} from 'react-native';
-import { Button, List, Checkbox, InputItem, WhiteSpace, Flex } from 'antd-mobile-rn';
+import { View, TouchableOpacity, KeyboardAvoidingView, TextInput, Image, Platform } from 'react-native';
 import Modal from 'react-native-modal';
-import DateTimePicker from 'react-native-modal-datetime-picker';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-const Item = List.Item;
-import format from 'date-fns/format';
-import { appFont, AppText } from '../AppText';
-import RNPickerSelect from 'react-native-picker-select';
-import { createForm } from 'rc-form';
 
 const TODO_TYPE_ITEMS = [
   {
@@ -37,7 +20,7 @@ export class TodoCreater extends React.Component {
     value: '',
     deadline: null,
     isDateTimePickerVisible: false,
-    modal: false,
+    showModal: false,
     type: 'NORMAL'
   };
 
@@ -45,7 +28,7 @@ export class TodoCreater extends React.Component {
     this.onClose();
   }
 
-  submit = event => {
+  submit = () => {
     this.props.onSubmit({
       content: this.state.content,
       deadline: this.state.deadline,
@@ -57,7 +40,7 @@ export class TodoCreater extends React.Component {
 
   onClose = () => {
     this.setState({
-      modal1: false
+      showModal: false
     });
   };
 
@@ -74,7 +57,7 @@ export class TodoCreater extends React.Component {
     return (
       <View style={{ width: '100%' }}>
         <Modal
-          visible={this.state.modal1}
+          isVisible={this.state.showModal}
           backdropColor="transparent"
           onBackButtonPress={this.onClose}
           style={{

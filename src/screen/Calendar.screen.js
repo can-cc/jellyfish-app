@@ -7,7 +7,6 @@ import { createForm } from 'rc-form';
 import { connect } from 'react-redux';
 import { makeActionRequestCollection } from '../action/actions';
 import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
-import R from 'ramda';
 import format from 'date-fns/format';
 
 class CalendarScreen extends React.Component {
@@ -84,35 +83,37 @@ const styles = StyleSheet.create({
 export const CalendarScreenContainer = connect(
   state => {
     const items = {};
-    const todos = state.todo.result.map(id => state.todo.entities.todo[id]).map(todo => {
-      if (todo.deadline) {
-        const dateStr = format(todo.deadline, 'YYYY-MM-dd');
-        const item = {
-          todo: todo,
-          dateStr,
-          type: 'DEADLINE'
-        };
-        if (items[dateStr]) {
-          items[dateStr] = items[dateStr].concat(item);
-        } else {
-          items[dateStr] = [item];
+    const todos = state.todo.result
+      .map(id => state.todo.entities.todo[id])
+      .map(todo => {
+        if (todo.deadline) {
+          const dateStr = format(todo.deadline, 'YYYY-MM-dd');
+          const item = {
+            todo: todo,
+            dateStr,
+            type: 'DEADLINE'
+          };
+          if (items[dateStr]) {
+            items[dateStr] = items[dateStr].concat(item);
+          } else {
+            items[dateStr] = [item];
+          }
         }
-      }
 
-      if (todo.createdAt) {
-        const dateStr = format(todo.createdAt, 'YYYY-MM-dd');
-        const item = {
-          todo: todo,
-          dateStr,
-          type: 'CREATEDAT'
-        };
-        if (items[dateStr]) {
-          items[dateStr] = items[dateStr].concat(item);
-        } else {
-          items[dateStr] = [item];
+        if (todo.createdAt) {
+          const dateStr = format(todo.createdAt, 'YYYY-MM-dd');
+          const item = {
+            todo: todo,
+            dateStr,
+            type: 'CREATEDAT'
+          };
+          if (items[dateStr]) {
+            items[dateStr] = items[dateStr].concat(item);
+          } else {
+            items[dateStr] = [item];
+          }
         }
-      }
-    });
+      });
     return {
       items
     };

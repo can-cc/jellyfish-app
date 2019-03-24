@@ -1,16 +1,6 @@
 //
 import React from 'react';
-import {
-  FlatList,
-  RefreshControl,
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  ScrollView,
-  Image,
-  Button as RNButton
-} from 'react-native';
+import { FlatList, RefreshControl, StyleSheet, Text, View, ScrollView, Image } from 'react-native';
 import { Tag, Checkbox, InputItem, WhiteSpace, Flex } from 'antd-mobile-rn';
 import { Permissions, Constants, Notifications } from 'expo';
 import { StackNavigator } from 'react-navigation';
@@ -18,8 +8,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { createForm } from 'rc-form';
 import Actions, { makeActionRequestCollection } from '../action/actions';
-import epicAdapterService from '../service/single/epic-adapter.service';
-import { TodoCreater } from '../component/todo/TodoCreater.component';
+import { TodoCreater } from '../component/todo/TodoCreater';
 import { Deadline } from '../component/Deadline.component';
 import { ListEmpty } from '../component/ListEmpty';
 import { TodoItem } from '../component/todo/TodoItem';

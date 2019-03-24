@@ -1,6 +1,6 @@
 {
   "parser": "babel-eslint",
-  "plugins": ["react", "prettier", "flowtype"],
+  "plugins": ["react", "prettier"],
   "env": {
     "browser": true,
     "node": true
