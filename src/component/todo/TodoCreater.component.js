@@ -142,7 +142,7 @@ class TodoCreaterCompoent extends React.Component {
                       marginLeft: 1
                     }}
                   >
-                    {this.state.deadline ? format(this.state.deadline, 'YYYY/MM/dd HH:mm') : '任务deadline'}
+                    {this.state.deadline ? format(this.state.deadline, 'yyyy/MM/dd HH:mm') : '任务deadline'}
                   </AppText>
                 </TouchableOpacity>
               </Flex>

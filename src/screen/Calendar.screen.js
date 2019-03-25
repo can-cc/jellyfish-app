@@ -87,7 +87,9 @@ export const CalendarScreenContainer = connect(
       .map(id => state.todo.entities.todo[id])
       .map(todo => {
         if (todo.deadline) {
-          const dateStr = format(todo.deadline, 'YYYY-MM-dd');
+          console.log(todo.deadline);
+          const dateStr = format(todo.deadline, 'yyyy-MM-dd');
+          console.log(dateStr);
           const item = {
             todo: todo,
             dateStr,
@@ -101,7 +103,7 @@ export const CalendarScreenContainer = connect(
         }
 
         if (todo.createdAt) {
-          const dateStr = format(todo.createdAt, 'YYYY-MM-dd');
+          const dateStr = format(todo.createdAt, 'yyyy-MM-dd');
           const item = {
             todo: todo,
             dateStr,
