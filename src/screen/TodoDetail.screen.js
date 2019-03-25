@@ -93,7 +93,7 @@ class TodoDetailScreen extends React.Component {
 
               <TouchableOpacity style={{ marginLeft: 10, width: '100%' }} onPress={this.showDateTimePicker}>
                 <Text style={{ color: '#cdcdd1', fontSize: 16 }}>
-                  {this.props.todo.deadline ? format(this.props.todo.deadline, 'YYYY/MM/dd HH:mm') : '请选择'}
+                  {this.props.todo.deadline ? format(this.props.todo.deadline, 'yyyy/MM/dd HH:mm') : '请选择'}
                 </Text>
               </TouchableOpacity>
             </Flex>
