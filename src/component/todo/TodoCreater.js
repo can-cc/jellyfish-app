@@ -2,6 +2,7 @@
 import React from 'react';
 import { View, TouchableOpacity, KeyboardAvoidingView, TextInput, Image, Platform } from 'react-native';
 import Modal from 'react-native-modal';
+import { CreateTodoToggle } from './CreateTodoToggle';
 
 const TODO_TYPE_ITEMS = [
   {
@@ -41,6 +42,12 @@ export class TodoCreater extends React.Component {
   onClose = () => {
     this.setState({
       showModal: false
+    });
+  };
+
+  onToggleClick = () => {
+    this.setState({
+      showModal: true
     });
   };
 
@@ -95,6 +102,7 @@ export class TodoCreater extends React.Component {
             </TouchableOpacity>
           </View>
         </Modal>
+        <CreateTodoToggle onClick={this.onToggleClick} />
       </View>
     );
   }

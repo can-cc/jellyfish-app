@@ -2,52 +2,10 @@
 import React from 'react';
 import { View, TouchableOpacity, TextInput, Image, Platform } from 'react-native';
 import { Button, List, Checkbox, InputItem, WhiteSpace, Flex } from 'antd-mobile-rn';
-import Modal from 'react-native-modal';
-import DateTimePicker from 'react-native-modal-datetime-picker';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-const Item = List.Item;
-import format from 'date-fns/format';
-import { appFont, AppText } from '../AppText';
-import RNPickerSelect from 'react-native-picker-select';
+import { AppText } from '../AppText';
 
-class TodoCreaterCompoent extends React.Component {
-  state = {
-    content: '',
-    value: '',
-    deadline: null,
-    isDateTimePickerVisible: false,
-    modal1: false,
-    type: 'NORMAL'
-  };
-
-  componentWillUnmount() {
-    this.onClose();
-  }
-
-  submit = () => {
-    this.props.onSubmit({
-      content: this.state.content,
-      deadline: this.state.deadline,
-      detail: this.state.detail,
-      type: this.state.type
-    });
-    this.onClose();
-  };
-
-  onClose = () => {
-    this.setState({
-      modal1: false
-    });
-  };
-
-  showDateTimePicker = () => this.setState({ isDateTimePickerVisible: true });
-
-  hideDateTimePicker = () => this.setState({ isDateTimePickerVisible: false });
-
-  handleDatePicked = date => {
-    this.setState({ deadline: date.getTime() });
-    this.hideDateTimePicker();
-  };
+export class CreateTodoToggle extends React.Component {
+  state = {};
 
   render() {
     return (
@@ -66,12 +24,7 @@ class TodoCreaterCompoent extends React.Component {
           }}
           onPress={e => {
             e.preventDefault();
-            this.setState({
-              content: '',
-              deadline: null,
-              detail: '',
-              modal1: true
-            });
+            this.props.onClick();
           }}
         >
           <View
@@ -102,5 +55,3 @@ class TodoCreaterCompoent extends React.Component {
     );
   }
 }
-
-export const TodoCreater = TodoCreaterCompoent;
