@@ -1,10 +1,7 @@
 //
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, TextInput, Image } from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import { Button, Tag, InputItem, WhiteSpace, Flex } from 'antd-mobile-rn';
-
-import { createForm } from 'rc-form';
+import { View, TouchableOpacity } from 'react-native';
+import { Flex } from 'antd-mobile-rn';
 import { CheckBox } from '../CheckBox';
 import { Deadline } from '../Deadline.component';
 import { AppText } from '../AppText';

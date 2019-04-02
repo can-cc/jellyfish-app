@@ -1,9 +1,11 @@
 //
 import React from 'react';
-import { View, TouchableOpacity, KeyboardAvoidingView, TextInput, Image } from 'react-native';
+import { View, TouchableOpacity, TextInput } from 'react-native';
 import Modal from 'react-native-modal';
 import { CreateTodoToggle } from './CreateTodoToggle';
 import { appFont } from '../AppText';
+import { AppButton } from '../Button';
+import { AppText } from '../AppText';
 
 export class TodoCreater extends React.Component {
   state = {
@@ -16,7 +18,6 @@ export class TodoCreater extends React.Component {
   };
 
   componentWillUnmount() {
-    console.log('---------> unmount');
     this.onClose();
   }
 
@@ -55,9 +56,11 @@ export class TodoCreater extends React.Component {
     return (
       <View style={{ width: '100%' }}>
         <Modal
+          hasBackdrop={true}
+          avoidKeyboard={true}
           isVisible={this.state.showModal}
-          backdropColor="transparent"
           onBackButtonPress={this.onClose}
+          onBackdropPress={this.onClose}
           style={{
             justifyContent: 'flex-end',
             margin: 0
@@ -70,30 +73,18 @@ export class TodoCreater extends React.Component {
             style={{
               backgroundColor: '#fff',
               padding: 15,
-              borderRadius: 8,
-              elevation: 5,
-              position: 'relative'
+              borderTopLeftRadius: 8,
+              borderTopRightRadius: 8
             }}
           >
-            <TouchableOpacity
-              onPress={this.onClose}
-              style={{
-                position: 'absolute',
-                right: 8,
-                top: 8
-              }}
-            >
-              <Image style={{ width: 20, height: 20 }} source={require('../../assets/icons/x.png')} />
-            </TouchableOpacity>
-
             <TextInput
               placeholder="您希望做什么？"
               autoFocus
               style={{
                 height: 40,
                 borderColor: '#dadada',
-                borderBottomWidth: 0.8,
-                textAlign: 'center',
+                borderBottomWidth: 0,
+                textAlign: 'left',
                 fontWeight: '800',
                 fontSize: 18
               }}
@@ -104,6 +95,18 @@ export class TodoCreater extends React.Component {
               }}
               onChangeText={text => this.setState({ content: text })}
             />
+
+            <View>
+              <AppButton
+                transparent
+                style={{ width: 80, paddingRight: 0, alignSelf: 'flex-end' }}
+                onPress={e => {
+                  this.submit(e);
+                }}
+              >
+                <AppText>保存</AppText>
+              </AppButton>
+            </View>
           </View>
         </Modal>
         <CreateTodoToggle onClick={this.onToggleClick} />

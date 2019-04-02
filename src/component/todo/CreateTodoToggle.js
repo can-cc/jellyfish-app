@@ -1,7 +1,6 @@
 //
 import React from 'react';
-import { View, TouchableOpacity, TextInput, Image, Platform } from 'react-native';
-import { Button, List, Checkbox, InputItem, WhiteSpace, Flex } from 'antd-mobile-rn';
+import { View, TouchableOpacity, Image } from 'react-native';
 import { AppText } from '../AppText';
 
 export class CreateTodoToggle extends React.Component {
@@ -15,12 +14,7 @@ export class CreateTodoToggle extends React.Component {
             width: 115,
             height: 50,
             borderWidth: 0,
-            borderRadius: 25,
-            position: 'absolute',
-            left: '50%',
-            top: '0%',
-            marginLeft: -55,
-            marginTop: -25
+            paddingLeft: 12
           }}
           onPress={e => {
             e.preventDefault();
@@ -35,20 +29,20 @@ export class CreateTodoToggle extends React.Component {
               shadowRadius: 9,
               shadowOffset: { width: 0, height: 5 },
               alignItems: 'center',
-              justifyContent: 'center',
+              justifyContent: 'flex-start',
               flexDirection: 'row',
               paddingTop: 5
             }}
           >
             <Image
               style={{
-                width: 10,
-                height: 10
+                width: 15,
+                height: 15
               }}
               source={require('../../assets/icons/+.png')}
             />
             <View style={{ width: 3, height: 10 }} />
-            <AppText style={{ marginLeft: 5, fontSize: 15, fontWeight: '200' }}>新任务</AppText>
+            <AppText style={{ marginLeft: 5, fontSize: 15, fontWeight: '400' }}>新任务</AppText>
           </View>
         </TouchableOpacity>
       </View>

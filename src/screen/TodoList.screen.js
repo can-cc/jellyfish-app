@@ -1,12 +1,10 @@
-//
 import React from 'react';
 import { FlatList, RefreshControl, StyleSheet, Text, View, ScrollView, Image } from 'react-native';
-import { Tag, Checkbox, InputItem, WhiteSpace, Flex } from 'antd-mobile-rn';
-import { Permissions, Constants, Notifications } from 'expo';
+import { Checkbox, WhiteSpace, Flex } from 'antd-mobile-rn';
+import { Permissions, Notifications } from 'expo';
 import { StackNavigator } from 'react-navigation';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { createForm } from 'rc-form';
 import Actions, { makeActionRequestCollection } from '../action/actions';
 import { TodoCreater } from '../component/todo/TodoCreater';
 import { Deadline } from '../component/Deadline.component';
@@ -14,8 +12,6 @@ import { ListEmpty } from '../component/ListEmpty';
 import { TodoItem } from '../component/todo/TodoItem';
 import { Button } from '../component/Button';
 import { AppText } from '../component/AppText';
-
-const CheckboxItem = Checkbox.CheckboxItem;
 
 class TodoListScreen extends React.Component {
   static navigationOptions = {
@@ -108,7 +104,6 @@ class TodoListScreen extends React.Component {
           >
             待办清单
           </AppText>
-          <TodoCreater onSubmit={this.createTodo} />
         </Flex>
         <ScrollView
           style={{
@@ -127,6 +122,10 @@ class TodoListScreen extends React.Component {
               return <TodoItem todo={todo} onTodoClick={this.onTodoClick} onCheckClick={this.onCheckClick} />;
             }}
           />
+
+          <View style={{ justifyContent: 'flex-start' }}>
+            <TodoCreater onSubmit={this.createTodo} />
+          </View>
 
           <View
             style={{

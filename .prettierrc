@@ -5,14 +5,14 @@
       "options": {
         "parser": "flow",
         "singleQuote": true,
-        "printWidth": 120
+        "printWidth": 100
       }
     },
     {
       "files": "**/*.json",
       "options": {
         "parser": "json",
-        "printWidth": 120
+        "printWidth": 100
       }
     }
   ]
