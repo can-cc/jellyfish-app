@@ -1,19 +1,9 @@
 //
 import React from 'react';
-import { View, TouchableOpacity, KeyboardAvoidingView, TextInput, Image, Platform } from 'react-native';
+import { View, TouchableOpacity, KeyboardAvoidingView, TextInput, Image } from 'react-native';
 import Modal from 'react-native-modal';
 import { CreateTodoToggle } from './CreateTodoToggle';
-
-const TODO_TYPE_ITEMS = [
-  {
-    label: '代办',
-    value: 'NORMAL'
-  },
-  {
-    label: '习惯',
-    value: 'HABIT'
-  }
-];
+import { appFont } from '../AppText';
 
 export class TodoCreater extends React.Component {
   state = {
@@ -26,6 +16,7 @@ export class TodoCreater extends React.Component {
   };
 
   componentWillUnmount() {
+    console.log('---------> unmount');
     this.onClose();
   }
 
@@ -68,14 +59,8 @@ export class TodoCreater extends React.Component {
           backdropColor="transparent"
           onBackButtonPress={this.onClose}
           style={{
-            top: -10,
-            paddingRight: 5,
-            paddingLeft: 5,
-            shadowColor: 'rgba(64, 64, 64, 0.15)',
-            shadowOpacity: 1,
-            shadowRadius: 9,
-            shadowOffset: { width: 0, height: 0 },
-            position: 'relative'
+            justifyContent: 'flex-end',
+            margin: 0
           }}
           useNativeDriver={true}
           title={null}
@@ -100,6 +85,25 @@ export class TodoCreater extends React.Component {
             >
               <Image style={{ width: 20, height: 20 }} source={require('../../assets/icons/x.png')} />
             </TouchableOpacity>
+
+            <TextInput
+              placeholder="您希望做什么？"
+              autoFocus
+              style={{
+                height: 40,
+                borderColor: '#dadada',
+                borderBottomWidth: 0.8,
+                textAlign: 'center',
+                fontWeight: '800',
+                fontSize: 18
+              }}
+              underlineColorAndroid="transparent"
+              autoCapitalize="none"
+              placeholderStyle={{
+                fontFamily: appFont
+              }}
+              onChangeText={text => this.setState({ content: text })}
+            />
           </View>
         </Modal>
         <CreateTodoToggle onClick={this.onToggleClick} />
