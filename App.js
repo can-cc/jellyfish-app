@@ -4,9 +4,6 @@ import { View, StatusBar, Image, Platform } from 'react-native';
 import { Provider } from 'react-redux';
 import { Asset, AppLoading } from 'expo';
 import {
-  StackNavigator,
-  SwitchNavigator,
-  TabNavigator,
   createStackNavigator,
   createSwitchNavigator,
   createBottomTabNavigator
