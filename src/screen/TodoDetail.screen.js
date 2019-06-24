@@ -1,7 +1,6 @@
 //
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import { WingBlank, TextareaItem, Flex, Modal, WhiteSpace, Button, List, InputItem, DatePicker } from 'antd-mobile-rn';
 import { StackNavigator } from 'react-navigation';
 import { bindActionCreators } from 'redux';
 import { createForm } from 'rc-form';
@@ -12,10 +11,10 @@ import DateTimePicker from 'react-native-modal-datetime-picker';
 import format from 'date-fns/format';
 import R from 'ramda';
 
-const Item = List.Item;
+const Item = View;
 
 class TodoDetailScreen extends React.Component {
-  static navigationOptions = ({ navigation }) => {
+  static defaultNavigationOptions = ({ navigation }) => {
     const params = navigation.state.params || {};
     return {
       title: '',
@@ -88,7 +87,7 @@ class TodoDetailScreen extends React.Component {
           />
 
           <Item>
-            <Flex>
+            <View>
               <Ionicons name="ios-time-outline" size={25} />
 
               <TouchableOpacity style={{ marginLeft: 10, width: '100%' }} onPress={this.showDateTimePicker}>
@@ -96,7 +95,7 @@ class TodoDetailScreen extends React.Component {
                   {this.props.todo.deadline ? format(this.props.todo.deadline, 'yyyy/MM/dd HH:mm') : '请选择'}
                 </Text>
               </TouchableOpacity>
-            </Flex>
+            </View>
 
             <DateTimePicker
               mode="datetime"
@@ -108,9 +107,9 @@ class TodoDetailScreen extends React.Component {
           </Item>
 
           <Item>
-            <Flex style={{ alignItems: 'flex-start' }}>
+            <View style={{ alignItems: 'flex-start' }}>
               <Ionicons style={{ marginLeft: 3, marginTop: 2 }} name="ios-clipboard-outline" size={25} />
-              <Flex.Item style={{ marginLeft: 3, marginTop: 1 }}>
+              <View.Item style={{ marginLeft: 3, marginTop: 1 }}>
                 <TextareaItem
                   onChange={value => {
                     this.setState({ detail: value });
@@ -125,22 +124,22 @@ class TodoDetailScreen extends React.Component {
                   rows={5}
                   labelNumber={0}
                 />
-              </Flex.Item>
-            </Flex>
+              </View.Item>
+            </View>
           </Item>
         </List>
         <WhiteSpace style={{ height: 20 }} />
 
         <List>
           <Item onClick={this.deleteTodo}>
-            <Flex style={{ alignItems: 'center' }}>
+            <View style={{ alignItems: 'center' }}>
               <Ionicons
                 style={{ marginLeft: 3, marginTop: 2, marginRight: 17, color: '#f54c41' }}
                 name="ios-trash-outline"
                 size={25}
               />
               <Text style={{ color: '#999' }}>删除此事项</Text>
-            </Flex>
+            </View>
           </Item>
         </List>
 

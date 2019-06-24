@@ -1,6 +1,5 @@
 import React from 'react';
 import { FlatList, RefreshControl, StyleSheet, Text, View, ScrollView, Image } from 'react-native';
-import { Checkbox, WhiteSpace, Flex } from 'antd-mobile-rn';
 import { Permissions, Notifications } from 'expo';
 import { StackNavigator } from 'react-navigation';
 import { bindActionCreators } from 'redux';
@@ -14,7 +13,7 @@ import { Button } from '../component/Button';
 import { AppText } from '../component/AppText';
 
 class TodoListScreen extends React.Component {
-  static navigationOptions = {
+  static defaultNavigationOptions = {
     title: '清单',
     headerBackTitle: null
   };
@@ -82,7 +81,7 @@ class TodoListScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Flex
+        <View
           style={{
             marginTop: 5,
             marginBottom: 8,
@@ -104,7 +103,7 @@ class TodoListScreen extends React.Component {
           >
             待办清单
           </AppText>
-        </Flex>
+        </View>
         <ScrollView
           style={{
             height: '100%',

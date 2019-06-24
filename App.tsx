@@ -1,4 +1,3 @@
-//
 import React, { Component } from 'react';
 import { View, StatusBar, Image, Platform } from 'react-native';
 import { Provider } from 'react-redux';
@@ -6,7 +5,8 @@ import { Asset, AppLoading } from 'expo';
 import {
   createStackNavigator,
   createSwitchNavigator,
-  createBottomTabNavigator
+  createBottomTabNavigator,
+  createAppContainer
 } from 'react-navigation';
 import createStore from './src/store/store';
 import NavigationService from './src/service/single/navigation.service';
@@ -28,7 +28,7 @@ const TodoStack = createStackNavigator(
     TodoDetail: TodoDetailScreenContainer
   },
   {
-    navigationOptions: {
+    defaultNavigationOptions: {
       headerStyle: {
         backgroundColor: '#fff',
         borderBottomColor: '#e8e8e8'
@@ -37,7 +37,7 @@ const TodoStack = createStackNavigator(
   }
 );
 
-TodoStack.navigationOptions = ({ navigation }) => {
+TodoStack.defaultNavigationOptions = ({ navigation }) => {
   return {
     tabBarLabel: '清单'
   };
@@ -49,7 +49,7 @@ const ProfileStack = createStackNavigator({
   Account: AccountScreenContainer
 });
 
-ProfileStack.navigationOptions = ({ navigation }) => {
+ProfileStack.defaultNavigationOptions = ({ navigation }) => {
   return {
     tabBarLabel: '账户'
   };
@@ -82,7 +82,7 @@ const MainTab = createBottomTabNavigator(
         fontSize: 11
       }
     },
-    navigationOptions: ({ navigation }) => ({
+    defaultNavigationOptions: ({ navigation }) => ({
       tabBarIcon: ({ focused, tintColor }) => {
         const { routeName } = navigation.state;
         let iconName;
@@ -120,6 +120,8 @@ const AppSwitchNavigator = createSwitchNavigator(
     initialRouteName: 'InitLoading'
   }
 );
+
+const AppContainer = createAppContainer(AppSwitchNavigator);
 
 export default class Main extends Component {
   state = { isReady: false };
@@ -183,7 +185,7 @@ export default class Main extends Component {
         <PersistorContext.Provider value={persistor}>
           <View style={{ flex: 1 }}>
             <StatusBar barStyle="dark-content" />
-            <AppSwitchNavigator
+            <AppContainer
               ref={navigatorRef => {
                 NavigationService.setTopLevelNavigator(navigatorRef);
               }}

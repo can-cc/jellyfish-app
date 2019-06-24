@@ -1,9 +1,6 @@
-import { ajax } from 'rxjs/observable/dom/ajax';
 import Actions from '../action/actions';
 import axios from 'axios';
 import { setupAxiosJwtHeader } from '../helper/http-intercetor';
-import { Toast } from 'antd-mobile-rn';
-
 import { API_BASE } from '../env/env';
 import NavigationService from '../service/single/navigation.service';
 
@@ -38,7 +35,7 @@ export const SIGNIN_FAILURE = action$ =>
   action$
     .ofType(Actions.SIGNIN.FAILURE)
     .do(() => {
-      Toast.fail('\n登录失败，请重试');
+      // Toast.fail('\n登录失败，请重试');
     })
     .ignoreElements();
 

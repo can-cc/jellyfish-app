@@ -1,7 +1,7 @@
 import React from 'react';
 import { TouchableHighlight } from 'react-native';
 
-export class Button extends React.Component {
+export class Button extends React.Component<any, any> {
   render() {
     return (
       <TouchableHighlight
@@ -21,7 +21,7 @@ export class Button extends React.Component {
         ]}
         activeOpacity={1}
         underlayColor="#C0D9FA"
-        onPress={(e?: any) => this.props.onPress(e)}
+        onPress={(e: any) => this.props.onPress(e)}
       >
         {this.props.children}
       </TouchableHighlight>

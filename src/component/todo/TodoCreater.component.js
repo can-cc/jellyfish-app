@@ -1,7 +1,6 @@
 //
 import React from 'react';
 import { View, TouchableOpacity, TextInput, Image, Platform } from 'react-native';
-import { Button, List, Checkbox, InputItem, WhiteSpace, Flex } from 'antd-mobile-rn';
 import Modal from 'react-native-modal';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -129,7 +128,7 @@ class TodoCreaterCompoent extends React.Component {
                 borderColor: '#dadada'
               }}
             >
-              <Flex>
+              <View>
                 <Image style={{ width: 20, height: 20 }} source={require('../../assets/icons/clock.png')} />
 
                 <TouchableOpacity style={{ marginLeft: 10, width: '100%' }} onPress={this.showDateTimePicker}>
@@ -145,7 +144,7 @@ class TodoCreaterCompoent extends React.Component {
                     {this.state.deadline ? format(this.state.deadline, 'yyyy/MM/dd HH:mm') : '任务deadline'}
                   </AppText>
                 </TouchableOpacity>
-              </Flex>
+              </View>
 
               <DateTimePicker
                 mode="datetime"
@@ -166,7 +165,7 @@ class TodoCreaterCompoent extends React.Component {
                 borderColor: '#dadada'
               }}
             >
-              <Flex>
+              <View>
                 <Image style={{ width: 20, height: 20 }} source={require('../../assets/icons/clock.png')} />
 
                 <RNPickerSelect
@@ -201,11 +200,11 @@ class TodoCreaterCompoent extends React.Component {
                   }}
                   value={this.state.type}
                 />
-              </Flex>
+              </View>
             </Item>
 
             {/* 备注 */}
-            <Flex style={{ alignItems: 'flex-start', marginTop: 5 }}>
+            <View style={{ alignItems: 'flex-start', marginTop: 5 }}>
               <Image
                 style={{
                   width: 20,
@@ -219,7 +218,7 @@ class TodoCreaterCompoent extends React.Component {
                 source={require('../../assets/icons/pencil.png')}
               />
 
-              <Flex.Item style={{ height: 60 }}>
+              <View.Item style={{ height: 60 }}>
                 <TextInput
                   onChange={value => {
                     this.setState({ detail: value });
@@ -242,8 +241,8 @@ class TodoCreaterCompoent extends React.Component {
                   autoCapitalize="none"
                   multiline={true}
                 />
-              </Flex.Item>
-            </Flex>
+              </View.Item>
+            </View>
             <WhiteSpace style={{ height: 20 }} />
 
             <Button

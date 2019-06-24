@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, StatusBar, Text, View, TouchableOpacity } from 'react-native';
-import { Card, WingBlank, WhiteSpace, Button, List, InputItem } from 'antd-mobile-rn';
 import { StackNavigator } from 'react-navigation';
 import { bindActionCreators } from 'redux';
 import { createForm } from 'rc-form';
@@ -10,7 +9,7 @@ import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
 import format from 'date-fns/format';
 
 class CalendarScreen extends React.Component {
-  static navigationOptions = {
+  static defaultNavigationOptions = {
     title: '日程',
     tabBarLabel: '日程'
   };

@@ -1,8 +1,5 @@
-//
-import React from 'react';
+import React, {Component} from 'react';
 import { Image, StatusBar, StyleSheet, Text, View, Dimensions, PixelRatio } from 'react-native';
-import { Flex, Modal, Button, WhiteSpace, Tabs, List } from 'antd-mobile-rn';
-import { StackNavigator } from 'react-navigation';
 import { bindActionCreators } from 'redux';
 import { makeActionRequestCollection } from '../action/actions';
 import { connect } from 'react-redux';
@@ -10,13 +7,13 @@ import { PersistorContext } from '../component/context/PersistorContext';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { API_BASE } from '../env/env';
 
-const Item = List.Item;
+const Item = View;
 
-const dp2px = dp => PixelRatio.getPixelSizeForLayoutSize(dp);
-const px2dp = px => PixelRatio.roundToNearestPixel(px);
+const dp2px = (dp: any) => PixelRatio.getPixelSizeForLayoutSize(dp);
+const px2dp = (px: any) => PixelRatio.roundToNearestPixel(px);
 
-class ProfileScreen extends React.Component {
-  static navigationOptions = {
+class ProfileScreen extends Component<any, any> {
+  static defaultNavigationOptions = {
     title: '账户',
     headerBackTitle: null
   };
@@ -27,8 +24,7 @@ class ProfileScreen extends React.Component {
     });
   }
 
-  logout = persistor => {
-    console.log(persistor);
+  logout = (persistor: any) => {
     Modal.alert('登出', '确定登出吗？', [
       { text: '取消' },
       {
@@ -69,7 +65,6 @@ class ProfileScreen extends React.Component {
                   <Image style={{ width: 80, height: 80 }} source={require('../assets/imgs/default-avatar.jpeg')} />
                 )}
               </View>
-              <WhiteSpace style={{ height: 10 }} />
               <Text style={{ alignSelf: 'center', color: 'white' }}>{this.props.username}</Text>
             </View>
 
@@ -92,17 +87,17 @@ class ProfileScreen extends React.Component {
                 >
                   <List style={{ width: '100%' }}>
                     <Item style={{ height: 60 }} onClick={() => this.props.navigation.navigate('Account')}>
-                      <Flex>
+                      <View>
                         <Ionicons style={{ marginRight: 10 }} name="ios-contact" size={25} />
                         <Text>账号信息</Text>
-                      </Flex>
+                      </View>
                     </Item>
 
                     <Item style={{ height: 60 }} onClick={() => this.logout(persistor)}>
-                      <Flex>
+                      <View>
                         <Ionicons style={{ marginRight: 10 }} name="ios-exit" size={25} />
                         <Text>登出</Text>
-                      </Flex>
+                      </View>
                     </Item>
                   </List>
                 </View>
@@ -117,10 +112,10 @@ class ProfileScreen extends React.Component {
                 >
                   <List style={{ width: '100%' }}>
                     <Item style={{ height: 60 }} onClick={() => this.props.navigation.navigate('About')}>
-                      <Flex>
+                      <View>
                         <Ionicons style={{ marginRight: 10 }} name="ios-information-circle" size={25} />
                         <Text>关于</Text>
-                      </Flex>
+                      </View>
                     </Item>
                   </List>
                 </View>

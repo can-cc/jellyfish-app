@@ -1,20 +1,13 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import { WingBlank, TextareaItem, Flex, Modal, WhiteSpace, Button, List, InputItem, DatePicker } from 'antd-mobile-rn';
-import { StackNavigator } from 'react-navigation';
+import { StyleSheet, View } from 'react-native';
 import { bindActionCreators } from 'redux';
-import { createForm } from 'rc-form';
 import { connect } from 'react-redux';
 import { makeActionRequestCollection } from '../action/actions';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import DateTimePicker from 'react-native-modal-datetime-picker';
-import format from 'date-fns/format';
-import R from 'ramda';
 
-const Item = List.Item;
+const Item = View;
 
 class AccountScreen extends React.Component {
-  static navigationOptions = ({ navigation }) => {
+  static defaultNavigationOptions = ({ navigation }) => {
     const params = navigation.state.params || {};
     return {
       title: '账号',

@@ -1,7 +1,6 @@
 //
 import React from 'react';
 import { View, TouchableOpacity } from 'react-native';
-import { Flex } from 'antd-mobile-rn';
 import { CheckBox } from '../CheckBox';
 import { Deadline } from '../Deadline.component';
 import { AppText } from '../AppText';
@@ -14,7 +13,7 @@ export class TodoItem extends React.Component {
     return (
       <TouchableOpacity onPress={() => this.props.onTodoClick(todo)}>
         <View style={{ paddingLeft: 10, paddingRight: 10, paddingBottom: 15 }}>
-          <Flex
+          <View
             style={{
               flex: 1,
               flexDirection: 'row',
@@ -41,7 +40,7 @@ export class TodoItem extends React.Component {
             </AppText>
 
             {todo.deadline ? <Deadline style={{ flexShrink: 0 }} deadline={todo.deadline} /> : null}
-          </Flex>
+          </View>
         </View>
       </TouchableOpacity>
     );
