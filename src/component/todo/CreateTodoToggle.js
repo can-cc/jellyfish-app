@@ -39,7 +39,7 @@ export class CreateTodoToggle extends React.Component {
                 width: 15,
                 height: 15
               }}
-              source={require('../../assets/icons/+.png')}
+              source={require('../../assets/icons/plus.png')}
             />
             <View style={{ width: 3, height: 10 }} />
             <AppText style={{ marginLeft: 5, fontSize: 15, fontWeight: '400' }}>新任务</AppText>

@@ -6,11 +6,10 @@ import { AsyncStorage } from 'react-native';
 import Input from '../component/Input';
 import { AppButton } from '../component/Button';
 import { LoginAction } from '../action/login';
-import { Dispatch } from 'redux';
 
 class SignInScreen extends Component<
   {
-    dispatch: any
+    login: (username: string, password: string) => void
   },
   {
     username: string;
@@ -43,12 +42,7 @@ class SignInScreen extends Component<
   };
 
   submit = () => {
-    this.props.dispatch(
-      new LoginAction({
-        username: this.state.username,
-        password: this.state.password
-      })
-    );
+    this.props.login(this.state.username, this.state.password);
   };
 
   handleSignUpClick = () => {
@@ -56,7 +50,7 @@ class SignInScreen extends Component<
       if (supported) {
         Linking.openURL(WEBSITE + '/signup');
       } else {
-        console.log("Don't know how to open URI: " + this.props.url);
+        console.log("Don't know how to open URI: " + WEBSITE + '/signup');
       }
     });
   };
@@ -129,7 +123,7 @@ class SignInScreen extends Component<
               paddingTop: Platform.OS === 'ios' ? 4.5 : 0,
               position: 'relative'
             }}
-            onClick={this.submit}
+            onPress={this.submit}
           >
             <Image
               style={{
@@ -150,6 +144,12 @@ export const SignInScreenContainer = connect(
     return {};
   },
   dispatch => {
-    return {};
+    return {
+      login: (username: string, password: string) => {
+        return new LoginAction({
+          username, password
+        })
+      }
+    };
   }
 )(SignInScreen);

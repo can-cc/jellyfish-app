@@ -39,7 +39,6 @@ class TodoListScreen extends React.Component {
       await Notifications.getExpoPushTokenAsync();
       // TODO
     } catch (error) {
-      /* console.error(error); */
     }
   }
 

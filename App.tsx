@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { View, StatusBar, Image, Platform } from 'react-native';
 import { Provider } from 'react-redux';
-import { Asset, AppLoading } from 'expo';
+import { AppLoading } from 'expo';
+import { Asset } from 'expo-asset'
 import {
   createStackNavigator,
   createSwitchNavigator,
@@ -140,7 +141,7 @@ export default class Main extends Component {
     });
   };
 
-  loadResourcesAsync = () => {
+  loadResourcesAsync = (): Promise<void> => {
     return Promise.all([
       this.guaranteePersist(),
       Asset.loadAsync([
@@ -151,14 +152,14 @@ export default class Main extends Component {
         require('./src/assets/icons/calendar-active.png'),
         require('./src/assets/icons/calendar.png'),
         require('./src/assets/empty-list.png'),
-        require('./src/assets/icons/+.png'),
+        require('./src/assets/icons/plus.png'),
         require('./src/assets/3bg.jpg'),
         require('./src/assets/arrow-right.png'),
         require('./src/assets/arrow-top.png'),
         require('./src/assets/hello.png'),
         require('./src/assets/check.png')
       ])
-    ]);
+    ]).then();
   };
 
   handlePersistorState() {}
@@ -175,7 +176,12 @@ export default class Main extends Component {
           onFinish={() => {
             this.setState({ isReady: true });
           }}
-          onError={console.warn}
+          onError={(error) => {
+            if (!error) {
+              return
+            }
+            console.warn(error);
+          }}
         />
       );
     }
