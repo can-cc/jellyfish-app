@@ -11,8 +11,8 @@ import { bindActionCreators, Dispatch } from 'redux';
 class SignInScreen extends Component<
   {
     actions: {
-      signin: (username: string, password: string) => void
-    }
+      signin: (username: string, password: string) => void;
+    };
   },
   {
     username: string;
@@ -23,7 +23,7 @@ class SignInScreen extends Component<
     this._retrieveData();
   }
 
-  _storeData = async (username: string) => {
+_storeData = async (username: string) => {
     try {
       await AsyncStorage.setItem('SIGNIN_USERNAME', username);
     } catch (error) {
@@ -134,7 +134,7 @@ class SignInScreen extends Component<
                 height: Platform.OS === 'ios' ? 17.5 : 43.75
               }}
               source={require('../assets/arrow-right.png')}
-            /> 
+            />
           </AppButton>
         </View>
       </View>
@@ -148,9 +148,12 @@ export const SignInScreenContainer = connect(
   },
   (dispatch: Dispatch) => {
     return {
-      actions: bindActionCreators({
-        signin
-      }, dispatch)
+      actions: bindActionCreators(
+        {
+          signin
+        },
+        dispatch
+      )
     };
   }
 )(SignInScreen);

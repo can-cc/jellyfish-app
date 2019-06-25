@@ -243,7 +243,6 @@ class TodoCreaterCompoent extends React.Component {
                 />
               </View.Item>
             </View>
-            <WhiteSpace style={{ height: 20 }} />
 
             <Button
               style={{

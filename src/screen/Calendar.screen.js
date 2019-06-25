@@ -17,7 +17,6 @@ class CalendarScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <WhiteSpace style={{ height: 30 }} />
         <StatusBar barStyle="dark-content" />
         <Agenda
           items={this.props.items}
