@@ -8,19 +8,22 @@ import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/ignoreElements';
 
+import { mergeMap } from 'rxjs/operators';
+
 export const SIGNIN = action$ => {
-  return action$.ofType(Actions.SIGNIN.REQUEST).mergeMap(action => {
-    /* removeAxiosJwtHeader(); */
-    return axios
-      .post(`${API_BASE}/signin`, action.payload)
-      .then(response => {
-        setupAxiosJwtHeader(response.data.token);
-        return Actions.SIGNIN.success(response.data);
-      })
-      .catch(error => {
-        return Actions.SIGNIN.failure(error);
-      });
-  });
+  return action$.ofType('SIGNIN').pipe(
+    mergeMap(action => {
+      return axios
+        .post(`${API_BASE}/signin`, action.payload)
+        .then(response => {
+          setupAxiosJwtHeader(response.data.token);
+          return Actions.SIGNIN.success(response.data);
+        })
+        .catch(error => {
+          return Actions.SIGNIN.failure(error);
+        });
+    })
+  );
 };
 
 export const SIGNIN_SUCCESS = action$ =>

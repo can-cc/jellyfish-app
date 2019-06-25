@@ -128,7 +128,6 @@ class TodoDetailScreen extends React.Component {
             </View>
           </Item>
         </List>
-        <WhiteSpace style={{ height: 20 }} />
 
         <List>
           <Item onClick={this.deleteTodo}>
@@ -143,7 +142,6 @@ class TodoDetailScreen extends React.Component {
           </Item>
         </List>
 
-        <WhiteSpace size="lg" />
       </View>
     );
   }

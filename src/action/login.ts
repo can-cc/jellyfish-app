@@ -1,11 +1,11 @@
 
-export class LoginAction {
-  readonly type = 'LOGIN';
 
-  constructor(
-    public payload: {
-      username: string;
-      password: string;
+export function signin(username: string, password: string) {
+    return {
+        type: 'SIGNIN',
+        payload: {
+            username,
+            password
+        }
     }
-  ) {}
 }

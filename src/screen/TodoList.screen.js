@@ -1,12 +1,10 @@
 import React from 'react';
 import { FlatList, RefreshControl, StyleSheet, Text, View, ScrollView, Image } from 'react-native';
 import { Permissions, Notifications } from 'expo';
-import { StackNavigator } from 'react-navigation';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import Actions, { makeActionRequestCollection } from '../action/actions';
+import { makeActionRequestCollection } from '../action/actions';
 import { TodoCreater } from '../component/todo/TodoCreater';
-import { Deadline } from '../component/Deadline.component';
 import { ListEmpty } from '../component/ListEmpty';
 import { TodoItem } from '../component/todo/TodoItem';
 import { Button } from '../component/Button';
@@ -156,7 +154,6 @@ class TodoListScreen extends React.Component {
             </Button>
           </View>
 
-          <WhiteSpace size="xl" style={{ height: 20 }} />
 
           {this.state.showDone && (
             <FlatList
@@ -167,7 +164,7 @@ class TodoListScreen extends React.Component {
               }}
             />
           )}
-          <WhiteSpace size="xl" style={{ height: 100 }} />
+
         </ScrollView>
       </View>
     );

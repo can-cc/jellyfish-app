@@ -1,15 +1,18 @@
-import React, { Component, SyntheticEvent } from 'react';
+import React, { Component } from 'react';
 import { Linking, Text, View, Image, TouchableOpacity, Platform, TextInput } from 'react-native';
-import { connect, DispatchProp } from 'react-redux';
+import { connect } from 'react-redux';
 import { WEBSITE } from '../env/env';
 import { AsyncStorage } from 'react-native';
 import Input from '../component/Input';
 import { AppButton } from '../component/Button';
-import { LoginAction } from '../action/login';
+import { signin } from '../action/login';
+import { bindActionCreators, Dispatch } from 'redux';
 
 class SignInScreen extends Component<
   {
-    login: (username: string, password: string) => void
+    actions: {
+      signin: (username: string, password: string) => void
+    }
   },
   {
     username: string;
@@ -42,7 +45,7 @@ class SignInScreen extends Component<
   };
 
   submit = () => {
-    this.props.login(this.state.username, this.state.password);
+    this.props.actions.signin(this.state.username, this.state.password);
   };
 
   handleSignUpClick = () => {
@@ -143,13 +146,11 @@ export const SignInScreenContainer = connect(
   state => {
     return {};
   },
-  dispatch => {
+  (dispatch: Dispatch) => {
     return {
-      login: (username: string, password: string) => {
-        return new LoginAction({
-          username, password
-        })
-      }
+      actions: bindActionCreators({
+        signin
+      }, dispatch)
     };
   }
 )(SignInScreen);
