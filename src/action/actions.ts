@@ -10,7 +10,7 @@ const actionNames = [
   'DELETE_TODO'
 ];
 
-export const actions = actionNames.reduce((result, actionName) => {
+export const actions: any = actionNames.reduce((result: any, actionName: any) => {
   const REQUEST_SYMBOL = actionName + '_REQUEST';
   const SUCCESS_SYMBOL = actionName + '_SUCCESS';
   const FAILURE_SYMBOL = actionName + '_FAILURE';
@@ -21,23 +21,23 @@ export const actions = actionNames.reduce((result, actionName) => {
     SUCCESS: SUCCESS_SYMBOL,
     FAILURE: FAILURE_SYMBOL,
     FINISH: FINISH_SYMBOL,
-    request: (payload, meta) => ({
+    request: (payload: any, meta: any) => ({
       type: REQUEST_SYMBOL,
       payload,
       meta
     }),
-    success: (payload, meta) => ({
+    success: (payload: any, meta: any) => ({
       type: SUCCESS_SYMBOL,
       payload,
       meta
     }),
-    failure: (payload, meta) => ({
+    failure: (payload: any, meta: any) => ({
       type: FAILURE_SYMBOL,
       error: true,
       payload,
       meta
     }),
-    finish: (payload, meta) => {
+    finish: (payload: any, meta: any) => {
       return {
         type: FINISH_SYMBOL,
         payload,
@@ -49,7 +49,7 @@ export const actions = actionNames.reduce((result, actionName) => {
 }, {});
 
 export function makeActionRequestCollection() {
-  return values(actions).reduce((result, actionFactor) => {
+  return values(actions).reduce((result: any, actionFactor: any) => {
     result[actionFactor.name + '_REQUEST'] = actionFactor.request;
     result[actionFactor.name + '_FINISH'] = actionFactor.finish;
     return result;

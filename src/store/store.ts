@@ -11,7 +11,8 @@ import rootEpic from '../epic';
 
 const persistConfig = {
   key: 'root',
-  keyPrefix: '',
+  timeout: 10000,
+  debounce: 100,
   storage
 };
 
@@ -30,14 +31,14 @@ function setupStore() {
   return { store, epicMiddleware };
 }
 
-export default () => {
+export default () => {  
   const { store, epicMiddleware } = setupStore();
 
-  const persistor = persistStore(store, null, () => {});
+  const persistor = persistStore(store);
 
-  /* store.dispatch({ type: 'RESET' });
-   * persistor.purge();
-   */
-  epicMiddleware.run(rootEpic);
+  // store.dispatch({ type: 'RESET' });
+  // persistor.purge();
+
+  epicMiddleware.run(rootEpic as any);
   return { store, persistor };
 };

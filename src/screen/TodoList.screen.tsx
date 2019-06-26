@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { FlatList, RefreshControl, StyleSheet, Text, View, ScrollView, Image } from 'react-native';
 import { Permissions, Notifications } from 'expo';
 import { bindActionCreators } from 'redux';
@@ -10,7 +10,7 @@ import { TodoItem } from '../component/todo/TodoItem';
 import { Button } from '../component/Button';
 import { AppText } from '../component/AppText';
 
-class TodoListScreen extends React.Component {
+class TodoListScreen extends Component<any> {
   static defaultNavigationOptions = {
     title: '清单',
     headerBackTitle: null
@@ -61,17 +61,17 @@ class TodoListScreen extends React.Component {
     });
   };
 
-  createTodo = initalTodo => {
+  createTodo = (initalTodo: any) => {
     this.props.actions.CREATE_TODO_REQUEST(initalTodo);
   };
 
-  onTodoClick = todo => {
+  onTodoClick = (todo: any) => {
     this.props.navigation.navigate('TodoDetail', {
       todoId: todo.id
     });
   };
 
-  onCheckClick = todo => {
+  onCheckClick = (todo: any) => {
     this.props.actions.UPDATE_TODO_REQUEST({ ...todo, done: !todo.done });
   };
 
@@ -109,10 +109,10 @@ class TodoListScreen extends React.Component {
           }}
           refreshControl={<RefreshControl refreshing={this.props.refreshing} onRefresh={this.getTodoList} />}
         >
-          {!this.props.todos.filter(t => !t.done).length && <ListEmpty />}
+          {!this.props.todos.filter((t: any) => !t.done).length && <ListEmpty />}
 
           <FlatList
-            data={this.props.todos.filter(t => !t.done).map(t => ({ ...t, key: t.id.toString() }))}
+            data={this.props.todos.filter((t: any) => !t.done).map((t: any) => ({ ...t, key: t.id.toString() }))}
             renderItem={({ item }) => {
               const todo = item;
               return <TodoItem todo={todo} onTodoClick={this.onTodoClick} onCheckClick={this.onCheckClick} />;
@@ -132,7 +132,7 @@ class TodoListScreen extends React.Component {
             }}
           >
             <Button
-              onPress={e => {
+              onPress={(e: any) => {
                 this.setState({ showDone: !this.state.showDone });
               }}
             >
@@ -157,7 +157,7 @@ class TodoListScreen extends React.Component {
 
           {this.state.showDone && (
             <FlatList
-              data={this.props.todos.filter(t => t.done).map(t => ({ ...t, key: t.id.toString() }))}
+              data={this.props.todos.filter((t: any) => t.done).map((t: any) => ({ ...t, key: t.id.toString() }))}
               renderItem={({ item }) => {
                 const todo = item;
                 return <TodoItem todo={todo} onTodoClick={this.onTodoClick} onCheckClick={this.onCheckClick} />;
@@ -178,10 +178,10 @@ const styles = StyleSheet.create({
 });
 
 export const TodoListScreenContainer = connect(
-  state => {
+  (state: any) => {
     return {
       userId: state.auth.userId,
-      todos: state.todo.result.map(id => state.todo.entities.todo[id]).filter(todo => !todo.hidden),
+      todos: state.todo.result.map((id: string) => state.todo.entities.todo[id]).filter((todo: any) => !todo.hidden),
       refreshing: state.todo.refreshing
     };
   },

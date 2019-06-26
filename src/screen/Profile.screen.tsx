@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { Image, StatusBar, StyleSheet, Text, View, Dimensions, PixelRatio } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { makeActionRequestCollection } from '../action/actions';
@@ -25,17 +25,17 @@ class ProfileScreen extends Component<any, any> {
   }
 
   logout = (persistor: any) => {
-    Modal.alert('登出', '确定登出吗？', [
-      { text: '取消' },
-      {
-        text: '确定',
-        onPress: () => {
-          persistor.purge();
-          this.props.logout();
-          this.props.navigation.navigate('SignIn');
-        }
-      }
-    ]);
+    // Modal.alert('登出', '确定登出吗？', [
+    //   { text: '取消' },
+    //   {
+    //     text: '确定',
+    //     onPress: () => {
+    //       persistor.purge();
+    //       this.props.logout();
+    //       this.props.navigation.navigate('SignIn');
+    //     }
+    //   }
+    // ]);
   };
 
   render() {
@@ -69,57 +69,28 @@ class ProfileScreen extends Component<any, any> {
             </View>
 
             <View>
-              <Tabs
-                tabs={[{ title: '账户' }, { title: '其他' }]}
-                swipeable={false}
-                initialPage={'t1'}
-                onChange={(tab, index) => {}}
-                onTabClick={(tab, index) => {}}
+              <View
+                style={{
+                  display: 'flex',
+                  alignItems: 'flex-start',
+                  justifyContent: 'flex-start',
+                  height: 450,
+                  backgroundColor: '#fff'
+                }}
               >
-                <View
-                  style={{
-                    display: 'flex',
-                    alignItems: 'flex-start',
-                    justifyContent: 'flex-start',
-                    height: 450,
-                    backgroundColor: '#fff'
-                  }}
-                >
-                  <List style={{ width: '100%' }}>
-                    <Item style={{ height: 60 }} onClick={() => this.props.navigation.navigate('Account')}>
-                      <View>
-                        <Ionicons style={{ marginRight: 10 }} name="ios-contact" size={25} />
-                        <Text>账号信息</Text>
-                      </View>
-                    </Item>
-
-                    <Item style={{ height: 60 }} onClick={() => this.logout(persistor)}>
-                      <View>
-                        <Ionicons style={{ marginRight: 10 }} name="ios-exit" size={25} />
-                        <Text>登出</Text>
-                      </View>
-                    </Item>
-                  </List>
+                <View>
+                  <Ionicons style={{ marginRight: 10 }} name="ios-contact" size={25} />
+                  <Text>账号信息</Text>
                 </View>
-                <View
-                  style={{
-                    display: 'flex',
-                    alignItems: 'flex-start',
-                    justifyContent: 'flex-start',
-                    height: 250,
-                    backgroundColor: '#fff'
-                  }}
-                >
-                  <List style={{ width: '100%' }}>
-                    <Item style={{ height: 60 }} onClick={() => this.props.navigation.navigate('About')}>
-                      <View>
-                        <Ionicons style={{ marginRight: 10 }} name="ios-information-circle" size={25} />
-                        <Text>关于</Text>
-                      </View>
-                    </Item>
-                  </List>
+                <View>
+                  <Ionicons style={{ marginRight: 10 }} name="ios-exit" size={25} />
+                  <Text>登出</Text>
                 </View>
-              </Tabs>
+                <View>
+                  <Ionicons style={{ marginRight: 10 }} name="ios-information-circle" size={25} />
+                  <Text>关于</Text>
+                </View>
+              </View>
             </View>
           </View>
         )}
@@ -137,7 +108,7 @@ const styles = StyleSheet.create({
 });
 
 export const ProfileScreenContainer = connect(
-  state => {
+  (state: any) => {
     return { username: state.auth.username, userId: state.auth.userId, avatar: state.auth.avatar };
   },
   dispatch => {

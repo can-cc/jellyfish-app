@@ -8,8 +8,8 @@ import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/observable/of';
 
-export const CREATE_TODO = action$ => {
-  return action$.ofType(Actions.CREATE_TODO.REQUEST).mergeMap(action => {
+export const CREATE_TODO = (action$: any) => {
+  return action$.ofType(Actions.CREATE_TODO.REQUEST).mergeMap((action: any) => {
     if (action.payload.deadline) {
       const localNotification = {
         title: '你的任务快到到期了, 完成了吗？',
@@ -40,16 +40,12 @@ export const CREATE_TODO = action$ => {
   });
 };
 
-/* export const CREATE_TODO_SUCCESS = action$ => {
- *   return action$.ofType(Actions.CREATE_TODO.SUCCESS).do(action => {
- *   });
- * };
- *  */
-export const UPDATE_TODO = action$ => {
+
+export const UPDATE_TODO = (action$: any) => {
   return action$
     .ofType(Actions.UPDATE_TODO.REQUEST)
-    .distinctUntilChanged() // TODO distinctUntilChanged mix debounceTime
-    /* .debounceTime(1000) */ .mergeMap(action => {
+    .distinctUntilChanged() 
+   .mergeMap((action: any) => {
       return axios
         .put(`${API_BASE}/auth/todo/${action.payload.id}`, action.payload)
         .then(response => Actions.UPDATE_TODO.success(response.data))
@@ -57,8 +53,8 @@ export const UPDATE_TODO = action$ => {
     });
 };
 
-export const DELETE_TODO = action$ => {
-  return action$.ofType(Actions.DELETE_TODO.REQUEST).mergeMap(action => {
+export const DELETE_TODO = (action$: any) => {
+  return action$.ofType(Actions.DELETE_TODO.REQUEST).mergeMap((action: any) => {
     return axios
       .delete(`${API_BASE}/auth/todo/${action.payload.id}`)
       .then(response => Actions.DELETE_TODO.success({ id: action.payload.id }))
@@ -66,10 +62,10 @@ export const DELETE_TODO = action$ => {
   });
 };
 
-export const GET_TODO_LIST = action$ => {
-  return action$.ofType(Actions.GET_TODO_LIST.REQUEST).mergeMap(action => {
+export const GET_TODO_LIST = (action$: any) => {
+  return action$.ofType(Actions.GET_TODO_LIST.REQUEST).mergeMap((action: any) => {
     return axios
-      .get(`${API_BASE}/auth/todo?userId=${action.payload.userId}`)
+      .get(`${API_BASE}/todos`)
       .then(response => {
         return Actions.GET_TODO_LIST.success(response.data);
       })

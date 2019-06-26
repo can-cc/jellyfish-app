@@ -126,13 +126,14 @@ const AppContainer = createAppContainer(AppSwitchNavigator);
 
 export default class Main extends Component {
   state = { isReady: false };
+  persistorUnsubscribe: any;
 
   guaranteePersist = () => {
-    return new Promise(resolve => {
+    return new Promise((resolve, reject) => {
       this.persistorUnsubscribe = persistor.subscribe(() => {
         let { bootstrapped } = persistor.getState();
         if (bootstrapped) {
-          this._unsubscribe && this._unsubscribe();
+          this.persistorUnsubscribe && this.persistorUnsubscribe();
           resolve();
         } else {
           reject();

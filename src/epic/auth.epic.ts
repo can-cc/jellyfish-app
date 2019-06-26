@@ -10,9 +10,9 @@ import 'rxjs/add/operator/ignoreElements';
 
 import { mergeMap } from 'rxjs/operators';
 
-export const SIGNIN = action$ => {
+export const SIGNIN = (action$: any) => {
   return action$.ofType('SIGNIN').pipe(
-    mergeMap(action => {
+    mergeMap((action: any) => {
       return axios
         .post(`${API_BASE}/signin`, action.payload)
         .then(response => {
@@ -26,7 +26,7 @@ export const SIGNIN = action$ => {
   );
 };
 
-export const SIGNIN_SUCCESS = action$ =>
+export const SIGNIN_SUCCESS = (action$: any) =>
   action$
     .ofType(Actions.SIGNIN.SUCCESS)
     .do(() => {
@@ -34,7 +34,7 @@ export const SIGNIN_SUCCESS = action$ =>
     })
     .ignoreElements();
 
-export const SIGNIN_FAILURE = action$ =>
+export const SIGNIN_FAILURE = (action$: any) =>
   action$
     .ofType(Actions.SIGNIN.FAILURE)
     .do(() => {
@@ -42,8 +42,8 @@ export const SIGNIN_FAILURE = action$ =>
     })
     .ignoreElements();
 
-export const GET_USER_INFO = action$ => {
-  return action$.ofType(Actions.GET_USER_INFO.REQUEST).mergeMap(action => {
+export const GET_USER_INFO = (action$: any) => {
+  return action$.ofType(Actions.GET_USER_INFO.REQUEST).mergeMap((action: any) => {
     return axios
       .get(`${API_BASE}/auth/user/${action.payload.userId}`)
       .then(resp => {
@@ -53,11 +53,11 @@ export const GET_USER_INFO = action$ => {
   });
 };
 
-export const REHYDRATE = action$ => {
+export const REHYDRATE = (action$: any) => {
   return action$
     .ofType('persist/REHYDRATE')
-    .do(action => {
-      if (action.payload) {
+    .do((action: any) => {
+      if (action.payload) { 
         setupAxiosJwtHeader(action.payload.auth.token);
       }
     })
