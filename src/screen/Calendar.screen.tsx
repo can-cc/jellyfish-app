@@ -1,14 +1,12 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { StyleSheet, StatusBar, Text, View, TouchableOpacity } from 'react-native';
-import { StackNavigator } from 'react-navigation';
 import { bindActionCreators } from 'redux';
-import { createForm } from 'rc-form';
 import { connect } from 'react-redux';
 import { makeActionRequestCollection } from '../action/actions';
 import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
 import format from 'date-fns/format';
 
-class CalendarScreen extends React.Component {
+class CalendarScreen extends Component<any, any> {
   static defaultNavigationOptions = {
     title: '日程',
     tabBarLabel: '日程'
@@ -26,7 +24,7 @@ class CalendarScreen extends React.Component {
           renderEmptyData={() => {
             return <View />;
           }}
-          renderItem={(item, firstItemInDay) => {
+          renderItem={(item: any, firstItemInDay: any) => {
             let title;
             switch (item.type) {
               case 'CREATEDAT':
@@ -47,24 +45,17 @@ class CalendarScreen extends React.Component {
                   })
                 }
               >
-                <Card style={{ marginTop: 10, marginRight: 12 }}>
-                  <Card.Header title={title} />
-                  <Card.Body>
-                    <WingBlank>
-                      <Text>{item.todo.content}</Text>
-                    </WingBlank>
-                  </Card.Body>
-                </Card>
+                  <Text>{item.todo.content}</Text>
               </TouchableOpacity>
             );
           }}
           current={new Date()}
           hideExtraDays={true}
-          rowHasChanged={(r1, r2) => {
+          rowHasChanged={(r1: any, r2: any) => {
             return r1.todo !== r2.todo;
           }}
           futureScrollRange={1}
-          onDayPress={day => {}}
+          onDayPress={(day: any) => {}}
         />
       </View>
     );
@@ -79,15 +70,13 @@ const styles = StyleSheet.create({
 });
 
 export const CalendarScreenContainer = connect(
-  state => {
-    const items = {};
+  (state: any) => {
+    const items: any = {};
     const todos = state.todo.result
-      .map(id => state.todo.entities.todo[id])
-      .map(todo => {
+      .map((id: any) => state.todo.entities.todo[id])
+      .map((todo: any) => {
         if (todo.deadline) {
-          console.log(todo.deadline);
           const dateStr = format(todo.deadline, 'yyyy-MM-dd');
-          console.log(dateStr);
           const item = {
             todo: todo,
             dateStr,

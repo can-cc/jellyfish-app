@@ -33,6 +33,7 @@
     "date-fns": "^2.0.0-alpha.8",
     "expo": "^33.0.0",
     "expo-asset": "^5.0.1",
+    "expo-permissions": "^5.0.1",
     "normalizr": "^3.2.4",
     "ramda": "^0.25.0",
     "rc-form": "^2.2.0",

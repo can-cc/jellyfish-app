@@ -20,6 +20,7 @@ import { CalendarScreenContainer } from './src/screen/Calendar.screen';
 import { AboutScreenContainer } from './src/screen/About.screen';
 import { AccountScreenContainer } from './src/screen/Account.screen';
 import { PersistorContext } from './src/component/context/PersistorContext';
+import { PersistGate } from 'redux-persist/integration/react';
 
 const { store, persistor } = createStore();
 
@@ -189,7 +190,7 @@ export default class Main extends Component {
 
     return (
       <Provider store={store}>
-        <PersistorContext.Provider value={persistor}>
+        <PersistGate loading={null} persistor={persistor}>
           <View style={{ flex: 1 }}>
             <StatusBar barStyle="dark-content" />
             <AppContainer
@@ -198,7 +199,7 @@ export default class Main extends Component {
               }}
             />
           </View>
-        </PersistorContext.Provider>
+        </PersistGate>
       </Provider>
     );
   }

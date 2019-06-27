@@ -8,12 +8,14 @@ import logger from 'redux-logger';
 
 import { reducers } from '../reducer';
 import rootEpic from '../epic';
+import hardSet from 'redux-persist/es/stateReconciler/hardSet';
 
 const persistConfig = {
   key: 'root',
-  timeout: 10000,
+  timeout: 100000,
   debounce: 100,
-  storage
+  storage,
+  stateReconciler: hardSet
 };
 
 function setupStore() {

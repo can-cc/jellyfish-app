@@ -1,12 +1,16 @@
-import Actions from '../action/actions';
+import Actions, { AppAction } from '../action/actions';
 import axios from 'axios';
 import { API_BASE } from '../env/env';
-import { Notifications } from 'expo'; 
+import { Notifications } from 'expo';
 
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/observable/of';
+import { ofType } from 'redux-observable';
+import { mergeMap } from 'rxjs/operators';
+import { Todo } from '../typing/todo';
+import { getTodoListSuccess } from '../action/todo';
 
 export const CREATE_TODO = (action$: any) => {
   return action$.ofType(Actions.CREATE_TODO.REQUEST).mergeMap((action: any) => {
@@ -40,12 +44,11 @@ export const CREATE_TODO = (action$: any) => {
   });
 };
 
-
 export const UPDATE_TODO = (action$: any) => {
   return action$
     .ofType(Actions.UPDATE_TODO.REQUEST)
-    .distinctUntilChanged() 
-   .mergeMap((action: any) => {
+    .distinctUntilChanged()
+    .mergeMap((action: any) => {
       return axios
         .put(`${API_BASE}/auth/todo/${action.payload.id}`, action.payload)
         .then(response => Actions.UPDATE_TODO.success(response.data))
@@ -57,18 +60,21 @@ export const DELETE_TODO = (action$: any) => {
   return action$.ofType(Actions.DELETE_TODO.REQUEST).mergeMap((action: any) => {
     return axios
       .delete(`${API_BASE}/auth/todo/${action.payload.id}`)
-      .then(response => Actions.DELETE_TODO.success({ id: action.payload.id }))
+      .then((response: any) => Actions.DELETE_TODO.success({ id: action.payload.id }))
       .catch(Actions.DELETE_TODO.failure);
   });
 };
 
 export const GET_TODO_LIST = (action$: any) => {
-  return action$.ofType(Actions.GET_TODO_LIST.REQUEST).mergeMap((action: any) => {
-    return axios
-      .get(`${API_BASE}/todos`)
-      .then(response => {
-        return Actions.GET_TODO_LIST.success(response.data);
-      })
-      .catch(Actions.GET_TODO_LIST.failure);
-  });
+  return action$.pipe(
+    ofType(Actions.GET_TODO_LIST.REQUEST),
+    mergeMap((action: AppAction) => {
+      return axios
+        .get(`${API_BASE}/todos`)
+        .then((response: any) => {
+          return getTodoListSuccess(response.data)
+        })
+        .catch(Actions.GET_TODO_LIST.failure);
+    })
+  );
 };

@@ -1,10 +1,8 @@
-//
 import Actions from '../action/actions';
-import { normalize, schema } from 'normalizr';
-import R from 'ramda';
-
-const STodo = new schema.Entity('todo');
-const STodos = new schema.Array(STodo);
+import { normalize } from 'normalizr';
+import { GET_TODO_LIST_SUCCESS } from '../action/todo';
+import { Todo } from '../typing/todo';
+import { TodoListSchema } from '../schema/todo.schema';
 
 export function todo(state = { refreshing: false, result: [], entities: { todo: {} }, tempIdCursor: 0 }, action) {
   switch (action.type) {
@@ -14,8 +12,10 @@ export function todo(state = { refreshing: false, result: [], entities: { todo: 
         refreshing: true
       };
 
-    case Actions.GET_TODO_LIST.SUCCESS: {
-      const normalizedData = normalize(action.payload, STodos);
+    case GET_TODO_LIST_SUCCESS: {
+      const todos: Todo[] = action.payload;
+      const normalizedData = normalize(todos, TodoListSchema);
+      console.log('normalizedData', normalizedData);
       return {
         ...state,
         refreshing: false,
@@ -48,24 +48,8 @@ export function todo(state = { refreshing: false, result: [], entities: { todo: 
       };
     }
 
-    /* case Actions.CREATE_TODO.REQUEST: {
-       *   return {
-       *     ...state,
-       *     entities: {
-       *       todo: {
-       *         ...state.entities.todo,
-       *         ['[TEMP]' + state.tempIdCursor]: action.payload
-       *       }
-       *     },
-       *     tempIdCursor: state.tempIdCursor + 1
-       *   };
-       * }
-       */
     case Actions.CREATE_TODO.SUCCESS: {
-      console.log('hihihhhhhhhhhhhh');
-      console.log(action);
       const normalizedData = normalize(action.payload, STodo);
-      console.log('normalizeddata', normalizedData);
       return {
         ...state,
         result: state.result.concat(normalizedData.result),
@@ -85,7 +69,7 @@ export function todo(state = { refreshing: false, result: [], entities: { todo: 
           todo: {
             ...state.entities.todo,
             [action.payload.id]: {
-              ...state.entities.todo[action.payload.id],
+              ...(<any>state).entities.todo[action.payload.id],
               hidden: true
             }
           }

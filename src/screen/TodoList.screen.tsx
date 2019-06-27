@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { FlatList, RefreshControl, StyleSheet, Text, View, ScrollView, Image } from 'react-native';
-import { Permissions, Notifications } from 'expo';
+import { Notifications } from 'expo';
+import * as Permissions from 'expo-permissions'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { makeActionRequestCollection } from '../action/actions';
