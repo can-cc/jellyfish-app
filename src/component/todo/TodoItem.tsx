@@ -1,11 +1,10 @@
-//
-import React from 'react';
+import React, { Component } from 'react';
 import { View, TouchableOpacity } from 'react-native';
 import { CheckBox } from '../CheckBox';
 import { Deadline } from '../Deadline.component';
 import { AppText } from '../AppText';
 
-export class TodoItem extends React.Component {
+export class TodoItem extends Component<any, any> {
   state = {};
 
   render() {

@@ -19,7 +19,6 @@ import { ProfileScreenContainer } from './src/screen/Profile.screen';
 import { CalendarScreenContainer } from './src/screen/Calendar.screen';
 import { AboutScreenContainer } from './src/screen/About.screen';
 import { AccountScreenContainer } from './src/screen/Account.screen';
-import { PersistorContext } from './src/component/context/PersistorContext';
 import { PersistGate } from 'redux-persist/integration/react';
 
 const { store, persistor } = createStore();

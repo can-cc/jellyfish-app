@@ -3,7 +3,7 @@ import { StyleSheet, StatusBar, Text, View, TouchableOpacity } from 'react-nativ
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { makeActionRequestCollection } from '../action/actions';
-import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
+import { Agenda } from 'react-native-calendars';
 import format from 'date-fns/format';
 
 class CalendarScreen extends Component<any, any> {
@@ -28,10 +28,10 @@ class CalendarScreen extends Component<any, any> {
             let title;
             switch (item.type) {
               case 'CREATEDAT':
-                title = `创建于 ${format(item.todo.createdAt, 'MM/dd hh:mm')}`;
+                title = `创建于 ${item.todo.createdAt}`;
                 break;
               case 'DEADLINE':
-                title = `于 ${format(item.todo.deadline, 'MM/dd hh:mm')} 到期`;
+                title = `于 ${item.todo.deadline} 到期`;
                 break;
               default:
                 title = '';
@@ -90,7 +90,7 @@ export const CalendarScreenContainer = connect(
         }
 
         if (todo.createdAt) {
-          const dateStr = format(todo.createdAt, 'yyyy-MM-dd');
+          const dateStr = todo.createdAt;
           const item = {
             todo: todo,
             dateStr,

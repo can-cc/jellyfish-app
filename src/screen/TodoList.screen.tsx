@@ -13,7 +13,7 @@ import { AppText } from '../component/AppText';
 
 class TodoListScreen extends Component<any> {
   static defaultNavigationOptions = {
-    title: '清单',
+    title: '待办清单',
     headerBackTitle: null
   };
 
@@ -43,20 +43,12 @@ class TodoListScreen extends Component<any> {
 
   componentWillMount() {
     this.getTodoList();
-    this.getTodoCycleStatus();
     this.grad();
   }
 
   getTodoList = () => {
     /* this.setState({ refreshing: true }); */
     this.props.actions.GET_TODO_LIST_REQUEST({
-      userId: this.props.userId,
-      done: false
-    });
-  };
-
-  getTodoCycleStatus = () => {
-    this.props.actions.GET_TODO_CYCLE_STATUS_LIST_REQUEST({
       userId: this.props.userId,
       done: false
     });
@@ -79,29 +71,7 @@ class TodoListScreen extends Component<any> {
   render() {
     return (
       <View style={styles.container}>
-        <View
-          style={{
-            marginTop: 5,
-            marginBottom: 8,
-            height: 70,
-            position: 'relative',
-            width: '100%'
-          }}
-        >
-          <AppText
-            style={{
-              color: '#4295ff',
-              letterSpacing: 1,
-              fontSize: 16,
-              position: 'absolute',
-              fontWeight: '500',
-              left: 13,
-              paddingLeft: 5
-            }}
-          >
-            待办清单
-          </AppText>
-        </View>
+        
         <ScrollView
           style={{
             height: '100%',
