@@ -1,22 +1,23 @@
-//
-import React from 'react';
-import { View, TouchableOpacity, Image } from 'react-native';
-import { AppText } from '../AppText';
+import React, { Component } from 'react';
+import { View, TouchableOpacity, Image, Dimensions } from 'react-native';
 
-export class CreateTodoToggle extends React.Component {
+export class CreateTodoToggle extends Component<any, any> {
   state = {};
 
   render() {
     return (
-      <View style={{ width: '100%' }}>
+      <View style={{   }}>
         <TouchableOpacity
           style={{
-            width: 115,
-            height: 50,
-            borderWidth: 0,
-            paddingLeft: 12
+            width: 60,
+            height: 60,
+            borderRadius: 30,
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: '#ddecff',
           }}
           onPress={e => {
+            console.log('press');
             e.preventDefault();
             this.props.onClick();
           }}
@@ -31,18 +32,16 @@ export class CreateTodoToggle extends React.Component {
               alignItems: 'center',
               justifyContent: 'flex-start',
               flexDirection: 'row',
-              paddingTop: 5
+              paddingTop: 0
             }}
           >
             <Image
               style={{
-                width: 15,
-                height: 15
+                width: 22,
+                height: 22
               }}
               source={require('../../assets/icons/plus.png')}
             />
-            <View style={{ width: 3, height: 10 }} />
-            <AppText style={{ marginLeft: 5, fontSize: 15, fontWeight: '400' }}>新任务</AppText>
           </View>
         </TouchableOpacity>
       </View>

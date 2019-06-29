@@ -30,7 +30,7 @@ export const CREATE_TODO = (action$: any) => {
     }
 
     return axios
-      .post(`${API_BASE}/auth/todo`, action.payload)
+      .post(`${API_BASE}/todo`, action.payload)
       .then(response => {
         return Actions.CREATE_TODO.success({
           ...response.data,

@@ -1,14 +1,13 @@
-//
-import React from 'react';
-import { View, TouchableOpacity, TextInput } from 'react-native';
+import React, { Component } from 'react';
+import { View, TouchableOpacity, TextInput, Dimensions } from 'react-native';
 import Modal from 'react-native-modal';
 import { CreateTodoToggle } from './CreateTodoToggle';
 import { appFont } from '../AppText';
 import { AppButton } from '../Button';
 import { AppText } from '../AppText';
 
-export class TodoCreater extends React.Component {
-  state = {
+export class TodoCreater extends Component<any, any> {
+  state: any = {
     content: '',
     value: '',
     deadline: null,
@@ -53,8 +52,10 @@ export class TodoCreater extends React.Component {
   };
 
   render() {
+    const windowHeight = Dimensions.get('window').height;
+
     return (
-      <View style={{ width: '100%' }}>
+      <View style={{ position: 'absolute', top: windowHeight - 200, right: 20, zIndex: 1000 }}>
         <Modal
           hasBackdrop={true}
           avoidKeyboard={true}
@@ -100,8 +101,8 @@ export class TodoCreater extends React.Component {
               <AppButton
                 transparent
                 style={{ width: 80, paddingRight: 0, alignSelf: 'flex-end' }}
-                onPress={e => {
-                  this.submit(e);
+                onPress={(e: any) => {
+                  this.submit();
                 }}
               >
                 <AppText>保存</AppText>
@@ -109,6 +110,7 @@ export class TodoCreater extends React.Component {
             </View>
           </View>
         </Modal>
+
         <CreateTodoToggle onClick={this.onToggleClick} />
       </View>
     );

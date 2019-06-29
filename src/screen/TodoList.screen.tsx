@@ -9,12 +9,15 @@ import { TodoCreater } from '../component/todo/TodoCreater';
 import { ListEmpty } from '../component/ListEmpty';
 import { TodoItem } from '../component/todo/TodoItem';
 import { Button } from '../component/Button';
-import { AppText } from '../component/AppText';
+import { NavigationScreenOptions } from 'react-navigation';
 
-class TodoListScreen extends Component<any> {
-  static defaultNavigationOptions = {
-    title: '待办清单',
-    headerBackTitle: null
+class TodoListScreen extends Component<any, any> {
+  static navigationOptions = ({ navigation }): NavigationScreenOptions => {
+    return {
+      title: '待办清单',
+      gesturesEnabled: true,
+      headerTintColor: '#4295ff'
+    };
   };
 
   state = {
@@ -71,12 +74,14 @@ class TodoListScreen extends Component<any> {
   render() {
     return (
       <View style={styles.container}>
+        <TodoCreater onSubmit={this.createTodo} />
         
         <ScrollView
           style={{
             height: '100%',
             paddingRight: 10,
-            paddingLeft: 10
+            paddingLeft: 10,
+            paddingTop: 12
           }}
           refreshControl={<RefreshControl refreshing={this.props.refreshing} onRefresh={this.getTodoList} />}
         >
@@ -90,16 +95,13 @@ class TodoListScreen extends Component<any> {
             }}
           />
 
-          <View style={{ justifyContent: 'flex-start' }}>
-            <TodoCreater onSubmit={this.createTodo} />
-          </View>
-
+       
           <View
             style={{
               flex: 1,
               justifyContent: 'center',
               alignItems: 'center',
-              marginTop: 15
+              marginTop: 0
             }}
           >
             <Button

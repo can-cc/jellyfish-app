@@ -1,7 +1,22 @@
 import React from 'react';
 import { TouchableHighlight } from 'react-native';
 
-export class Button extends React.Component<any, any> {
+export class Button extends React.Component<
+  {
+    type: 'primary' | 'normal';
+  } & any,
+  any
+> {
+
+  getUnderlayColor(): string {
+    const { type = 'normal' } = this.props;
+    switch (type) {
+      case 'normal':
+      default:
+        return '#f8f8f8';
+    }
+  }
+
   render() {
     return (
       <TouchableHighlight
@@ -9,8 +24,6 @@ export class Button extends React.Component<any, any> {
           {
             paddingTop: 10,
             paddingBottom: 10,
-            paddingLeft: 10,
-            paddingRight: 10,
             alignItems: 'center',
             justifyContent: 'center',
             borderWidth: 0,
@@ -20,7 +33,7 @@ export class Button extends React.Component<any, any> {
           this.props.style
         ]}
         activeOpacity={1}
-        underlayColor="#C0D9FA"
+        underlayColor={this.getUnderlayColor()}
         onPress={(e: any) => this.props.onPress(e)}
       >
         {this.props.children}
