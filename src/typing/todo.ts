@@ -3,6 +3,11 @@ export interface CreateTodoInput {
   deadline?: Date;
 }
 
+export interface UpdateTodoInput {
+  id: string;
+  content?: string;
+}
+
 export interface Todo {
   id: string;
   content: string;

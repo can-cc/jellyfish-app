@@ -16,6 +16,7 @@ class TodoListScreen extends Component<any, any> {
     return {
       title: '待办清单',
       gesturesEnabled: true,
+      headerBackTitle: '',
       headerTintColor: '#4295ff'
     };
   };
