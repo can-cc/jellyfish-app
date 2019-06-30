@@ -1,13 +1,15 @@
-import React, { SyntheticEvent } from 'react';
+import React, { Component, SyntheticEvent } from 'react';
 import { TextInput, TextInputProperties } from 'react-native';
 
 export interface TextInputProps extends TextInputProperties {
   focused?: boolean;
 }
 
-class Input extends React.Component<{
-  onChange: (event: SyntheticEvent) => void
+class Input extends Component<{
+  onChange: (event: SyntheticEvent) => void,
+  style: any
 } & any, any> {
+
   public inputRef: TextInput | null = null;
 
   constructor(props: TextInputProps) {
@@ -57,6 +59,7 @@ class Input extends React.Component<{
         ref={el => ((this.inputRef as any) = el)}
         underlineColorAndroid="transparent"
         {...this.props}
+        style={[this.props.style]}
       />
     );
   }

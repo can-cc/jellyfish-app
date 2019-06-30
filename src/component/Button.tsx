@@ -24,6 +24,8 @@ export class Button extends React.Component<
           {
             paddingTop: 10,
             paddingBottom: 10,
+            paddingLeft: 12,
+            paddingRight: 12,
             alignItems: 'center',
             justifyContent: 'center',
             borderWidth: 0,

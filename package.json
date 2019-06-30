@@ -25,6 +25,9 @@
     "preset": "jest-expo"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.19",
+    "@fortawesome/free-solid-svg-icons": "^5.9.0",
+    "@fortawesome/react-native-fontawesome": "^0.1.0",
     "@types/expo": "^32.0.0",
     "@types/ramda": "^0.26.10",
     "@types/react-native": "^0.57.0",
@@ -44,6 +47,7 @@
     "react-native-modal": "^9.0.0",
     "react-native-modal-datetime-picker": "^5.1.0",
     "react-native-picker-select": "^4.4.0",
+    "react-native-popup-menu": "^0.15.6",
     "react-native-vector-icons": "^4.6.0",
     "react-navigation": "^3.0.9",
     "react-redux": "^5.0.7",

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, StatusBar, Image, Platform } from 'react-native';
 import { Provider } from 'react-redux';
 import { AppLoading } from 'expo';
-import { Asset } from 'expo-asset'
+import { Asset } from 'expo-asset';
 import {
   createStackNavigator,
   createSwitchNavigator,
@@ -20,6 +20,7 @@ import { CalendarScreenContainer } from './src/screen/Calendar.screen';
 import { AboutScreenContainer } from './src/screen/About.screen';
 import { AccountScreenContainer } from './src/screen/Account.screen';
 import { PersistGate } from 'redux-persist/integration/react';
+import { MenuProvider } from 'react-native-popup-menu';
 
 const { store, persistor } = createStore();
 
@@ -177,9 +178,9 @@ export default class Main extends Component {
           onFinish={() => {
             this.setState({ isReady: true });
           }}
-          onError={(error) => {
+          onError={error => {
             if (!error) {
-              return
+              return;
             }
             console.warn(error);
           }}
@@ -188,18 +189,20 @@ export default class Main extends Component {
     }
 
     return (
-      <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-          <View style={{ flex: 1 }}>
-            <StatusBar barStyle="dark-content" />
-            <AppContainer
-              ref={navigatorRef => {
-                NavigationService.setTopLevelNavigator(navigatorRef);
-              }}
-            />
-          </View>
-        </PersistGate>
-      </Provider>
+      <MenuProvider>
+        <Provider store={store}>
+          <PersistGate loading={null} persistor={persistor}>
+            <View style={{ flex: 1 }}>
+              <StatusBar barStyle="dark-content" />
+              <AppContainer
+                ref={navigatorRef => {
+                  NavigationService.setTopLevelNavigator(navigatorRef);
+                }}
+              />
+            </View>
+          </PersistGate>
+        </Provider>
+      </MenuProvider>
     );
   }
 }
