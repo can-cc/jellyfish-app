@@ -14,10 +14,7 @@ import { NavigationScreenOptions } from 'react-navigation';
 class TodoListScreen extends Component<any, any> {
   static navigationOptions = ({ navigation }): NavigationScreenOptions => {
     return {
-      title: '待办清单',
-      gesturesEnabled: true,
-      headerBackTitle: '',
-      headerTintColor: '#4295ff'
+      title: 'To do list'
     };
   };
 
@@ -50,7 +47,6 @@ class TodoListScreen extends Component<any, any> {
   }
 
   getTodoList = () => {
-    /* this.setState({ refreshing: true }); */
     this.props.actions.GET_TODO_LIST_REQUEST({
       userId: this.props.userId,
       done: false

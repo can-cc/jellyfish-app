@@ -2,120 +2,16 @@ import React, { Component } from 'react';
 import { View, StatusBar, Image, Platform } from 'react-native';
 import { Provider } from 'react-redux';
 import { AppLoading } from 'expo';
-import {
-  createStackNavigator,
-  createSwitchNavigator,
-  createBottomTabNavigator,
-  createAppContainer
-} from 'react-navigation';
+
 import createStore from './src/store/store';
 import NavigationService from './src/service/single/navigation.service';
-import { InitLoadingScreenContainer } from './src/screen/InitLoading.screen';
-import { SignInScreenContainer } from './src/screen/SignIn.screen';
-import { TodoListScreenContainer } from './src/screen/TodoList.screen';
-import { TodoDetailScreenContainer } from './src/screen/TodoDetail.screen';
-import { ProfileScreenContainer } from './src/screen/Profile.screen';
-import { CalendarScreenContainer } from './src/screen/Calendar.screen';
-import { AboutScreenContainer } from './src/screen/About.screen';
-import { AccountScreenContainer } from './src/screen/Account.screen';
+
 import { PersistGate } from 'redux-persist/integration/react';
 import { MenuProvider } from 'react-native-popup-menu';
 import { loadAllAsset } from './src/helper/asset';
+import { AppContainer } from './src/navigation/app-container';
 
 const { store, persistor } = createStore();
-
-const TodoStack = createStackNavigator(
-  {
-    TodoList: TodoListScreenContainer,
-    TodoDetail: TodoDetailScreenContainer
-  },
-  {
-    defaultNavigationOptions: {
-      headerStyle: {
-        backgroundColor: '#fff',
-        borderBottomColor: '#e8e8e8'
-      }
-    }
-  }
-);
-
-const ProfileStack = createStackNavigator({
-  Profile: ProfileScreenContainer,
-  About: AboutScreenContainer,
-  Account: AccountScreenContainer
-});
-
-const CalendarStack = createStackNavigator({
-  Calendar: CalendarScreenContainer
-});
-
-const MainTab = createBottomTabNavigator(
-  {
-    Todo: {
-      screen: TodoStack
-    },
-    Calendar: CalendarStack,
-    Profile: ProfileStack
-  },
-  {
-    /* initialRouteName: 'Calendar', */
-    tabBarPosition: 'bottom',
-    tabBarOptions: {
-      showIcon: true,
-      activeTintColor: '#2d9afa',
-      inactiveTintColor: '#555',
-      allowFontScaling: false,
-      style: {
-        borderTopColor: '#ddd',
-        borderTopWidth: 1,
-        height: 55,
-        backgroundColor: '#eee'
-      },
-      labelStyle: {
-        top: Platform.OS === 'ios' ? -3 : -5,
-        fontSize: 11
-      }
-    },
-    defaultNavigationOptions: ({ navigation }) => ({
-      tabBarIcon: ({ focused, tintColor }) => {
-        const { routeName } = navigation.state;
-        let iconName;
-        if (routeName === 'Todo') {
-          return focused ? (
-            <Image style={{ width: 23, height: 23 }} source={require(`./src/assets/icons/list-active.png`)} />
-          ) : (
-            <Image style={{ width: 23, height: 23 }} source={require(`./src/assets/icons/list.png`)} />
-          );
-        } else if (routeName === 'Profile') {
-          return focused ? (
-            <Image style={{ width: 23, height: 23 }} source={require(`./src/assets/icons/jellyfish-active.png`)} />
-          ) : (
-            <Image style={{ width: 23, height: 23 }} source={require(`./src/assets/icons/jellyfish.png`)} />
-          );
-        } else if (routeName === 'Calendar') {
-          return focused ? (
-            <Image style={{ width: 23, height: 23 }} source={require(`./src/assets/icons/calendar-active.png`)} />
-          ) : (
-            <Image style={{ width: 23, height: 23 }} source={require(`./src/assets/icons/calendar.png`)} />
-          );
-        }
-      }
-    })
-  }
-);
-
-const AppSwitchNavigator = createSwitchNavigator(
-  {
-    InitLoading: InitLoadingScreenContainer,
-    Main: MainTab,
-    SignIn: SignInScreenContainer
-  },
-  {
-    initialRouteName: 'InitLoading'
-  }
-);
-
-const AppContainer = createAppContainer(AppSwitchNavigator);
 
 export default class Main extends Component {
   state = { isReady: false };
@@ -136,10 +32,7 @@ export default class Main extends Component {
   };
 
   loadResourcesAsync = (): Promise<void> => {
-    return Promise.all([
-      this.guaranteePersist(),
-      loadAllAsset()
-    ]).then();
+    return Promise.all([this.guaranteePersist(), loadAllAsset()]).then();
   };
 
   handlePersistorState() {}

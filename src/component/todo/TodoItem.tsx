@@ -11,7 +11,7 @@ export class TodoItem extends Component<any, any> {
     const todo = this.props.todo;
     return (
       <TouchableOpacity onPress={() => this.props.onTodoClick(todo)}>
-        <View style={{ paddingLeft: 10, paddingRight: 10, paddingBottom: 15 }}>
+        <View style={{ paddingLeft: 18, paddingRight: 10, paddingBottom: 15 }}>
           <View
             style={{
               flex: 1,
@@ -29,7 +29,7 @@ export class TodoItem extends Component<any, any> {
               style={{
                 color: 'black',
                 flexShrink: 1,
-                paddingLeft: 8,
+                paddingLeft: 12,
                 width: '100%',
                 fontSize: 15,
                 textDecorationLine: todo.done ? 'line-through' : 'none'
