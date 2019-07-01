@@ -20,7 +20,7 @@ export const MainTab = createBottomTabNavigator(
         borderBottomColor: '#e8e8e8'
       },
       headerTintColor: '#4295ff',
-      tabBarIcon: ({ focused, tintColor }) => {
+      tabBarIcon: ({ focused }) => {
         const { routeName } = navigation.state;
         if (routeName === 'Todo') {
           return focused ? (
