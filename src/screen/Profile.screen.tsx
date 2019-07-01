@@ -43,31 +43,14 @@ class ProfileScreen extends Component<any, any> {
       <PersistorContext.Consumer>
         {persistor => (
           <View style={styles.container}>
-            <StatusBar barStyle="dark-content" />
-            <Image
-              style={{
-                width: Dimensions.get('window').width,
-                height: Dimensions.get('window').width / 2.071,
-                opacity: 0.8
-              }}
-              source={require('../assets/3bg.jpg')}
-            />
-            <View
-              style={{
-                position: 'absolute',
-                top: 30
-              }}
-            >
-              <View style={{ width: 80, height: 80, borderRadius: 40, overflow: 'hidden' }}>
-                {this.props.avatar ? (
-                  <Image style={{ width: 80, height: 80 }} source={{ uri: `${API_BASE}/${this.props.avatar}` }} />
-                ) : (
-                  <Image style={{ width: 80, height: 80 }} source={require('../assets/imgs/default-avatar.jpeg')} />
-                )}
-              </View>
-              <Text style={{ alignSelf: 'center', color: 'white' }}>{this.props.username}</Text>
+            <View style={{ width: 80, height: 80, borderRadius: 40, overflow: 'hidden' }}>
+              {this.props.avatar ? (
+                <Image style={{ width: 80, height: 80 }} source={{ uri: `${API_BASE}/${this.props.avatar}` }} />
+              ) : (
+                <Image style={{ width: 80, height: 80 }} source={require('../assets/imgs/default-avatar.jpeg')} />
+              )}
             </View>
-
+            <Text style={{ alignSelf: 'center', color: 'white' }}>{this.props.username}</Text>
             <View>
               <View
                 style={{

@@ -15,11 +15,7 @@ export const MainTab = createBottomTabNavigator(
   },
   {
     defaultNavigationOptions: ({ navigation }) => ({
-      headerStyle: {
-        backgroundColor: '#fff',
-        borderBottomColor: '#e8e8e8'
-      },
-      headerTintColor: '#4295ff',
+      
       tabBarIcon: ({ focused }) => {
         const { routeName } = navigation.state;
         if (routeName === 'Todo') {
