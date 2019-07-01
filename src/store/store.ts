@@ -12,7 +12,7 @@ import hardSet from 'redux-persist/es/stateReconciler/hardSet';
 
 const persistConfig = {
   key: 'root',
-  timeout: 100000,
+  timeout: 30000,
   debounce: 100,
   storage,
   stateReconciler: hardSet

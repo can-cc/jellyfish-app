@@ -5,17 +5,19 @@ import { connect } from 'react-redux';
 import { makeActionRequestCollection } from '../action/actions';
 import { Agenda } from 'react-native-calendars';
 import format from 'date-fns/format';
+import { NavigationScreenOptions } from 'react-navigation';
 
 class CalendarScreen extends Component<any, any> {
-  static defaultNavigationOptions = {
-    title: '日程',
-    tabBarLabel: '日程'
+  static navigationOptions = ({ navigation }): NavigationScreenOptions => {
+    return {
+      title: 'Calendar'
+    };
   };
+
 
   render() {
     return (
       <View style={styles.container}>
-        <StatusBar barStyle="dark-content" />
         <Agenda
           items={this.props.items}
           renderEmptyDate={() => {

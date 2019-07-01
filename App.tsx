@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { View, StatusBar, Image, Platform } from 'react-native';
 import { Provider } from 'react-redux';
 import { AppLoading } from 'expo';
-import { Asset } from 'expo-asset';
 import {
   createStackNavigator,
   createSwitchNavigator,
@@ -21,6 +20,7 @@ import { AboutScreenContainer } from './src/screen/About.screen';
 import { AccountScreenContainer } from './src/screen/Account.screen';
 import { PersistGate } from 'redux-persist/integration/react';
 import { MenuProvider } from 'react-native-popup-menu';
+import { loadAllAsset } from './src/helper/asset';
 
 const { store, persistor } = createStore();
 
@@ -39,30 +39,22 @@ const TodoStack = createStackNavigator(
   }
 );
 
-TodoStack.defaultNavigationOptions = ({ navigation }) => {
-  return {
-    tabBarLabel: '清单'
-  };
-};
-
 const ProfileStack = createStackNavigator({
   Profile: ProfileScreenContainer,
   About: AboutScreenContainer,
   Account: AccountScreenContainer
 });
 
-ProfileStack.defaultNavigationOptions = ({ navigation }) => {
-  return {
-    tabBarLabel: '账户'
-  };
-};
+const CalendarStack = createStackNavigator({
+  Calendar: CalendarScreenContainer
+});
 
 const MainTab = createBottomTabNavigator(
   {
     Todo: {
       screen: TodoStack
     },
-    Calendar: CalendarScreenContainer,
+    Calendar: CalendarStack,
     Profile: ProfileStack
   },
   {
@@ -146,21 +138,7 @@ export default class Main extends Component {
   loadResourcesAsync = (): Promise<void> => {
     return Promise.all([
       this.guaranteePersist(),
-      Asset.loadAsync([
-        require('./src/assets/icons/list-active.png'),
-        require('./src/assets/icons/list.png'),
-        require('./src/assets/icons/jellyfish-active.png'),
-        require('./src/assets/icons/jellyfish.png'),
-        require('./src/assets/icons/calendar-active.png'),
-        require('./src/assets/icons/calendar.png'),
-        require('./src/assets/empty-list.png'),
-        require('./src/assets/icons/plus.png'),
-        require('./src/assets/3bg.jpg'),
-        require('./src/assets/arrow-right.png'),
-        require('./src/assets/arrow-top.png'),
-        require('./src/assets/hello.png'),
-        require('./src/assets/check.png')
-      ])
+      loadAllAsset()
     ]).then();
   };
 

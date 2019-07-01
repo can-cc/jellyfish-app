@@ -17,7 +17,6 @@ export class CreateTodoToggle extends Component<any, any> {
             backgroundColor: '#ddecff',
           }}
           onPress={e => {
-            console.log('press');
             e.preventDefault();
             this.props.onClick();
           }}

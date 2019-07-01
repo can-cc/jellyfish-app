@@ -123,16 +123,6 @@ class TodoDetailScreen extends Component<
     }], {
       cancelable: false
     });
-    // Modal.alert('删除', '确定删除这条事项吗？', [
-    //   { text: '取消' },
-    //   {
-    //     text: '确定',
-    //     onPress: () => {
-    //       this.props.actions.DELETE_TODO_REQUEST({ id: this.props.todo.id });
-    //       this.props.navigation.goBack();
-    //     }
-    //   }
-    // ]);
   };
 
   render() {
