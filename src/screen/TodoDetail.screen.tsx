@@ -9,8 +9,7 @@ import { Menu, MenuOptions, MenuOption, MenuTrigger } from 'react-native-popup-m
 import { AppText } from '../component/AppText';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faEllipsisH, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
-import { updateTodoRequest } from '../action/todo';
-import { Subscription } from 'rxjs';
+import { updateTodoRequest, deleteTodoRequest } from '../action/todo';
 
 class TodoDetailScreen extends Component<
   NavigationContainerProps & {
@@ -114,7 +113,12 @@ class TodoDetailScreen extends Component<
   }
 
   deleteTodo = () => {
-    Alert.alert('Delete Todo', 'Are you sure to delete this todo?', [{ text: 'OK', onPress: () => console.log('OK Pressed!') }, {
+    Alert.alert('Delete Todo', 'Are you sure to delete this todo?', [{ text: 'OK', onPress: () => {
+      // this.props.actions
+      this.props.actions.deleteTodo({
+        id: this.props.todo.id
+      });
+    } }, {
       text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'
     }], {
       cancelable: false
@@ -170,7 +174,8 @@ export const TodoDetailScreenContainer = connect(
     return {
       actions: bindActionCreators(
         {
-          updateTodo: updateTodoRequest
+          updateTodo: updateTodoRequest,
+          deleteTodo: deleteTodoRequest
         },
         dispatch
       )

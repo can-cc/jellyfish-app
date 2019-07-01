@@ -8,6 +8,10 @@ export interface UpdateTodoInput {
   content?: string;
 }
 
+export interface DeleteTodoInput {
+  id: string;
+}
+
 export interface Todo {
   id: string;
   content: string;

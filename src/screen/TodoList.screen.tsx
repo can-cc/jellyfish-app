@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { FlatList, RefreshControl, StyleSheet, Text, View, ScrollView, Image } from 'react-native';
 import { Notifications } from 'expo';
-import * as Permissions from 'expo-permissions'
+import * as Permissions from 'expo-permissions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { makeActionRequestCollection } from '../action/actions';
@@ -41,8 +41,7 @@ class TodoListScreen extends Component<any, any> {
     try {
       await Notifications.getExpoPushTokenAsync();
       // TODO
-    } catch (error) {
-    }
+    } catch (error) {}
   }
 
   componentWillMount() {
@@ -76,19 +75,17 @@ class TodoListScreen extends Component<any, any> {
     return (
       <View style={styles.container}>
         <TodoCreater onSubmit={this.createTodo} />
-        
+
         <ScrollView
           style={{
-            height: '100%',
-            paddingRight: 10,
-            paddingLeft: 10,
-            paddingTop: 12
+            flex: 1
           }}
           refreshControl={<RefreshControl refreshing={this.props.refreshing} onRefresh={this.getTodoList} />}
         >
           {!this.props.todos.filter((t: any) => !t.done).length && <ListEmpty />}
 
           <FlatList
+            style={{ marginTop: 18, flex: 1, flexDirection: 'row' }}
             data={this.props.todos.filter((t: any) => !t.done).map((t: any) => ({ ...t, key: t.id.toString() }))}
             renderItem={({ item }) => {
               const todo = item;
@@ -96,16 +93,17 @@ class TodoListScreen extends Component<any, any> {
             }}
           />
 
-       
           <View
             style={{
               flex: 1,
+              marginTop: 0,
+              flexDirection: 'row',
               justifyContent: 'center',
-              alignItems: 'center',
-              marginTop: 0
+              marginBottom: 18
             }}
           >
             <Button
+              style={{ width: 150 }}
               onPress={(e: any) => {
                 this.setState({ showDone: !this.state.showDone });
               }}
@@ -113,9 +111,7 @@ class TodoListScreen extends Component<any, any> {
               <View
                 style={{
                   flex: 1,
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  justifyContent: 'center'
+                  flexDirection: 'row'
                 }}
               >
                 <Text style={{ color: '#4295ff', fontSize: 14, paddingRight: 10, paddingLeft: 10 }}>
@@ -128,7 +124,6 @@ class TodoListScreen extends Component<any, any> {
             </Button>
           </View>
 
-
           {this.state.showDone && (
             <FlatList
               data={this.props.todos.filter((t: any) => t.done).map((t: any) => ({ ...t, key: t.id.toString() }))}
@@ -138,7 +133,6 @@ class TodoListScreen extends Component<any, any> {
               }}
             />
           )}
-
         </ScrollView>
       </View>
     );
@@ -147,7 +141,8 @@ class TodoListScreen extends Component<any, any> {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#fafafa'
+    backgroundColor: '#fafafa',
+    flex: 1
   }
 });
 

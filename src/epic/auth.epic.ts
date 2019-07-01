@@ -45,7 +45,7 @@ export const SIGNIN_FAILURE = (action$: any) =>
 export const GET_USER_INFO = (action$: any) => {
   return action$.ofType(Actions.GET_USER_INFO.REQUEST).mergeMap((action: any) => {
     return axios
-      .get(`${API_BASE}/auth/user/${action.payload.userId}`)
+      .get(`${API_BASE}/user/${action.payload.userId}`)
       .then(resp => {
         return Actions.GET_USER_INFO.success(resp.data);
       })

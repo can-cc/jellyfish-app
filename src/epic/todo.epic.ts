@@ -10,7 +10,7 @@ import 'rxjs/add/observable/of';
 import { ofType } from 'redux-observable';
 import { mergeMap } from 'rxjs/operators';
 import { Todo } from '../typing/todo';
-import { getTodoListSuccess } from '../action/todo';
+import { getTodoListSuccess, DELETE_TODO_REQUEST } from '../action/todo';
 
 export const CREATE_TODO = (action$: any) => {
   return action$.ofType(Actions.CREATE_TODO.REQUEST).mergeMap((action: any) => {
@@ -50,19 +50,22 @@ export const UPDATE_TODO = (action$: any) => {
     .distinctUntilChanged()
     .mergeMap((action: any) => {
       return axios
-        .put(`${API_BASE}/auth/todo/${action.payload.id}`, action.payload)
+        .put(`${API_BASE}/todo/${action.payload.id}`, action.payload)
         .then(response => Actions.UPDATE_TODO.success(response.data))
         .catch(Actions.UPDATE_TODO.failure);
     });
 };
 
 export const DELETE_TODO = (action$: any) => {
-  return action$.ofType(Actions.DELETE_TODO.REQUEST).mergeMap((action: any) => {
-    return axios
-      .delete(`${API_BASE}/auth/todo/${action.payload.id}`)
-      .then((response: any) => Actions.DELETE_TODO.success({ id: action.payload.id }))
-      .catch(Actions.DELETE_TODO.failure);
-  });
+  return action$.pipe(
+    ofType(DELETE_TODO_REQUEST),
+    mergeMap((action: any) => {
+      return axios
+        .delete(`${API_BASE}/todo/${action.payload.id}`)
+        .then((response: any) => Actions.DELETE_TODO.success({ id: action.payload.id }))
+        .catch(Actions.DELETE_TODO.failure);
+    })
+  );
 };
 
 export const GET_TODO_LIST = (action$: any) => {
@@ -72,7 +75,7 @@ export const GET_TODO_LIST = (action$: any) => {
       return axios
         .get(`${API_BASE}/todos`)
         .then((response: any) => {
-          return getTodoListSuccess(response.data)
+          return getTodoListSuccess(response.data);
         })
         .catch(Actions.GET_TODO_LIST.failure);
     })
