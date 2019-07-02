@@ -18,7 +18,6 @@ export class ProfileInfo extends Component<{ onPress?: () => void; style?: any; 
             paddingLeft: 18,
             paddingRight: 18,
             height: 120,
-            marginBottom: 8,
             width: '100%',
             flexDirection: 'row',
             justifyContent: 'flex-start',
