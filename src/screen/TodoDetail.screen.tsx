@@ -114,7 +114,6 @@ class TodoDetailScreen extends Component<
 
   deleteTodo = () => {
     Alert.alert('Delete Todo', 'Are you sure to delete this todo?', [{ text: 'OK', onPress: () => {
-      // this.props.actions
       this.props.actions.deleteTodo({
         id: this.props.todo.id
       });

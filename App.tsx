@@ -10,6 +10,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { MenuProvider } from 'react-native-popup-menu';
 import { loadAllAsset } from './src/helper/asset';
 import { AppContainer } from './src/navigation/app-container';
+import { PersistorContext } from './src/component/context/PersistorContext';
 
 const { store, persistor } = createStore();
 
@@ -61,6 +62,7 @@ export default class Main extends Component {
 
     return (
       <MenuProvider>
+        <PersistorContext.Provider value={persistor}>
         <Provider store={store}>
           <PersistGate loading={null} persistor={persistor}>
             <View style={{ flex: 1 }}>
@@ -73,6 +75,8 @@ export default class Main extends Component {
             </View>
           </PersistGate>
         </Provider>
+        </PersistorContext.Provider>
+        
       </MenuProvider>
     );
   }

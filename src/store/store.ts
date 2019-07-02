@@ -1,6 +1,6 @@
 import { compose, createStore, applyMiddleware } from 'redux';
 import { createEpicMiddleware } from 'redux-observable';
-import { persistStore, persistReducer } from 'redux-persist';
+import { persistStore, persistReducer, Persistor } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { combineReducers } from 'redux';
 import reduxReset from 'redux-reset';
@@ -36,7 +36,7 @@ function setupStore() {
 export default () => {  
   const { store, epicMiddleware } = setupStore();
 
-  const persistor = persistStore(store);
+  const persistor: Persistor = persistStore(store);
 
   // store.dispatch({ type: 'RESET' });
   // persistor.purge();

@@ -101,7 +101,7 @@ const styles = StyleSheet.create({
 export const ProfileScreenContainer = connect(
   (state: any) => {
     return {
-      userInfo: state.auth.userInfo,
+      userInfo: state.auth.userInfo || {},
       userId: state.auth.userId
     };
   },

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Dimensions, PixelRatio, FlatList } from 'react-native';
+import { StyleSheet, Text, View, Dimensions, PixelRatio, FlatList, Alert } from 'react-native';
 import { bindActionCreators, ActionCreatorsMapObject } from 'redux';
 import { connect } from 'react-redux';
 import { PersistorContext } from '../component/context/PersistorContext';
@@ -8,65 +8,79 @@ import { AppListItem } from '../component/ListItem';
 import { ProfileInfo } from '../component/profile/ProfileInfo';
 import { getUserInfoRequest } from '../action/user';
 import { UserInfo } from '../typing/user';
+import { ListButton } from '../component/ListButton';
+import { NavigationContainerProps } from 'react-navigation';
 
 const Item = View;
 
 const dp2px = (dp: any) => PixelRatio.getPixelSizeForLayoutSize(dp);
 const px2dp = (px: any) => PixelRatio.roundToNearestPixel(px);
 
-class SettingScreen extends Component<
+class SettingScreen extends Component<NavigationContainerProps &
   {
-    actions: ActionCreatorsMapObject;
+    logout: () =>void;
     userId: string;
     userInfo: UserInfo;
   },
   any
 > {
-
   static navigationOptions = {
     title: 'Setting'
   };
 
-  componentWillMount() {
-    this.props.actions.getUserInfo({
-      userId: this.props.userId
-    });
-  }
+ 
 
   logout = (persistor: any) => {
-    // Modal.alert('登出', '确定登出吗？', [
-    //   { text: '取消' },
-    //   {
-    //     text: '确定',
-    //     onPress: () => {
-    //       persistor.purge();
-    //       this.props.logout();
-    //       this.props.navigation.navigate('SignIn');
-    //     }
-    //   }
-    // ]);
+    Alert.alert(
+      'Logout',
+      'Are you sure to logout?',
+      [
+        {
+          text: 'OK',
+          onPress: () => {
+            persistor.purge();
+            this.props.logout();
+            this.props.navigation!.navigate('SignIn');
+          }
+        },
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel'
+        }
+      ],
+      {
+        cancelable: false
+      }
+    );
   };
 
   render() {
     return (
-      <View style={styles.container}>
-        <View
-          style={{
-            flex: 1,
-            flexDirection: 'column',
-            display: 'flex',
-            alignItems: 'flex-start',
-            justifyContent: 'flex-start',
-            width: '100%',
-          }}
-        >
-         
-          <AppListItem>
-            <Ionicons style={{ marginRight: 16, color: '#999' }} name="ios-exit" size={25} />
-            <Text>Logout</Text>
-          </AppListItem>
-        </View>
-      </View>
+      <PersistorContext.Consumer>
+        {(persistor: any) => (
+          <View style={styles.container}>
+            <View
+              style={{
+                flex: 1,
+                flexDirection: 'column',
+                display: 'flex',
+                alignItems: 'flex-start',
+                justifyContent: 'flex-start',
+                width: '100%'
+              }}
+            >
+              <ListButton
+                onPress={() => {
+                  this.logout(persistor);
+                }}
+              >
+                <Text>Logout</Text>
+              </ListButton>
+            </View>
+          </View>
+        )}
+      </PersistorContext.Consumer>
     );
   }
 }
@@ -89,12 +103,6 @@ export const SettingScreenContainer = connect(
   },
   dispatch => {
     return {
-      actions: bindActionCreators(
-        {
-          getUserInfo: getUserInfoRequest
-        },
-        dispatch
-      ),
       logout: () => {
         dispatch({ type: 'RESET' });
       }
