@@ -9,6 +9,9 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/ignoreElements';
 
 import { mergeMap } from 'rxjs/operators';
+import { GET_USER_INFO_REQUEST, getUserInfoSuccess, getUserInfoFailure } from '../action/user';
+import { ofType } from 'redux-observable';
+import { UserInfo } from '../typing/user';
 
 export const SIGNIN = (action$: any) => {
   return action$.ofType('SIGNIN').pipe(
@@ -43,21 +46,26 @@ export const SIGNIN_FAILURE = (action$: any) =>
     .ignoreElements();
 
 export const GET_USER_INFO = (action$: any) => {
-  return action$.ofType(Actions.GET_USER_INFO.REQUEST).mergeMap((action: any) => {
-    return axios
-      .get(`${API_BASE}/user/${action.payload.userId}`)
-      .then(resp => {
-        return Actions.GET_USER_INFO.success(resp.data);
-      })
-      .catch(Actions.GET_USER_INFO.failure);
-  });
+  return action$.pipe(
+    ofType(GET_USER_INFO_REQUEST),
+    mergeMap((action: any) => {
+      return axios
+        .get<UserInfo>(`${API_BASE}/user/${action.payload.userId}`)
+        .then((resp) => {
+          return getUserInfoSuccess(resp.data);
+        })
+        .catch((error) => {
+          return getUserInfoFailure(error);
+        });
+    })
+  );
 };
 
 export const REHYDRATE = (action$: any) => {
   return action$
     .ofType('persist/REHYDRATE')
     .do((action: any) => {
-      if (action.payload) { 
+      if (action.payload) {
         setupAxiosJwtHeader(action.payload.auth.token);
       }
     })

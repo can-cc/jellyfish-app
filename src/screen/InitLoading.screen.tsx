@@ -1,9 +1,8 @@
-//
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { ActivityIndicator, View } from 'react-native';
 
-class InitLoadingScreen extends Component {
+class InitLoadingScreen extends Component<any, any> {
   constructor(props) {
     super(props);
     this.bootstrap();
@@ -24,6 +23,6 @@ class InitLoadingScreen extends Component {
   }
 }
 
-export const InitLoadingScreenContainer = connect(state => {
+export const InitLoadingScreenContainer = connect((state: any) => {
   return { token: state.auth.token };
 })(InitLoadingScreen);

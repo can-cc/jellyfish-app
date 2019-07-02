@@ -60,6 +60,7 @@ export interface AppAction {
   type: string;
   payload?: any;
   meta?: any;
+  error?: boolean;
 }
 
 export default actions;
