@@ -110,12 +110,10 @@ class TodoListScreen extends Component<any, any> {
                   flexDirection: 'row'
                 }}
               >
-                <Text style={{ color: '#4295ff', fontSize: 14, paddingRight: 10, paddingLeft: 10 }}>
+                <Text style={{ color: '#fff', fontSize: 14, paddingRight: 10, paddingLeft: 10 }}>
                   {this.state.showDone ? '收起' : '显示已完成'}
                 </Text>
-                {this.state.showDone && (
-                  <Image style={{ width: 13, height: 13 }} source={require('../assets/arrow-top.png')} />
-                )}
+                
               </View>
             </Button>
           </View>

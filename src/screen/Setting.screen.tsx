@@ -10,6 +10,7 @@ import { getUserInfoRequest } from '../action/user';
 import { UserInfo } from '../typing/user';
 import { ListButton } from '../component/ListButton';
 import { NavigationContainerProps } from 'react-navigation';
+import { AppText } from '../component/AppText';
 
 const Item = View;
 
@@ -75,7 +76,7 @@ class SettingScreen extends Component<NavigationContainerProps &
                   this.logout(persistor);
                 }}
               >
-                <Text>Logout</Text>
+                <AppText style={{fontWeight: '700'}}>Logout</AppText>
               </ListButton>
             </View>
           </View>

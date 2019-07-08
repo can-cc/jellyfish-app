@@ -118,10 +118,13 @@ class SignInScreen extends Component<
 
         <View style={{ flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center' }}>
           <AppButton
-            title="ok"
+            style={{
+              paddingLeft: 28,
+              paddingRight: 28,
+              borderRadius: 20
+            }}
             type="primary"
             size="small"
-           
             onPress={this.submit}
           >
             <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
@@ -132,7 +135,16 @@ class SignInScreen extends Component<
                 }}
                 source={require('../assets/arrow-right.png')}
               />
-              <Text style={{ color: '#fff', fontWeight: '600', fontSize: 18, marginLeft: 8 }}>Login</Text>
+              <Text
+                style={{
+                  color: '#fff',
+                  fontWeight: '500',
+                  fontSize: 18,
+                  marginLeft: 8
+                }}
+              >
+                Login
+              </Text>
             </View>
           </AppButton>
         </View>
