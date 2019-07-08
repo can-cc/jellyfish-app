@@ -81,7 +81,7 @@ class TodoListScreen extends Component<any, any> {
           {!this.props.todos.filter((t: any) => !t.done).length && <ListEmpty />}
 
           <FlatList
-            style={{ marginTop: 18, flex: 1, flexDirection: 'row' }}
+            style={{ marginTop: 18, flex: 1, width: '100%' }}
             data={this.props.todos.filter((t: any) => !t.done).map((t: any) => ({ ...t, key: t.id.toString() }))}
             renderItem={({ item }) => {
               const todo = item;

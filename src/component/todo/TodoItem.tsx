@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity, TouchableHighlight } from 'react-native';
 import { CheckBox } from '../CheckBox';
 import { Deadline } from '../Deadline.component';
 import { AppText } from '../AppText';
@@ -10,8 +10,19 @@ export class TodoItem extends Component<any, any> {
   render() {
     const todo = this.props.todo;
     return (
-      <TouchableOpacity onPress={() => this.props.onTodoClick(todo)}>
-        <View style={{ paddingLeft: 18, paddingRight: 10, paddingBottom: 15 }}>
+      <TouchableHighlight
+        underlayColor="rgba(100,149,237, 0.05)"
+        style={{ width: '100%', flex: 1 }} onPress={() => this.props.onTodoClick(todo)}>
+        <View
+          style={{
+            paddingLeft: 18,
+            paddingRight: 10,
+            paddingBottom: 8,
+            paddingTop: 8,
+            flexDirection: 'row',
+            width: '100%'
+          }}
+        >
           <View
             style={{
               flex: 1,
@@ -41,7 +52,7 @@ export class TodoItem extends Component<any, any> {
             {todo.deadline ? <Deadline style={{ flexShrink: 0 }} deadline={todo.deadline} /> : null}
           </View>
         </View>
-      </TouchableOpacity>
+      </TouchableHighlight>
     );
   }
 }

@@ -44,7 +44,7 @@ class ProfileScreen extends Component<
 
         <View
           style={{
-            height: 18,
+            height: 16,
             width: '100%',
             backgroundColor: '#f8f8f8'
           }}
@@ -57,7 +57,8 @@ class ProfileScreen extends Component<
             display: 'flex',
             alignItems: 'flex-start',
             justifyContent: 'flex-start',
-            width: '100%'
+            width: '100%',
+            paddingTop: 18
           }}
         >
           <AppListItem>
