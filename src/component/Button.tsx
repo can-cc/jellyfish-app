@@ -24,13 +24,13 @@ export class Button extends React.Component<
           {
             paddingTop: 10,
             paddingBottom: 10,
-            paddingLeft: 12,
-            paddingRight: 12,
+            paddingLeft: 18,
+            paddingRight: 18,
             alignItems: 'center',
             justifyContent: 'center',
             borderWidth: 0,
-            borderRadius: 16,
-            backgroundColor: this.props.transparent ? 'transparent' : '#ddecff'
+            borderRadius: 18,
+            backgroundColor: this.props.transparent ? 'transparent' : '#4295ff'
           },
           this.props.style
         ]}

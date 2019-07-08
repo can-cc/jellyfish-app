@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { View, TouchableOpacity, TextInput, Dimensions } from 'react-native';
 import Modal from 'react-native-modal';
 import { CreateTodoToggle } from './CreateTodoToggle';
-import { appFont } from '../AppText';
 import { AppButton } from '../Button';
 import { AppText } from '../AppText';
 
@@ -57,7 +56,6 @@ export class TodoCreater extends Component<any, any> {
     return (
       <View style={{ position: 'absolute', top: windowHeight - 200, right: 20, zIndex: 1000 }}>
         <Modal
-          hasBackdrop={true}
           avoidKeyboard={true}
           isVisible={this.state.showModal}
           onBackButtonPress={this.onClose}
@@ -67,8 +65,6 @@ export class TodoCreater extends Component<any, any> {
             margin: 0
           }}
           useNativeDriver={true}
-          title={null}
-          footer={null}
         >
           <View
             style={{
@@ -91,9 +87,6 @@ export class TodoCreater extends Component<any, any> {
               }}
               underlineColorAndroid="transparent"
               autoCapitalize="none"
-              placeholderStyle={{
-                fontFamily: appFont
-              }}
               onChangeText={text => this.setState({ content: text })}
             />
 

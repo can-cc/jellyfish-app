@@ -29,7 +29,7 @@ export class ProfileInfo extends Component<{ onPress?: () => void; style?: any; 
         <TouchableOpacity>
           {this.props.userInfo.avatarUrl ? (
             <Image
-              style={{ width: 80, height: 80, borderRadius: 40 }}
+              style={{ width: 80, height: 80, borderRadius: 40, backgroundColor: '#d8d8d8' }}
               source={{ uri: WEBSITE + '/' + this.props.userInfo.avatarUrl }}
             />
           ) : null}

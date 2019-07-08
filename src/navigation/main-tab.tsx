@@ -14,7 +14,7 @@ export const MainTab = createBottomTabNavigator(
     Profile: ProfileStack
   },
   {
-    initialRouteName: 'Profile',
+    initialRouteName: 'Todo',
     defaultNavigationOptions: ({ navigation }) => ({
       tabBarIcon: ({ focused }) => {
         const { routeName } = navigation.state;
