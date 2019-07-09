@@ -20,6 +20,11 @@ class SignInScreen extends Component<
     password: string;
   }
 > {
+  state = {
+    username: '',
+    password: ''
+  };
+
   componentWillMount() {
     this._retrieveData();
   }
@@ -90,12 +95,16 @@ class SignInScreen extends Component<
             borderBottomColor: 'rgb(218, 218, 218)',
             borderBottomWidth: 1,
             marginLeft: 0,
-            height: 60
+            height: 55,
+            fontSize: 17
           }}
+          defaultValue={this.state.username}
           onChangeText={(value: string) => {
             this.setState({ username: value });
           }}
         />
+
+        <View style={{ height: 12 }} />
 
         <Input
           autoCapitalize="none"
@@ -107,14 +116,16 @@ class SignInScreen extends Component<
             borderBottomColor: 'rgb(218, 218, 218)',
             borderBottomWidth: 1,
             marginLeft: 0,
-            height: 60
+            height: 55,
+            fontSize: 17
           }}
+          secureTextEntry
           onChangeText={(value: string) => {
             this.setState({ password: value });
           }}
         />
 
-        <View style={{ height: 20 }} />
+        <View style={{ height: 28 }} />
 
         <View style={{ flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center' }}>
           <AppButton

@@ -8,12 +8,12 @@ export interface TextInputProps extends TextInputProperties {
 class Input extends Component<{
   onChange: (event: SyntheticEvent) => void,
   style: any
-} & any, any> {
+} & TextInputProps & any, any> {
 
   public inputRef: TextInput | null = null;
 
   constructor(props: TextInputProps) {
-    super(props);
+    super(props as any);
 
     // todos: remove focused in next major version.
     this.state = {
