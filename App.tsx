@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StatusBar, Image, Platform } from 'react-native';
+import { View, StatusBar } from 'react-native';
 import { Provider } from 'react-redux';
 import { AppLoading } from 'expo';
 
@@ -63,20 +63,19 @@ export default class Main extends Component {
     return (
       <MenuProvider>
         <PersistorContext.Provider value={persistor}>
-        <Provider store={store}>
-          <PersistGate loading={null} persistor={persistor}>
-            <View style={{ flex: 1 }}>
-              <StatusBar barStyle="dark-content" />
-              <AppContainer
-                ref={navigatorRef => {
-                  NavigationService.setTopLevelNavigator(navigatorRef);
-                }}
-              />
-            </View>
-          </PersistGate>
-        </Provider>
+          <Provider store={store}>
+            <PersistGate loading={null} persistor={persistor}>
+              <View style={{ flex: 1 }}>
+                <StatusBar barStyle="dark-content" />
+                <AppContainer
+                  ref={navigatorRef => {
+                    NavigationService.setTopLevelNavigator(navigatorRef);
+                  }}
+                />
+              </View>
+            </PersistGate>
+          </Provider>
         </PersistorContext.Provider>
-        
       </MenuProvider>
     );
   }

@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "水母清单",
-    "slug": "jellyfish-list",
+    "slug": "jellyfish-todo",
     "privacy": "public",
     "sdkVersion": "33.0.0",
     "platforms": ["ios", "android"],
