@@ -8,7 +8,7 @@ import { AppListItem } from '../component/ListItem';
 import { ProfileInfo } from '../component/profile/ProfileInfo';
 import { getUserInfoRequest } from '../action/user';
 import { UserInfo } from '../typing/user';
-import { NavigationContainerProps } from 'react-navigation';
+import { NavigationContainerProps } from '@react-navigation/native';
 
 const Item = View;
 
@@ -34,7 +34,7 @@ class ProfileScreen extends Component<
   }
 
   onSettingPress = () => {
-    this.props.navigation!.navigate('Setting');
+    // this.props.navigation!.navigate('Setting');
   };
 
   render() {

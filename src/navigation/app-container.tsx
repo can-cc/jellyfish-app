@@ -1,5 +1,11 @@
-import { createAppContainer } from 'react-navigation';
+import React from 'react';
 import { AppSwitchNavigator } from './app-switch';
+import { NavigationContainer } from '@react-navigation/native';
 
-export const AppContainer = createAppContainer(AppSwitchNavigator);
- 
+export function AppContainer() {
+  return (
+    <NavigationContainer>
+      <AppSwitchNavigator />
+    </NavigationContainer>
+  );
+}
