@@ -1,6 +1,6 @@
 import { MainTab } from "./main-tab";
 import { createSwitchNavigator } from "react-navigation";
-import { SignInScreenContainer } from "../screen/SignIn.screen";
+import { SignInScreenContainer } from "../screen/LogIn.screen";
 import { InitLoadingScreenContainer } from "../screen/InitLoading.screen";
 
 export const AppSwitchNavigator = createSwitchNavigator(

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, TouchableOpacity, Image } from 'react-native';
 import { UserInfo } from '../../typing/user';
-import { WEBSITE } from '../../env/env';
+import { WEBSITE_URL } from '../../env/env';
 import { AppText } from '../AppText';
 
 export class ProfileInfo extends Component<{ onPress?: () => void; style?: any; userInfo: UserInfo }> {
@@ -36,7 +36,7 @@ export class ProfileInfo extends Component<{ onPress?: () => void; style?: any; 
         >
           <Image
             style={{ width: 80, height: 80, borderRadius: 40, backgroundColor: '#d8d8d8', marginRight: 18 }}
-            source={{ uri: WEBSITE + '/' + this.props.userInfo.avatarUrl }}
+            source={{ uri: WEBSITE_URL + '/' + this.props.userInfo.avatarUrl }}
           />
 
           <AppText style={{

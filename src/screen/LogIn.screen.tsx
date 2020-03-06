@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Linking, Text, View, Image, TouchableOpacity, Platform, TextInput } from 'react-native';
 import { connect } from 'react-redux';
-import { WEBSITE } from '../env/env';
+import { WEBSITE_URL } from '../env/env';
 import { AsyncStorage } from 'react-native';
 import Input from '../component/Input';
 import { AppButton } from '../component/Button';
@@ -9,7 +9,7 @@ import { signin } from '../action/login';
 import { bindActionCreators, Dispatch } from 'redux';
 import { AppText } from '../component/AppText';
 
-class SignInScreen extends Component<
+class LogInScreen extends Component<
   {
     actions: {
       signin: (username: string, password: string) => void;
@@ -54,11 +54,11 @@ class SignInScreen extends Component<
   };
 
   handleSignUpClick = () => {
-    Linking.canOpenURL(WEBSITE).then(supported => {
+    Linking.canOpenURL(WEBSITE_URL).then(supported => {
       if (supported) {
-        Linking.openURL(WEBSITE + '/signup');
+        Linking.openURL(WEBSITE_URL + '/signup');
       } else {
-        console.log("Don't know how to open URI: " + WEBSITE + '/signup');
+        console.log("Don't know how to open URI: " + WEBSITE_URL + '/signup');
       }
     });
   };
@@ -141,8 +141,8 @@ class SignInScreen extends Component<
             <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
               <Image
                 style={{
-                  width: Platform.OS === 'ios' ? 16 : 40,
-                  height: Platform.OS === 'ios' ? 17.5 : 43.75
+                  width: 16,
+                  height: 17.5
                 }}
                 source={require('../assets/arrow-right.png')}
               />
@@ -178,4 +178,4 @@ export const SignInScreenContainer = connect(
       )
     };
   }
-)(SignInScreen);
+)(LogInScreen);

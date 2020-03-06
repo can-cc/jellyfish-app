@@ -17,7 +17,7 @@ export const SIGNIN = (action$: any) => {
   return action$.ofType('SIGNIN').pipe(
     mergeMap((action: any) => {
       return axios
-        .post(`${API_BASE}/signin`, action.payload)
+        .post(`${API_BASE}/login`, action.payload)
         .then(response => {
           setupAxiosJwtHeader(response.data.token);
           return Actions.SIGNIN.success(response.data);
