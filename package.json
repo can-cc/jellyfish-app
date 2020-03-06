@@ -41,7 +41,7 @@
     "normalizr": "^3.6.0",
     "ramda": "^0.25.0",
     "rc-form": "^2.4.11",
-    "react": "16.9.0",
+    "react": "16.13.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-36.0.1.tar.gz",
     "react-native-calendars": "^1.264.0",
     "react-native-check-box": "^2.1.0",
