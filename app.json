@@ -3,7 +3,7 @@
     "name": "水母清单",
     "slug": "jellyfish-todo",
     "privacy": "public",
-    "sdkVersion": "35.0.0",
+    "sdkVersion": "36.0.0",
     "platforms": [
       "ios",
       "android"
