@@ -1,4 +1,4 @@
-import { createStackNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 import { ProfileScreenContainer } from '../screen/Profile.screen';
 import { AboutScreenContainer } from '../screen/About.screen';
 import { AccountScreenContainer } from '../screen/Account.screen';

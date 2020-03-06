@@ -1,4 +1,4 @@
-import { createStackNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 import { TodoListScreenContainer } from '../screen/TodoList.screen';
 import { TodoDetailScreenContainer } from '../screen/TodoDetail.screen';
 import { defaultNavigationOptions } from './common';

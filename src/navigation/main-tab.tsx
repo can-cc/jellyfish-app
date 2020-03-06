@@ -1,4 +1,4 @@
-import { createBottomTabNavigator } from 'react-navigation';
+import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { ProfileStack } from './profile-stack';
 import { Image } from 'react-native';
 import { TodoStack } from './todo-stack';
