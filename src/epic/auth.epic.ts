@@ -3,6 +3,7 @@ import axios from 'axios';
 import { setupAxiosJwtHeader } from '../helper/http-intercetor';
 import { API_BASE } from '../env/env';
 import NavigationService from '../service/single/navigation.service';
+import Toast from 'react-native-root-toast';
 
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/do';
@@ -12,6 +13,8 @@ import { mergeMap } from 'rxjs/operators';
 import { GET_USER_INFO_REQUEST, getUserInfoSuccess, getUserInfoFailure } from '../action/user';
 import { ofType } from 'redux-observable';
 import { UserInfo } from '../typing/user';
+import { path } from 'ramda';
+import i18n from 'i18n-js';
 
 export const SIGNIN = (action$: any) => {
   return action$.ofType('SIGNIN').pipe(
@@ -20,6 +23,7 @@ export const SIGNIN = (action$: any) => {
         .post(`${API_BASE}/login`, action.payload)
         .then(response => {
           setupAxiosJwtHeader(response.data.token);
+          action.meta.successCallback();
           return Actions.SIGNIN.success(response.data);
         })
         .catch(error => {
@@ -29,19 +33,37 @@ export const SIGNIN = (action$: any) => {
   );
 };
 
-export const SIGNIN_SUCCESS = (action$: any) =>
-  action$
-    .ofType(Actions.SIGNIN.SUCCESS)
-    .do(() => {
-      NavigationService.navigate('Main');
-    })
-    .ignoreElements();
+// export const SIGNIN_SUCCESS = (action$: any) =>
+//   action$
+//     .ofType(Actions.SIGNIN.SUCCESS)
+//     .do(() => {
+//       NavigationService.navigate('Main');
+//     })
+//     .ignoreElements();
 
 export const SIGNIN_FAILURE = (action$: any) =>
   action$
     .ofType(Actions.SIGNIN.FAILURE)
-    .do(() => {
-      // Toast.fail('\n登录失败，请重试');
+    .do(action => {
+      if (path(['response', 'status'], action.payload) === 401) {
+        Toast.show(i18n.t('logInAuthError'), {
+          duration: Toast.durations.SHORT,
+          position: Toast.positions.CENTER,
+          shadow: false,
+          animation: true,
+          hideOnPress: true,
+          delay: 0
+        });
+        return;
+      }
+      Toast.show(i18n.t('logInCommonError'), {
+        duration: Toast.durations.SHORT,
+        position: Toast.positions.CENTER,
+        shadow: false,
+        animation: true,
+        hideOnPress: true,
+        delay: 0
+      });
     })
     .ignoreElements();
 
@@ -51,10 +73,10 @@ export const GET_USER_INFO = (action$: any) => {
     mergeMap((action: any) => {
       return axios
         .get<UserInfo>(`${API_BASE}/user/${action.payload.userId}`)
-        .then((resp) => {
+        .then(resp => {
           return getUserInfoSuccess(resp.data);
         })
-        .catch((error) => {
+        .catch(error => {
           return getUserInfoFailure(error);
         });
     })

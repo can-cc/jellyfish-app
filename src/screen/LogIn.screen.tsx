@@ -3,17 +3,16 @@ import { Linking, Text, View, Image, TouchableOpacity, Platform, TextInput } fro
 import { connect } from 'react-redux';
 import { WEBSITE_URL } from '../env/env';
 import { AsyncStorage } from 'react-native';
-import Input from '../component/Input';
+import { Input } from '../component/Input';
 import { AppButton } from '../component/Button';
 import { signin } from '../action/login';
 import { bindActionCreators, Dispatch } from 'redux';
-import { AppText } from '../component/AppText';
+import i18n from 'i18n-js';
 
 class LogInScreen extends Component<
   {
-    actions: {
-      signin: (username: string, password: string) => void;
-    };
+    actions: any;
+    navigation: any;
   },
   {
     username: string;
@@ -25,7 +24,7 @@ class LogInScreen extends Component<
     password: ''
   };
 
-  componentWillMount() {
+  componentDidMount() {
     this._retrieveData();
   }
 
@@ -50,7 +49,9 @@ class LogInScreen extends Component<
 
   submit = () => {
     this._storeData(this.state.username);
-    this.props.actions.signin(this.state.username, this.state.password);
+    this.props.actions.signin(this.state.username, this.state.password, () => {
+      this.props.navigation.navigate('Root');
+    });
   };
 
   handleSignUpClick = () => {
@@ -79,17 +80,13 @@ class LogInScreen extends Component<
           <Image style={{ width: 103, height: 25.5 }} source={require('../assets/hello.png')} />
 
           <View style={{ height: 20 }} />
-
-          <TouchableOpacity onPress={this.handleSignUpClick}>
-            <Text style={{ color: '#909090' }}>注册</Text>
-          </TouchableOpacity>
         </View>
 
         <View style={{ height: 40 }} />
         <Input
           autoCapitalize="none"
           placeholderTextColor="#565656"
-          placeholder="用户名"
+          placeholder={i18n.t('usernameText')}
           style={{
             borderTopWidth: 0,
             borderBottomColor: 'rgb(218, 218, 218)',
@@ -108,8 +105,7 @@ class LogInScreen extends Component<
 
         <Input
           autoCapitalize="none"
-          type="password"
-          placeholder="密码"
+          placeholder={i18n.t('passwordText')}
           placeholderTextColor="#565656"
           style={{
             borderTopWidth: 0,
@@ -154,11 +150,15 @@ class LogInScreen extends Component<
                   marginLeft: 8
                 }}
               >
-                Login
+                {i18n.t('loginText')}
               </Text>
             </View>
           </AppButton>
         </View>
+
+        <TouchableOpacity style={{ marginTop: 52 }} onPress={this.handleSignUpClick}>
+          <Text style={{ color: '#0366d6', textAlign: 'center', fontWeight: 'bold' }}>{i18n.t('goSignUpText')}</Text>
+        </TouchableOpacity>
       </View>
     );
   }

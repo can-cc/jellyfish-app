@@ -9,7 +9,6 @@ import { TodoCreater } from '../component/todo/TodoCreater';
 import { ListEmpty } from '../component/ListEmpty';
 import { TodoItem } from '../component/todo/TodoItem';
 import { Button } from '../component/Button';
-import { NavigationScreenOptions } from 'react-navigation';
 
 class TodoListScreen extends Component<any, any> {
   static navigationOptions = ({ navigation }): NavigationScreenOptions => {

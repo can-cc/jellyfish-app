@@ -33,6 +33,7 @@
     "preset": "jest-expo"
   },
   "dependencies": {
+    "@react-native-community/masked-view": "0.1.5",
     "@react-navigation/drawer": "^5.1.1",
     "@react-navigation/native": "^5.0.9",
     "@react-navigation/stack": "^5.1.1",
@@ -40,7 +41,9 @@
     "date-fns": "^2.10.0",
     "expo": "^36.0.0",
     "expo-asset": "~8.0.0",
+    "expo-localization": "~8.0.0",
     "expo-permissions": "~8.0.0",
+    "i18n-js": "^3.5.1",
     "normalizr": "^3.6.0",
     "ramda": "^0.25.0",
     "rc-form": "^2.4.11",
@@ -54,6 +57,9 @@
     "react-native-modal-datetime-picker": "^5.1.0",
     "react-native-picker-select": "^4.4.0",
     "react-native-popup-menu": "^0.15.7",
+    "react-native-reanimated": "~1.4.0",
+    "react-native-root-toast": "^3.2.0",
+    "react-native-safe-area-context": "0.6.0",
     "react-native-screens": "2.0.0-alpha.12",
     "react-native-vector-icons": "^6.6.0",
     "react-redux": "^7.2.0",
@@ -66,9 +72,6 @@
     "redux-reset": "^0.3.0",
     "rxjs": "^6.5.4",
     "rxjs-compat": "^6.5.4",
-    "typescript": "^3.7.2",
-    "react-native-reanimated": "~1.4.0",
-    "react-native-safe-area-context": "0.6.0",
-    "@react-native-community/masked-view": "0.1.5"
+    "typescript": "^3.7.2"
   }
 }
