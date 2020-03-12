@@ -22,18 +22,12 @@ function setupStore() {
   const persistedReducer = persistReducer(persistConfig, combineReducers(reducers));
   const epicMiddleware = createEpicMiddleware();
 
-  const store = createStore(
-    persistedReducer,
-    compose(
-      applyMiddleware(epicMiddleware, logger),
-      reduxReset()
-    )
-  );
+  const store = createStore(persistedReducer, compose(applyMiddleware(epicMiddleware, logger), reduxReset()));
 
   return { store, epicMiddleware };
 }
 
-export default () => {  
+export default () => {
   const { store, epicMiddleware } = setupStore();
 
   const persistor: Persistor = persistStore(store);
