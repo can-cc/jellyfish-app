@@ -5,6 +5,8 @@ import { useSelector } from 'react-redux';
 import { AppRootState } from '../reducer/reducer';
 import { TodoStack } from './todo-stack';
 import { SignInScreenContainer } from '../screen/LogIn.screen';
+import { navigationRef } from './RootNavigation';
+import { TodoListScreenContainer } from '../screen/TodoList.screen';
 
 const Stack = createStackNavigator();
 
@@ -14,6 +16,7 @@ function Root() {
     <Stack.Navigator>
       {authToken ? (
         <>
+          <Stack.Screen name="TodoList" component={TodoListScreenContainer} />
           <Stack.Screen name="TodoStack" component={TodoStack} />
         </>
       ) : (
@@ -31,7 +34,7 @@ function Root() {
 
 export function AppContainer() {
   return (
-    <NavigationContainer>
+    <NavigationContainer ref={navigationRef}>
       <Stack.Navigator>
         <Stack.Screen
           name="Root"

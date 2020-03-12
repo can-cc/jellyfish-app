@@ -1,12 +1,9 @@
-export function signin(username: string, password: string, successCallback) {
+export function signin(username: string, password: string) {
   return {
     type: 'SIGNIN',
     payload: {
       username,
       password
-    },
-    meta: {
-      successCallback
     }
   };
 }

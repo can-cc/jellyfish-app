@@ -49,9 +49,7 @@ class LogInScreen extends Component<
 
   submit = () => {
     this._storeData(this.state.username);
-    this.props.actions.signin(this.state.username, this.state.password, () => {
-      this.props.navigation.navigate('Root');
-    });
+    this.props.actions.signin(this.state.username, this.state.password);
   };
 
   handleSignUpClick = () => {

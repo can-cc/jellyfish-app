@@ -1,5 +1,5 @@
 import axios from 'axios';
 
-export function setupAxiosJwtHeader(jwt: string) {
-  axios.defaults.headers.common['App-Authorization'] = `Bearer ${jwt}`;
+export function setupAxiosJwtHeader(token: string) {
+  axios.defaults.headers.common['app-authorization'] = `Bearer ${token}`;
 }
