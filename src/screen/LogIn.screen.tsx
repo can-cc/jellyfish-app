@@ -74,7 +74,7 @@ class LogInScreen extends Component<
           paddingLeft: 30
         }}
       >
-        <View style={{ height: 80 }} />
+        <View style={{ height: 180 }} />
 
         <View style={{ justifyContent: 'space-between', alignItems: 'center' }}>
           <Image style={{ width: 103, height: 25.5 }} source={require('../assets/hello.png')} />

@@ -6,7 +6,7 @@ import createStore from './src/store/store';
 import { PersistGate } from 'redux-persist/integration/react';
 import { MenuProvider } from 'react-native-popup-menu';
 import { loadAllAsset } from './src/helper/asset';
-import { AppContainer } from './src/navigation/app-container';
+import { AppContainer } from './src/navigation/navigation-container';
 import { PersistorContext } from './src/component/context/PersistorContext';
 
 import './src/i18n/i18n';
