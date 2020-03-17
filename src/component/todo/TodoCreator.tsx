@@ -1,111 +1,124 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import { View, TouchableOpacity, TextInput, Dimensions } from 'react-native';
 import Modal from 'react-native-modal';
 import { CreateTodoToggle } from './CreateTodoToggle';
 import { AppButton } from '../Button';
 import { AppText } from '../AppText';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faBell, faCalendar, faListAlt } from '@fortawesome/free-solid-svg-icons';
 
-export class TodoCreator extends Component<any, any> {
-  state: any = {
-    content: '',
-    value: '',
-    deadline: null,
-    isDateTimePickerVisible: false,
-    showModal: false,
-    type: 'NORMAL'
+export function TodoCreator() {
+  const windowHeight = Dimensions.get('window').height;
+  const [showModal, setShowModal] = useState(false);
+  const [todoContent, setTodoContent] = useState('');
+  const onClose = () => {
+    setShowModal(false);
   };
 
-  componentWillUnmount() {
-    this.onClose();
-  }
+  const submit = () => {};
 
-  submit = () => {
-    this.props.onSubmit({
-      content: this.state.content,
-      deadline: this.state.deadline,
-      detail: this.state.detail,
-      type: this.state.type
-    });
-    this.onClose();
-  };
-
-  onClose = () => {
-    this.setState({
-      showModal: false
-    });
-  };
-
-  onToggleClick = () => {
-    this.setState({
-      showModal: true
-    });
-  };
-
-  showDateTimePicker = () => this.setState({ isDateTimePickerVisible: true });
-
-  hideDateTimePicker = () => this.setState({ isDateTimePickerVisible: false });
-
-  handleDatePicked = date => {
-    this.setState({ deadline: date.getTime() });
-    this.hideDateTimePicker();
-  };
-
-  render() {
-    const windowHeight = Dimensions.get('window').height;
-
-    return (
-      <View style={{ position: 'absolute', top: windowHeight - 200, right: 20, zIndex: 1000 }}>
-        <Modal
-          avoidKeyboard={true}
-          isVisible={this.state.showModal}
-          onBackButtonPress={this.onClose}
-          onBackdropPress={this.onClose}
+  return (
+    <View style={{ position: 'absolute', top: windowHeight - 200, right: 20, zIndex: 1000 }}>
+      <Modal
+        avoidKeyboard={true}
+        isVisible={showModal}
+        onBackButtonPress={onClose}
+        onBackdropPress={onClose}
+        style={{
+          justifyContent: 'flex-end',
+          margin: 0
+        }}
+        useNativeDriver={true}
+      >
+        <View
           style={{
-            justifyContent: 'flex-end',
-            margin: 0
+            backgroundColor: '#fff',
+            padding: 15,
+            borderTopLeftRadius: 8,
+            borderTopRightRadius: 8
           }}
-          useNativeDriver={true}
         >
-          <View
+          <TextInput
+            placeholder="您希望做什么？"
+            autoFocus
             style={{
-              backgroundColor: '#fff',
-              padding: 15,
-              borderTopLeftRadius: 8,
-              borderTopRightRadius: 8
+              height: 40,
+              borderColor: '#dadada',
+              borderBottomWidth: 0,
+              textAlign: 'left',
+              fontWeight: '800',
+              fontSize: 18
             }}
-          >
-            <TextInput
-              placeholder="您希望做什么？"
-              autoFocus
-              style={{
-                height: 40,
-                borderColor: '#dadada',
-                borderBottomWidth: 0,
-                textAlign: 'left',
-                fontWeight: '800',
-                fontSize: 18
+            underlineColorAndroid="transparent"
+            autoCapitalize="none"
+            onChangeText={setTodoContent}
+          />
+
+          <View>
+            <AppButton transparent>
+              <FontAwesomeIcon color="#555" icon={faListAlt} />
+            </AppButton>
+            <AppButton transparent>
+              <FontAwesomeIcon color="#555" icon={faBell} />
+            </AppButton>
+            <AppButton transparent>
+              <FontAwesomeIcon color="#555" icon={faCalendar} />
+            </AppButton>
+            <AppButton
+              transparent
+              style={{ width: 80, paddingRight: 0, alignSelf: 'flex-end' }}
+              onPress={(e: any) => {
+                submit();
               }}
-              underlineColorAndroid="transparent"
-              autoCapitalize="none"
-              onChangeText={text => this.setState({ content: text })}
-            />
-
-            <View>
-              <AppButton
-                transparent
-                style={{ width: 80, paddingRight: 0, alignSelf: 'flex-end' }}
-                onPress={(e: any) => {
-                  this.submit();
-                }}
-              >
-                <AppText>保存</AppText>
-              </AppButton>
-            </View>
+            >
+              <AppText>保存</AppText>
+            </AppButton>
           </View>
-        </Modal>
+        </View>
+      </Modal>
 
-        <CreateTodoToggle onClick={this.onToggleClick} />
-      </View>
-    );
-  }
+      <CreateTodoToggle onClick={() => setShowModal(true)} />
+    </View>
+  );
 }
+
+// export class TodoCreator extends Component<any, any> {
+//   state: any = {
+//     content: '',
+//     value: '',
+//     deadline: null,
+//     isDateTimePickerVisible: false,
+//     showModal: false,
+//     type: 'NORMAL'
+//   };
+
+//   componentWillUnmount() {
+//     this.onClose();
+//   }
+
+//   submit = () => {
+//     this.props.onSubmit({
+//       content: this.state.content,
+//       deadline: this.state.deadline,
+//       detail: this.state.detail,
+//       type: this.state.type
+//     });
+//     this.onClose();
+//   };
+
+//   onClose = () => {
+//     this.setState({
+//       showModal: false
+//     });
+//   };
+
+//   onToggleClick = () => {
+//     this.setState({
+//       showModal: true
+//     });
+//   };
+
+//   render() {
+
+//   }
+// }

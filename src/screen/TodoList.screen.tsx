@@ -6,91 +6,72 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { makeActionRequestCollection } from '../action/actions';
 import { TodoCreator } from '../component/todo/TodoCreator';
-// import { ListEmpty } from '../component/ListEmpty';
 import { TodoItem } from '../component/todo/TodoItem';
 import { Button } from '../component/Button';
 
-class TodoListScreen extends Component<any, any> {
-  static navigationOptions = ({ navigation }): any => {
-    return {
-      title: 'To do list'
-    };
-  };
+export function TodoListScreen() {
+  return (
+    <View style={styles.container}>
+      <TodoCreator />
 
-  state = {
-    showDone: false
-  };
-
-  async grad() {
-    const { status: existingStatus } = await Permissions.getAsync(Permissions.NOTIFICATIONS);
-    let finalStatus = existingStatus;
-
-    if (existingStatus !== 'granted') {
-      const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
-      finalStatus = status;
-    }
-    if (finalStatus !== 'granted') {
-      console.log('不允许通知');
-      return;
-    }
-
-    try {
-      await Notifications.getExpoPushTokenAsync();
-      // TODO
-    } catch (error) {}
-  }
-
-  componentDidMount() {
-    this.getTodoList();
-    //  this.grad(); TODO extract a component to do this
-  }
-
-  getTodoList = () => {
-    this.props.actions.GET_TODO_LIST_REQUEST({
-      userId: this.props.userId,
-      done: false
-    });
-  };
-
-  createTodo = (initalTodo: any) => {
-    this.props.actions.CREATE_TODO_REQUEST(initalTodo);
-  };
-
-  onTodoClick = (todo: any) => {
-    this.props.navigation.navigate('TodoDetail', {
-      todoId: todo.id
-    });
-  };
-
-  onCheckClick = (todo: any) => {
-    this.props.actions.UPDATE_TODO_REQUEST({ ...todo, done: !todo.done });
-  };
-
-  render() {
-    return (
-      <View style={styles.container}>
-        <TodoCreator onSubmit={this.createTodo} />
-
-        <ScrollView
-          style={{
-            flex: 1
-          }}
-          refreshControl={<RefreshControl refreshing={this.props.refreshing} onRefresh={this.getTodoList} />}
-        >
-          {/* <View>
-            {this.props.todos
-              .filter((t: any) => !t.done)
-              .map((t: any) => ({ ...t, key: t.id.toString() }))
-              .map((item: any) => {
-                const todo = item;
-                return <TodoItem todo={todo} onTodoClick={this.onTodoClick} onCheckClick={this.onCheckClick} />;
-              })}
-          </View> */}
-        </ScrollView>
-      </View>
-    );
-  }
+      <ScrollView
+        style={{
+          flex: 1
+        }}
+        refreshControl={<RefreshControl refreshing={false} onRefresh={() => {}} />}
+      >
+        {/* <View>
+      {this.props.todos
+        .filter((t: any) => !t.done)
+        .map((t: any) => ({ ...t, key: t.id.toString() }))
+        .map((item: any) => {
+          const todo = item;
+          return <TodoItem todo={todo} onTodoClick={this.onTodoClick} onCheckClick={this.onCheckClick} />;
+        })}
+    </View> */}
+      </ScrollView>
+    </View>
+  );
 }
+
+// class TodoListScreen extends Component<any, any> {
+
+//   // async grad() {
+
+//   // }
+
+//   componentDidMount() {
+//     this.getTodoList();
+//     //  this.grad(); TODO extract a component to do this
+//   }
+
+//   getTodoList = () => {
+//     this.props.actions.GET_TODO_LIST_REQUEST({
+//       userId: this.props.userId,
+//       done: false
+//     });
+//   };
+
+//   createTodo = (initalTodo: any) => {
+//     this.props.actions.CREATE_TODO_REQUEST(initalTodo);
+//   };
+
+//   onTodoClick = (todo: any) => {
+//     this.props.navigation.navigate('TodoDetail', {
+//       todoId: todo.id
+//     });
+//   };
+
+//   onCheckClick = (todo: any) => {
+//     this.props.actions.UPDATE_TODO_REQUEST({ ...todo, done: !todo.done });
+//   };
+
+//   render() {
+//     return (
+
+//     );
+//   }
+// }
 
 const styles = StyleSheet.create({
   container: {

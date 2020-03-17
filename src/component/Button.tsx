@@ -7,7 +7,6 @@ export class Button extends React.Component<
   } & any,
   any
 > {
-
   getUnderlayColor(): string {
     const { type = 'normal' } = this.props;
     switch (type) {
