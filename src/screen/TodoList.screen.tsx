@@ -84,7 +84,7 @@ export const TodoListScreenContainer = connect(
   (state: any) => {
     return {
       userId: state.auth.userId,
-      todos: state.todo.result.map((id: string) => state.todo.entities.todo[id]).filter((todo: any) => !todo.hidden),
+      todos: [],
       refreshing: state.todo.refreshing
     };
   },

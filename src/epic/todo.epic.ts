@@ -2,46 +2,60 @@ import Actions, { AppAction } from '../action/actions';
 import axios from 'axios';
 import { API_BASE } from '../env/env';
 import { Notifications } from 'expo';
+import Toast from 'react-native-root-toast';
 
 import 'rxjs/add/operator/mergeMap';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/observable/of';
 import { ofType } from 'redux-observable';
-import { mergeMap } from 'rxjs/operators';
-import { Todo } from '../typing/todo';
 import { getTodoListSuccess, DELETE_TODO_REQUEST } from '../action/todo';
+import i18n from 'i18n-js';
+import { mergeMap } from 'rxjs/operators';
 
 export const CREATE_TODO = (action$: any) => {
-  return action$.ofType(Actions.CREATE_TODO.REQUEST).mergeMap((action: any) => {
-    if (action.payload.deadline) {
-      const localNotification = {
-        title: '你的任务快到到期了, 完成了吗？',
-        body: `${action.payload.content}`,
-        ios: {
-          sound: true
-        }
-      };
-      let t = new Date(action.payload.deadline);
-      const schedulingOptions = {
-        time: t
-      };
-      Notifications.scheduleLocalNotificationAsync(localNotification, schedulingOptions);
-    }
+  return action$.pipe(
+    ofType(Actions.CREATE_TODO.REQUEST),
+    mergeMap((action: any) => {
+      // if (action.payload.deadline) {
+      //   const localNotification = {
+      //     title: '你的任务快到到期了, 完成了吗？',
+      //     body: `${action.payload.content}`,
+      //     ios: {
+      //       sound: true
+      //     }
+      //   };
+      //   let t = new Date(action.payload.deadline);
+      //   const schedulingOptions = {
+      //     time: t
+      //   };
+      //   Notifications.scheduleLocalNotificationAsync(localNotification, schedulingOptions);
+      // }
 
-    return axios
-      .post(`${API_BASE}/todo`, action.payload)
-      .then(response => {
-        return Actions.CREATE_TODO.success({
-          ...response.data,
-          ...action.payload
+      return axios
+        .post(`${API_BASE}/taco`, action.payload)
+        .then(response => {
+          return Actions.CREATE_TODO.success({
+            ...response.data,
+            ...action.payload
+          });
+        })
+        .catch(caught => {
+          Toast.show(i18n.t('createTodoCommonFailure'), {
+            duration: Toast.durations.SHORT,
+            position: Toast.positions.BOTTOM,
+            shadow: false,
+            animation: true,
+            hideOnPress: true,
+            delay: 0,
+            containerStyle: {
+              zIndex: 1000000000
+            }
+          });
+          return Actions.CREATE_TODO.failure(action.payload, caught);
         });
-      })
-      .catch(caught => {
-        /* Toast.fail('\n新建失败，请重试'); */
-        return Actions.CREATE_TODO.failure(action.payload, caught);
-      });
-  });
+    })
+  );
 };
 
 export const UPDATE_TODO = (action$: any) => {

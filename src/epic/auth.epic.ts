@@ -16,7 +16,7 @@ import { path, replace } from 'ramda';
 import i18n from 'i18n-js';
 import { navigate } from '../navigation/RootNavigation';
 
-export const SIGNIN = (action$: any) => {
+export const LOGIN = (action$: any) => {
   return action$.ofType('SIGNIN').pipe(
     mergeMap((action: any) => {
       return axios
@@ -32,7 +32,7 @@ export const SIGNIN = (action$: any) => {
   );
 };
 
-export const SIGNIN_SUCCESS = (action$: any) =>
+export const LOGIN_SUCCESS = (action$: any) =>
   action$
     .ofType('SIGNIN_SUCCESS')
     .do(() => {
@@ -40,7 +40,7 @@ export const SIGNIN_SUCCESS = (action$: any) =>
     })
     .ignoreElements();
 
-export const SIGNIN_FAILURE = (action$: any) =>
+export const LOGIN_FAILURE = (action$: any) =>
   action$
     .ofType(Actions.SIGNIN.FAILURE)
     .do(action => {

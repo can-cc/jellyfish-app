@@ -4,6 +4,7 @@ import { TouchableHighlight } from 'react-native';
 export class Button extends React.Component<
   {
     type: 'primary' | 'normal';
+    onPress: Function;
   } & any,
   any
 > {
@@ -19,23 +20,26 @@ export class Button extends React.Component<
   render() {
     return (
       <TouchableHighlight
-        style={[
-          {
-            paddingTop: 10,
-            paddingBottom: 10,
-            paddingLeft: 18,
-            paddingRight: 18,
-            alignItems: 'center',
-            justifyContent: 'center',
-            borderWidth: 0,
-            borderRadius: 18,
-            backgroundColor: this.props.transparent ? 'transparent' : '#4295ff'
-          },
-          this.props.style
-        ]}
+        style={{
+          paddingTop: 10,
+          paddingBottom: 10,
+          paddingLeft: 18,
+          paddingRight: 18,
+          alignItems: 'center',
+          justifyContent: 'center',
+          borderWidth: 0,
+          borderRadius: 18,
+          backgroundColor: this.props.transparent ? 'transparent' : '#4295ff',
+          ...this.props.style
+        }}
         activeOpacity={1}
         underlayColor={this.getUnderlayColor()}
-        onPress={(e: any) => this.props.onPress(e)}
+        onPress={(e: any) => {
+          if (!this.props.onPress) {
+            return;
+          }
+          this.props.onPress(e);
+        }}
       >
         {this.props.children}
       </TouchableHighlight>

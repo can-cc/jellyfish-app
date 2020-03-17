@@ -11,16 +11,18 @@ i18n.translations = {
     logInAuthError: 'Username or password incorrectly',
     logInCommonError: 'Login failure',
     usernameText: 'Username',
-    passwordText: 'Password'
+    passwordText: 'Password',
+    createTodoCommonFailure: 'Creation failed, please try again'
   },
   zh: {
-    welcome: 'こんにちは',
+    welcome: '欢迎',
     loginText: '登陆',
     goSignUpText: '注册新用户',
     logInAuthError: '用户名或密码错误，请重试',
     logInCommonError: '登陆失败，请稍后重试',
     usernameText: '用户名',
-    passwordText: '密码'
+    passwordText: '密码',
+    createTodoCommonFailure: '创建失败，请重试'
   }
 };
 // Set the locale once at the beginning of your app.

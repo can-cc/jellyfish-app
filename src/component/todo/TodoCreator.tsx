@@ -6,24 +6,36 @@ import { AppButton } from '../Button';
 import { AppText } from '../AppText';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faBell, faCalendar, faListAlt } from '@fortawesome/free-solid-svg-icons';
+import { useDispatch } from 'react-redux';
+import { createTodoRequest } from '../../action/todo';
 
 export function TodoCreator() {
+  const dispatch = useDispatch();
+
   const windowHeight = Dimensions.get('window').height;
   const [showModal, setShowModal] = useState(false);
   const [todoContent, setTodoContent] = useState('');
-  const onClose = () => {
+
+  const closeModal = () => {
     setShowModal(false);
   };
 
-  const submit = () => {};
+  const submit = () => {
+    dispatch(
+      createTodoRequest({
+        content: todoContent
+      })
+    );
+    closeModal();
+  };
 
   return (
     <View style={{ position: 'absolute', top: windowHeight - 200, right: 20, zIndex: 1000 }}>
       <Modal
         avoidKeyboard={true}
         isVisible={showModal}
-        onBackButtonPress={onClose}
-        onBackdropPress={onClose}
+        onBackButtonPress={closeModal}
+        onBackdropPress={closeModal}
         style={{
           justifyContent: 'flex-end',
           margin: 0
@@ -34,6 +46,7 @@ export function TodoCreator() {
           style={{
             backgroundColor: '#fff',
             padding: 15,
+            paddingBottom: 30,
             borderTopLeftRadius: 8,
             borderTopRightRadius: 8
           }}
@@ -43,18 +56,27 @@ export function TodoCreator() {
             autoFocus
             style={{
               height: 40,
+              paddingLeft: 10,
               borderColor: '#dadada',
               borderBottomWidth: 0,
               textAlign: 'left',
               fontWeight: '800',
               fontSize: 18
             }}
+            placeholderTextColor="#bbb"
+            onSubmitEditing={() => submit()}
             underlineColorAndroid="transparent"
             autoCapitalize="none"
             onChangeText={setTodoContent}
           />
 
-          <View>
+          <View
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              marginLeft: -8
+            }}
+          >
             <AppButton transparent>
               <FontAwesomeIcon color="#555" icon={faListAlt} />
             </AppButton>
@@ -63,15 +85,6 @@ export function TodoCreator() {
             </AppButton>
             <AppButton transparent>
               <FontAwesomeIcon color="#555" icon={faCalendar} />
-            </AppButton>
-            <AppButton
-              transparent
-              style={{ width: 80, paddingRight: 0, alignSelf: 'flex-end' }}
-              onPress={(e: any) => {
-                submit();
-              }}
-            >
-              <AppText>保存</AppText>
             </AppButton>
           </View>
         </View>
