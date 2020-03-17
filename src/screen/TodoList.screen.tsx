@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
-import { FlatList, RefreshControl, StyleSheet, Text, View, ScrollView, Image } from 'react-native';
+import { RefreshControl, StyleSheet, Text, View, ScrollView, Image } from 'react-native';
 import { Notifications } from 'expo';
 import * as Permissions from 'expo-permissions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { makeActionRequestCollection } from '../action/actions';
-import { TodoCreater } from '../component/todo/TodoCreater';
-import { ListEmpty } from '../component/ListEmpty';
+import { TodoCreator } from '../component/todo/TodoCreator';
+// import { ListEmpty } from '../component/ListEmpty';
 import { TodoItem } from '../component/todo/TodoItem';
 import { Button } from '../component/Button';
 
 class TodoListScreen extends Component<any, any> {
-  static navigationOptions = ({ navigation }): NavigationScreenOptions => {
+  static navigationOptions = ({ navigation }): any => {
     return {
       title: 'To do list'
     };
@@ -40,9 +40,9 @@ class TodoListScreen extends Component<any, any> {
     } catch (error) {}
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.getTodoList();
-    this.grad();
+    //  this.grad(); TODO extract a component to do this
   }
 
   getTodoList = () => {
@@ -69,7 +69,7 @@ class TodoListScreen extends Component<any, any> {
   render() {
     return (
       <View style={styles.container}>
-        <TodoCreater onSubmit={this.createTodo} />
+        <TodoCreator onSubmit={this.createTodo} />
 
         <ScrollView
           style={{
@@ -77,55 +77,15 @@ class TodoListScreen extends Component<any, any> {
           }}
           refreshControl={<RefreshControl refreshing={this.props.refreshing} onRefresh={this.getTodoList} />}
         >
-          {!this.props.todos.filter((t: any) => !t.done).length && <ListEmpty />}
-
-          <FlatList
-            style={{ marginTop: 18, flex: 1, width: '100%' }}
-            data={this.props.todos.filter((t: any) => !t.done).map((t: any) => ({ ...t, key: t.id.toString() }))}
-            renderItem={({ item }) => {
-              const todo = item;
-              return <TodoItem todo={todo} onTodoClick={this.onTodoClick} onCheckClick={this.onCheckClick} />;
-            }}
-          />
-
-          <View
-            style={{
-              flex: 1,
-              marginTop: 0,
-              flexDirection: 'row',
-              justifyContent: 'center',
-              marginBottom: 18
-            }}
-          >
-            <Button
-              style={{ width: 150 }}
-              onPress={(e: any) => {
-                this.setState({ showDone: !this.state.showDone });
-              }}
-            >
-              <View
-                style={{
-                  flex: 1,
-                  flexDirection: 'row'
-                }}
-              >
-                <Text style={{ color: '#fff', fontSize: 14, paddingRight: 10, paddingLeft: 10 }}>
-                  {this.state.showDone ? '收起' : '显示已完成'}
-                </Text>
-                
-              </View>
-            </Button>
-          </View>
-
-          {this.state.showDone && (
-            <FlatList
-              data={this.props.todos.filter((t: any) => t.done).map((t: any) => ({ ...t, key: t.id.toString() }))}
-              renderItem={({ item }) => {
+          {/* <View>
+            {this.props.todos
+              .filter((t: any) => !t.done)
+              .map((t: any) => ({ ...t, key: t.id.toString() }))
+              .map((item: any) => {
                 const todo = item;
                 return <TodoItem todo={todo} onTodoClick={this.onTodoClick} onCheckClick={this.onCheckClick} />;
-              }}
-            />
-          )}
+              })}
+          </View> */}
         </ScrollView>
       </View>
     );

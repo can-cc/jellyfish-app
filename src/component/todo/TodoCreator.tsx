@@ -5,7 +5,7 @@ import { CreateTodoToggle } from './CreateTodoToggle';
 import { AppButton } from '../Button';
 import { AppText } from '../AppText';
 
-export class TodoCreater extends Component<any, any> {
+export class TodoCreator extends Component<any, any> {
   state: any = {
     content: '',
     value: '',

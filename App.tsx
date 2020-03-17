@@ -6,7 +6,7 @@ import createStore from './src/store/store';
 import { PersistGate } from 'redux-persist/integration/react';
 import { MenuProvider } from 'react-native-popup-menu';
 import { loadAllAsset } from './src/helper/asset';
-import { AppContainer } from './src/navigation/navigation-container';
+import { AppNavigation } from './src/navigation/AppNavigation';
 import { PersistorContext } from './src/component/context/PersistorContext';
 
 import './src/i18n/i18n';
@@ -60,18 +60,18 @@ export default class Main extends Component {
     }
 
     return (
-      <MenuProvider>
-        <PersistorContext.Provider value={persistor}>
-          <Provider store={store}>
-            <PersistGate loading={null} persistor={persistor}>
-              <View style={{ flex: 1 }}>
-                <StatusBar />
-                <AppContainer />
-              </View>
-            </PersistGate>
-          </Provider>
-        </PersistorContext.Provider>
-      </MenuProvider>
+      <View style={{ flex: 1 }}>
+        <StatusBar barStyle="dark-content" />
+        <MenuProvider>
+          <PersistorContext.Provider value={persistor}>
+            <Provider store={store}>
+              <PersistGate loading={null} persistor={persistor}>
+                <AppNavigation />
+              </PersistGate>
+            </Provider>
+          </PersistorContext.Provider>
+        </MenuProvider>
+      </View>
     );
   }
 }

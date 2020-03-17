@@ -32,7 +32,7 @@ function Root() {
   );
 }
 
-export function AppContainer() {
+export function AppNavigation() {
   return (
     <NavigationContainer ref={navigationRef}>
       <Stack.Navigator>
