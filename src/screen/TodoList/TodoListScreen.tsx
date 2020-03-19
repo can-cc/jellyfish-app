@@ -1,15 +1,30 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import { RefreshControl, StyleSheet, Text, View, ScrollView, Image } from 'react-native';
 import { Notifications } from 'expo';
 import * as Permissions from 'expo-permissions';
 import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import { makeActionRequestCollection } from '../action/actions';
-import { TodoCreator } from '../component/todo/TodoCreator';
-import { TodoItem } from '../component/todo/TodoItem';
-import { Button } from '../component/Button';
+import { connect, useDispatch, useSelector } from 'react-redux';
+import { makeActionRequestCollection } from '../../redux/action/actions';
+import { TodoCreator } from './TodoCreator';
+import { TodoItem } from './TodoItem';
+import { Button } from '../../component/Button';
+import { getTodoListRequest } from '../../redux/action/todo';
+import useState from 'react';
+import { AppRootState } from '../../redux/reducer/reducer';
+import { selectAllTodo } from '../../redux/reducer/selector/todo-selector';
+import { TodoList } from './TodoList';
 
 export function TodoListScreen() {
+  const dispatch = useDispatch();
+  const getTodoList = () => {
+    dispatch(getTodoListRequest());
+  };
+  useEffect(() => {
+    getTodoList();
+  }, []);
+
+  const todoList = useSelector(selectAllTodo);
+
   return (
     <View style={styles.container}>
       <TodoCreator />
@@ -18,8 +33,9 @@ export function TodoListScreen() {
         style={{
           flex: 1
         }}
-        refreshControl={<RefreshControl refreshing={false} onRefresh={() => {}} />}
+        refreshControl={<RefreshControl refreshing={false} onRefresh={getTodoList} />}
       >
+        <TodoList todoList={todoList} />
         {/* <View>
       {this.props.todos
         .filter((t: any) => !t.done)

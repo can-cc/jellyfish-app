@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, StatusBar } from 'react-native';
 import { Provider } from 'react-redux';
 import { AppLoading } from 'expo';
-import createStore from './src/store/store';
+import createStore from './src/redux/store/store';
 import { PersistGate } from 'redux-persist/integration/react';
 import { MenuProvider } from 'react-native-popup-menu';
 import { loadAllAsset } from './src/helper/asset';

@@ -12,7 +12,8 @@ i18n.translations = {
     logInCommonError: 'Login failure',
     usernameText: 'Username',
     passwordText: 'Password',
-    createTodoCommonFailure: 'Creation failed, please try again'
+    createTodoCommonFailure: 'Creation failed, please try again',
+    createTodoToggleText: 'Add to do'
   },
   zh: {
     welcome: '欢迎',
@@ -22,7 +23,8 @@ i18n.translations = {
     logInCommonError: '登陆失败，请稍后重试',
     usernameText: '用户名',
     passwordText: '密码',
-    createTodoCommonFailure: '创建失败，请重试'
+    createTodoCommonFailure: '创建失败，请重试',
+    createTodoToggleText: '添加待办事项'
   }
 };
 // Set the locale once at the beginning of your app.

@@ -6,7 +6,7 @@ import { PersistorContext } from '../component/context/PersistorContext';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { AppListItem } from '../component/ListItem';
 import { ProfileInfo } from '../component/profile/ProfileInfo';
-import { getUserInfoRequest } from '../action/user';
+import { getUserInfoRequest } from '../redux/action/user';
 import { UserInfo } from '../typing/user';
 import { NavigationContainerProps } from '@react-navigation/native';
 

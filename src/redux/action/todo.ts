@@ -1,7 +1,14 @@
-import { Todo, CreateTodoInput, UpdateTodoInput, DeleteTodoInput } from '../typing/todo';
+import { Todo, CreateTodoInput, UpdateTodoInput, DeleteTodoInput } from '../../typing/todo';
 import { AppAction } from './actions';
 
+export const GET_TODO_LIST_REQUEST = 'GET_TODO_LIST_REQUEST';
 export const GET_TODO_LIST_SUCCESS = 'GET_TODO_LIST_SUCCESS';
+
+export function getTodoListRequest(): AppAction {
+  return {
+    type: GET_TODO_LIST_REQUEST
+  };
+}
 
 export function getTodoListSuccess(todos: Todo[]): AppAction {
   return {

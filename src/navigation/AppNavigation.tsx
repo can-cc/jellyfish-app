@@ -2,11 +2,11 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { useSelector } from 'react-redux';
-import { AppRootState } from '../reducer/reducer';
+import { AppRootState } from '../redux/reducer/reducer';
 import { TodoStack } from './todo-stack';
 import { SignInScreenContainer } from '../screen/LogIn.screen';
 import { navigationRef } from './RootNavigation';
-import { TodoListScreenContainer } from '../screen/TodoList.screen';
+import { TodoListScreenContainer } from '../screen/TodoList/TodoListScreen';
 
 const Stack = createStackNavigator();
 

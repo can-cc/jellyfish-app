@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { makeActionRequestCollection } from '../action/actions';
+import { makeActionRequestCollection } from '../redux/action/actions';
 
 const Item = View;
 

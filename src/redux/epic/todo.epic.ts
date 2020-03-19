@@ -1,6 +1,6 @@
 import Actions, { AppAction } from '../action/actions';
 import axios from 'axios';
-import { API_BASE } from '../env/env';
+import { API_BASE } from '../../env/env';
 import { Notifications } from 'expo';
 import Toast from 'react-native-root-toast';
 
@@ -64,7 +64,7 @@ export const UPDATE_TODO = (action$: any) => {
     .distinctUntilChanged()
     .mergeMap((action: any) => {
       return axios
-        .put(`${API_BASE}/todo/${action.payload.id}`, action.payload)
+        .put(`${API_BASE}/taco/${action.payload.id}`, action.payload)
         .then(response => Actions.UPDATE_TODO.success(response.data))
         .catch(Actions.UPDATE_TODO.failure);
     });
@@ -87,7 +87,7 @@ export const GET_TODO_LIST = (action$: any) => {
     ofType(Actions.GET_TODO_LIST.REQUEST),
     mergeMap((action: AppAction) => {
       return axios
-        .get(`${API_BASE}/todos`)
+        .get(`${API_BASE}/tacos`)
         .then((response: any) => {
           return getTodoListSuccess(response.data);
         })

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, StatusBar, Text, View, TouchableOpacity } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { makeActionRequestCollection } from '../action/actions';
+import { makeActionRequestCollection } from '../redux/action/actions';
 import { Agenda } from 'react-native-calendars';
 import format from 'date-fns/format';
 import { NavigationScreenOptions } from 'react-navigation';

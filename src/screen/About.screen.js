@@ -4,7 +4,7 @@ import { StackNavigator } from 'react-navigation';
 import { bindActionCreators } from 'redux';
 import { createForm } from 'rc-form';
 import { connect } from 'react-redux';
-import { makeActionRequestCollection } from '../action/actions';
+import { makeActionRequestCollection } from '../redux/action/actions';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import format from 'date-fns/format';

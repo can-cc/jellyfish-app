@@ -1,21 +1,30 @@
 import Actions from '../action/actions';
 import { normalize } from 'normalizr';
 import { GET_TODO_LIST_SUCCESS } from '../action/todo';
-import { Todo } from '../typing/todo';
-import { TodoListSchema, TodoSchema } from '../schema/todo.schema';
+import { Todo } from '../../typing/todo';
+import { TodoListSchema, TodoSchema } from '../../schema/todo.schema';
 
 interface TodoMap {
   [key: string]: Todo;
 }
 
-export function todo(state:{
-  refreshing: boolean,
-  result: string[];
-  tempIdCursor: number;
+export interface TodoReducerState {
+  refreshing: boolean;
+  allTodoIDs: string[];
   entities: {
-    todo: TodoMap
+    todo: TodoMap;
+  };
+}
+
+const initState: TodoReducerState = {
+  refreshing: false,
+  allTodoIDs: [],
+  entities: {
+    todo: {}
   }
-} = { refreshing: false, result: [], entities: { todo: {} }, tempIdCursor: 0 }, action) {
+};
+
+export function todo(state: TodoReducerState = initState, action): TodoReducerState {
   switch (action.type) {
     case Actions.GET_TODO_LIST.REQUEST:
       return {
@@ -25,14 +34,12 @@ export function todo(state:{
 
     case GET_TODO_LIST_SUCCESS: {
       const todos: Todo[] = action.payload;
-      const normalized= normalize<{
-        todo: TodoMap
-      }, string[]>(todos, TodoListSchema);
-    
+      const normalized = normalize(todos, TodoListSchema);
+
       return {
         ...state,
         refreshing: false,
-        result: normalized.result,
+        allTodoIDs: normalized.result,
         entities: {
           todo: {
             ...state.entities.todo,
@@ -65,7 +72,7 @@ export function todo(state:{
       const normalizedData = normalize(action.payload, TodoSchema);
       return {
         ...state,
-        result: state.result.concat(normalizedData.result),
+        allTodoIDs: state.allTodoIDs.concat(normalizedData.result),
         entities: {
           todo: {
             ...state.entities.todo,

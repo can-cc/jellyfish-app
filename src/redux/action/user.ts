@@ -1,5 +1,5 @@
 import { AppAction } from './actions';
-import { UserInfo } from '../typing/user';
+import { UserInfo } from '../../typing/user';
 
 export const GET_USER_INFO_REQUEST = 'GET_USER_INFO_REQUEST';
 export const GET_USER_INFO_SUCCESS = 'GET_USER_INFO_SUCCESS';

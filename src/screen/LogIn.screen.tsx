@@ -5,7 +5,7 @@ import { WEBSITE_URL } from '../env/env';
 import { AsyncStorage } from 'react-native';
 import { Input } from '../component/Input';
 import { AppButton } from '../component/Button';
-import { signin } from '../action/login';
+import { signin } from '../redux/action/login';
 import { bindActionCreators, Dispatch } from 'redux';
 import i18n from 'i18n-js';
 
