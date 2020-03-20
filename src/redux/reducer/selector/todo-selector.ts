@@ -11,3 +11,7 @@ export function selectAllTodo(state: AppRootState) {
     })
     .filter(t => !!t);
 }
+
+export function selectAllTodoSortByID(state: AppRootState) {
+  return selectAllTodo(state).sort((a, b) => (a.id as any) - (b.id as any));
+}

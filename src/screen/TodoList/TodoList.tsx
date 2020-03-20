@@ -5,7 +5,11 @@ import { TodoItem } from './TodoItem';
 
 export function TodoList({ todoList }) {
   return (
-    <View>
+    <View
+      style={{
+        padding: 6
+      }}
+    >
       {todoList.map((todo: Todo) => {
         return <TodoItem key={todo.id} todo={todo} />;
       })}

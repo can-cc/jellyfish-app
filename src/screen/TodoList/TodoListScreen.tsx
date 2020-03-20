@@ -11,7 +11,7 @@ import { Button } from '../../component/Button';
 import { getTodoListRequest } from '../../redux/action/todo';
 import useState from 'react';
 import { AppRootState } from '../../redux/reducer/reducer';
-import { selectAllTodo } from '../../redux/reducer/selector/todo-selector';
+import { selectAllTodoSortByID } from '../../redux/reducer/selector/todo-selector';
 import { TodoList } from './TodoList';
 
 export function TodoListScreen() {
@@ -23,7 +23,8 @@ export function TodoListScreen() {
     getTodoList();
   }, []);
 
-  const todoList = useSelector(selectAllTodo);
+  const todoList = useSelector(selectAllTodoSortByID);
+  const refreshing = useSelector((state: AppRootState) => state.todo.refreshing);
 
   return (
     <View style={styles.container}>
@@ -31,9 +32,10 @@ export function TodoListScreen() {
 
       <ScrollView
         style={{
+          backgroundColor: '#FF8976',
           flex: 1
         }}
-        refreshControl={<RefreshControl refreshing={false} onRefresh={getTodoList} />}
+        refreshControl={<RefreshControl refreshing={refreshing} onRefresh={getTodoList} />}
       >
         <TodoList todoList={todoList} />
         {/* <View>

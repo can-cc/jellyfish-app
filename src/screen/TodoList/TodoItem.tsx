@@ -26,10 +26,13 @@ export function TodoItem({ todo }) {
         style={{
           paddingLeft: 18,
           paddingRight: 10,
-          paddingBottom: 8,
-          paddingTop: 8,
+          paddingBottom: 12,
+          paddingTop: 12,
           flexDirection: 'row',
-          width: '100%'
+          width: '100%',
+          backgroundColor: 'white',
+          marginTop: 2,
+          borderRadius: 6
         }}
       >
         <View
