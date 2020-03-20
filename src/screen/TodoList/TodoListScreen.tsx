@@ -37,7 +37,12 @@ export function TodoListScreen() {
         }}
         refreshControl={<RefreshControl refreshing={refreshing} onRefresh={getTodoList} />}
       >
-        <TodoList todoList={todoList} />
+        <TodoList
+          todoList={todoList}
+          style={{
+            marginBottom: 90
+          }}
+        />
         {/* <View>
       {this.props.todos
         .filter((t: any) => !t.done)

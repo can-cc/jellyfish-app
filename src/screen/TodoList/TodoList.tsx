@@ -1,13 +1,14 @@
 import React from 'react';
 import { Todo } from '../../typing/todo';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import { TodoItem } from './TodoItem';
 
-export function TodoList({ todoList }) {
+export function TodoList({ todoList, style }: { todoList: Todo[]; style?: any }) {
   return (
     <View
       style={{
-        padding: 6
+        padding: 6,
+        ...style
       }}
     >
       {todoList.map((todo: Todo) => {
