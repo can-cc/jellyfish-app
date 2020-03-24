@@ -7,7 +7,6 @@ export function TodoList({ todoList, style }: { todoList: Todo[]; style?: any })
   return (
     <View
       style={{
-        padding: 6,
         ...style
       }}
     >

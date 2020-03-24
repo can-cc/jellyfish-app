@@ -13,7 +13,7 @@ export function TodoItem({ todo }) {
     dispatch(
       updateTodoRequest({
         ...todo,
-        status: checked ? 'Done' : 'Done'
+        status: checked ? 'Done' : 'Doing'
       })
     );
   };
@@ -26,13 +26,13 @@ export function TodoItem({ todo }) {
         style={{
           paddingLeft: 18,
           paddingRight: 10,
-          paddingBottom: 12,
-          paddingTop: 12,
+          paddingBottom: 13,
+          paddingTop: 13,
           flexDirection: 'row',
           width: '100%',
           backgroundColor: 'white',
           marginTop: 2,
-          borderRadius: 6
+          borderRadius: 9
         }}
       >
         <View

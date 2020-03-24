@@ -1,21 +1,23 @@
-import React, { Component } from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
-import RNCheckBox from 'react-native-check-box';
+import React from 'react';
+import { TouchableOpacity } from 'react-native';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
+import { faCircle } from '@fortawesome/free-regular-svg-icons';
+import * as Haptics from 'expo-haptics';
 
-export class CheckBox extends Component<any, any> {
-  render() {
-    return (
-      <RNCheckBox
-        style={[{}, this.props.style]}
-        onClick={() => {
-          this.props.onChange(!this.props.checked);
-        }}
-        isChecked={this.props.checked}
-        checkedImage={<Image source={require('../assets/check.png')} style={{ width: 20, height: 20 }} />}
-        unCheckedImage={
-          <View style={{ width: 26, height: 26, borderWidth: 1, borderColor: '#999', borderRadius: 6 }} />
-        }
-      />
-    );
-  }
+export function CheckBox(props: { checked: boolean; onChange?: Function }) {
+  return (
+    <TouchableOpacity
+      onPress={() => {
+        Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+        props.onChange && props.onChange(!props.checked);
+      }}
+    >
+      {props.checked ? (
+        <FontAwesomeIcon color="#F08F7C" size={25} icon={faCheckCircle} />
+      ) : (
+        <FontAwesomeIcon color="#F08F7C" size={25} icon={faCircle} />
+      )}
+    </TouchableOpacity>
+  );
 }
