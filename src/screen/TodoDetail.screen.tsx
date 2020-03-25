@@ -3,14 +3,13 @@ import { StyleSheet, View, TouchableOpacity, Text, Alert } from 'react-native';
 import { bindActionCreators, Dispatch, ActionCreatorsMapObject } from 'redux';
 import { connect } from 'react-redux';
 import { makeActionRequestCollection } from '../redux/action/actions';
-import Input from '../component/Input';
-import { NavigationScreenOptions, NavigationContainerProps, NavigationEventSubscription } from 'react-navigation';
 import { Menu, MenuOptions, MenuOption, MenuTrigger } from 'react-native-popup-menu';
 import { AppText } from '../component/AppText';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faEllipsisH, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { updateTodoRequest, deleteTodoRequest } from '../redux/action/todo';
 
+// TODO remove
 class TodoDetailScreen extends Component<
   NavigationContainerProps & {
     todo: any;
@@ -99,7 +98,6 @@ class TodoDetailScreen extends Component<
     this.props.navigation!.setParams({
       deleteTodo: this.deleteTodo
     });
-    // this.props.navigation.setParams({ increaseCount: this._increaseCount });
   }
 
   componentWillUnmount() {
@@ -113,15 +111,28 @@ class TodoDetailScreen extends Component<
   }
 
   deleteTodo = () => {
-    Alert.alert('Delete Todo', 'Are you sure to delete this todo?', [{ text: 'OK', onPress: () => {
-      this.props.actions.deleteTodo({
-        id: this.props.todo.id
-      });
-    } }, {
-      text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'
-    }], {
-      cancelable: false
-    });
+    Alert.alert(
+      'Delete Todo',
+      'Are you sure to delete this todo?',
+      [
+        {
+          text: 'OK',
+          onPress: () => {
+            this.props.actions.deleteTodo({
+              id: this.props.todo.id
+            });
+          }
+        },
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel'
+        }
+      ],
+      {
+        cancelable: false
+      }
+    );
   };
 
   render() {

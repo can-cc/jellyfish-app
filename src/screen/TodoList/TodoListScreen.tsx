@@ -13,6 +13,7 @@ import useState from 'react';
 import { AppRootState } from '../../redux/reducer/reducer';
 import { selectAllTodoSortByID } from '../../redux/reducer/selector/todo-selector';
 import { TodoList } from './TodoList';
+import { useNavigation } from '@react-navigation/native';
 
 export function TodoListScreen() {
   const dispatch = useDispatch();
@@ -56,17 +57,17 @@ const styles = StyleSheet.create({
   }
 });
 
-export const TodoListScreenContainer = connect(
-  (state: any) => {
-    return {
-      userId: state.auth.userId,
-      todos: [],
-      refreshing: state.todo.refreshing
-    };
-  },
-  dispatch => {
-    return {
-      actions: bindActionCreators(makeActionRequestCollection(), dispatch)
-    };
-  }
-)(TodoListScreen);
+// export const TodoListScreenContainer = connect(
+//   (state: any) => {
+//     return {
+//       userId: state.auth.userId,
+//       todos: [],
+//       refreshing: state.todo.refreshing
+//     };
+//   },
+//   dispatch => {
+//     return {
+//       actions: bindActionCreators(makeActionRequestCollection(), dispatch)
+//     };
+//   }
+// )(TodoListScreen);

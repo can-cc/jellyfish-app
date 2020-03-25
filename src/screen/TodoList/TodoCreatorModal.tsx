@@ -1,21 +1,18 @@
 import React, { Component, useState, useCallback, useRef } from 'react';
-import { View, TouchableOpacity, TextInput, Dimensions } from 'react-native';
+import { View, TextInput, Dimensions } from 'react-native';
 import Modal from 'react-native-modal';
-import { CreateTodoToggle } from './TodoCreatorToggle';
 import { AppButton } from '../../component/Button';
-import { AppText } from '../../component/AppText';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faBell, faCalendar, faListAlt } from '@fortawesome/free-solid-svg-icons';
 import { faCircle } from '@fortawesome/free-regular-svg-icons';
 import { useDispatch } from 'react-redux';
 import { createTodoRequest } from '../../redux/action/todo';
 import i18n from 'i18n-js';
-import { StyleControl } from '../../component/feature/StyleControl';
+import * as Haptics from 'expo-haptics';
 
 export function TodoCreatorModal({ showModal, closeModal }) {
   const dispatch = useDispatch();
   const [todoContent, setTodoContent] = useState('');
-
   const textInputNodeRef = useRef<TextInput>();
 
   const focusRef = useCallback((node: TextInput) => {
@@ -36,6 +33,7 @@ export function TodoCreatorModal({ showModal, closeModal }) {
   };
 
   const submit = () => {
+    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
     dispatch(
       createTodoRequest({
         content: todoContent
@@ -62,7 +60,7 @@ export function TodoCreatorModal({ showModal, closeModal }) {
         style={{
           backgroundColor: '#fff',
           padding: 12,
-          paddingTop: 8,
+          paddingTop: 13,
           paddingBottom: 10,
           borderTopLeftRadius: 8,
           borderTopRightRadius: 8
@@ -71,18 +69,27 @@ export function TodoCreatorModal({ showModal, closeModal }) {
         <View
           style={{
             flexDirection: 'row',
-            alignItems: 'center'
+            alignItems: 'center',
+            paddingBottom: 1
           }}
         >
-          <FontAwesomeIcon size={20} style={{
+          <FontAwesomeIcon
+            size={20}
+            style={{
               marginLeft: 7
-          }} color="#555" icon={faCircle} />
+            }}
+            color="#555"
+            icon={faCircle}
+          />
           <TextInput
             ref={focusRef}
             placeholder={i18n.t('createTodoToggleText')}
+            multiline
             style={{
-              height: 40,
+              width: '100%',
+              marginBottom: 4,
               paddingLeft: 10,
+              paddingRight: 18,
               borderColor: '#dadada',
               borderBottomWidth: 0,
               textAlign: 'left',

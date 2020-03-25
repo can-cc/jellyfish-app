@@ -12,9 +12,9 @@ import { mergeMap } from 'rxjs/operators';
 import { GET_USER_INFO_REQUEST, getUserInfoSuccess, getUserInfoFailure } from '../action/user';
 import { ofType } from 'redux-observable';
 import { UserInfo } from '../../typing/user';
-import { path, replace } from 'ramda';
+import { path } from 'ramda';
 import i18n from 'i18n-js';
-import { navigate } from '../../navigation/RootNavigation';
+import { replace } from '../../navigation/RootNavigation';
 
 export const LOGIN = (action$: any) => {
   return action$.ofType('SIGNIN').pipe(

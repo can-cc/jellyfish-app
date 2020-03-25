@@ -4,6 +4,7 @@ import { TodoDetailScreenContainer } from '../screen/TodoDetail.screen';
 
 const Stack = createStackNavigator();
 
+// TODO remove
 export function TodoStack() {
   return (
     <Stack.Navigator>

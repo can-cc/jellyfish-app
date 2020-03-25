@@ -1,6 +1,6 @@
 import Actions from '../action/actions';
 import { normalize } from 'normalizr';
-import { GET_TODO_LIST_SUCCESS } from '../action/todo';
+import { GET_TODO_LIST_SUCCESS, UPDATE_TODO_REQUEST } from '../action/todo';
 import { Todo } from '../../typing/todo';
 import { TodoListSchema, TodoSchema } from '../../schema/todo.schema';
 
@@ -56,7 +56,7 @@ export function todo(state: TodoReducerState = initState, action): TodoReducerSt
       };
     }
 
-    case Actions.UPDATE_TODO.REQUEST: {
+    case UPDATE_TODO_REQUEST: {
       return {
         ...state,
         entities: {
@@ -68,19 +68,19 @@ export function todo(state: TodoReducerState = initState, action): TodoReducerSt
       };
     }
 
-    case Actions.CREATE_TODO.SUCCESS: {
-      const normalizedData = normalize(action.payload, TodoSchema);
-      return {
-        ...state,
-        allTodoIDs: state.allTodoIDs.concat(normalizedData.result),
-        entities: {
-          todo: {
-            ...state.entities.todo,
-            ...normalizedData.entities.todo
-          }
-        }
-      };
-    }
+    // case Actions.CREATE_TODO.SUCCESS: {
+    //   const normalizedData = normalize(action.payload, TodoSchema);
+    //   return {
+    //     ...state,
+    //     allTodoIDs: state.allTodoIDs.concat(normalizedData.result),
+    //     entities: {
+    //       todo: {
+    //         ...state.entities.todo,
+    //         ...normalizedData.entities.todo
+    //       }
+    //     }
+    //   };
+    // }
 
     case Actions.DELETE_TODO.REQUEST: {
       return {

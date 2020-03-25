@@ -1,10 +1,9 @@
 import React, { RefObject } from 'react';
-import { NavigationProp, ParamListBase, NavigationContainerRef } from '@react-navigation/native';
+import { NavigationContainerRef } from '@react-navigation/native';
 
 export const navigationRef: RefObject<NavigationContainerRef> = React.createRef();
 
 export function navigate(name, params?) {
-  navigationRef.current?.replace;
   navigationRef.current?.navigate(name, params);
 }
 

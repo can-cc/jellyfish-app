@@ -13,7 +13,8 @@ i18n.translations = {
     usernameText: 'Username',
     passwordText: 'Password',
     createTodoCommonFailure: 'Creation failed, please try again',
-    createTodoToggleText: 'Add to do'
+    createTodoToggleText: 'Add to do',
+    defaultTodoListName: 'Task'
   },
   zh: {
     welcome: '欢迎',
@@ -24,7 +25,8 @@ i18n.translations = {
     usernameText: '用户名',
     passwordText: '密码',
     createTodoCommonFailure: '创建失败，请重试',
-    createTodoToggleText: '添加待办事项'
+    createTodoToggleText: '添加待办事项',
+    defaultTodoListName: '任务'
   }
 };
 // Set the locale once at the beginning of your app.
