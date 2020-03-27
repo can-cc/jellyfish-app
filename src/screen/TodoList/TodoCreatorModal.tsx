@@ -1,5 +1,5 @@
-import React, { Component, useState, useCallback, useRef } from 'react';
-import { View, TextInput, Dimensions } from 'react-native';
+import React, { useState, useCallback, useRef } from 'react';
+import { View, TextInput } from 'react-native';
 import Modal from 'react-native-modal';
 import { AppButton } from '../../component/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';

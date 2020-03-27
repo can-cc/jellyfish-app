@@ -39,7 +39,6 @@ function Root() {
               }
             }}
           />
-          {/* <Stack.Screen name="TodoStack" component={TodoStack} /> */}
         </>
       ) : (
         <Stack.Screen

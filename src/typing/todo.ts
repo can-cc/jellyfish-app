@@ -4,6 +4,7 @@ export interface Todo {
   id: string;
   status: TodoStatus;
   content: string;
+  detail: string;
   deadline: Date;
   createdAt: Date;
   updatedAt: Date;

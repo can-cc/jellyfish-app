@@ -8,8 +8,13 @@ import { MenuProvider } from 'react-native-popup-menu';
 import { loadAllAsset } from './src/helper/asset';
 import { AppNavigation } from './src/navigation/AppNavigation';
 import { PersistorContext } from './src/component/context/PersistorContext';
+import * as Localization from 'expo-localization';
+import moment from 'moment';
+import 'moment/locale/zh-cn'
 
 import './src/i18n/i18n';
+
+moment.locale(Localization.locale);
 
 const { store, persistor } = createStore();
 

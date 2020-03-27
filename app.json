@@ -4,24 +4,19 @@
     "slug": "jellyfish-todo",
     "privacy": "public",
     "sdkVersion": "36.0.0",
-    "platforms": [
-      "ios",
-      "android"
-    ],
+    "platforms": ["ios", "android"],
     "version": "0.1.18",
     "orientation": "portrait",
     "icon": "./src/assets/icon.png",
     "splash": {
       "image": "./src/assets/splash.png",
-      "backgroundColor": "#fbfbfb",
-      "resizeMode": "cover"
+      "backgroundColor": "#fff",
+      "resizeMode": "contain"
     },
     "updates": {
       "fallbackToCacheTimeout": 7000
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "bundleIdentifier": "org.fwchen.jellyfish",
       "supportsTablet": false
