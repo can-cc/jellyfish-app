@@ -20,6 +20,9 @@ i18n.translations = {
     remindMeText: 'Remind me',
     addFileText: 'Add files',
     addNoteText: 'Add note',
+    deleteText: 'Delete',
+    cancelText: 'Cancel',
+    deleteTodoTitle: 'Delete to do',
     deleteTodoConfirm: 'Confirm to delete to do'
   },
   zh: {
@@ -38,6 +41,9 @@ i18n.translations = {
     remindMeText: '提醒我',
     addFileText: '添加文件',
     addNoteText: '添加备注',
+    deleteText: '删除',
+    cancelText: '取消',
+    deleteTodoTitle: '删除待办',
     deleteTodoConfirm: '删除后不能恢复，确定要删除吗?'
   }
 };
