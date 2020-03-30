@@ -23,7 +23,10 @@ i18n.translations = {
     deleteText: 'Delete',
     cancelText: 'Cancel',
     deleteTodoTitle: 'Delete to do',
-    deleteTodoConfirm: 'Confirm to delete to do'
+    deleteTodoConfirm: 'Confirm to delete to do',
+    showAllTodo: 'Show all to do',
+    showDoingTodo: 'Show doing item',
+    listOption: 'List Option'
   },
   zh: {
     welcome: '欢迎',
@@ -44,7 +47,10 @@ i18n.translations = {
     deleteText: '删除',
     cancelText: '取消',
     deleteTodoTitle: '删除待办',
-    deleteTodoConfirm: '删除后不能恢复，确定要删除吗?'
+    deleteTodoConfirm: '删除后不能恢复，确定要删除吗?',
+    showAllTodo: '显示所有待办',
+    showDoingTodo: '显示未完成待办',
+    listOption: '列表选项'
   }
 };
 // Set the locale once at the beginning of your app.

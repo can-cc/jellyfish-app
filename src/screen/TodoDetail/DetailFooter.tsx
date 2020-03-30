@@ -47,7 +47,12 @@ export function DetailFooter({ todo }: { todo: Todo }) {
           justifyContent: 'space-between'
         }}
       >
-        <View></View>
+        <View
+          style={{
+            padding: 10,
+            width: 10
+          }}
+        ></View>
         <View>
           <AppText
             style={{

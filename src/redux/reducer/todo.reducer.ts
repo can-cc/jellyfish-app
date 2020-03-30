@@ -11,6 +11,7 @@ interface TodoMap {
 export interface TodoReducerState {
   refreshing: boolean;
   allTodoIDs: string[];
+  showDone: boolean;
   entities: {
     todo: TodoMap;
   };
@@ -19,6 +20,7 @@ export interface TodoReducerState {
 const initState: TodoReducerState = {
   refreshing: false,
   allTodoIDs: [],
+  showDone: false,
   entities: {
     todo: {}
   }
@@ -94,6 +96,13 @@ export function todo(state: TodoReducerState = initState, action): TodoReducerSt
             }
           }
         }
+      };
+    }
+
+    case 'SWITCH_TODO_LIST_SHOW_DONE': {
+      return {
+        ...state,
+        showDone: action.payload
       };
     }
 

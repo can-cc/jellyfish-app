@@ -11,7 +11,7 @@ import { Button } from '../../component/Button';
 import { getTodoListRequest } from '../../redux/action/todo';
 import useState from 'react';
 import { AppRootState } from '../../redux/reducer/reducer';
-import { selectAllTodoSortByID } from '../../redux/reducer/selector/todo-selector';
+import { selectTodoSortByID } from '../../redux/reducer/selector/todo-selector';
 import { TodoList } from './TodoList';
 import { useNavigation } from '@react-navigation/native';
 
@@ -24,7 +24,7 @@ export function TodoListScreen() {
     getTodoList();
   }, []);
 
-  const todoList = useSelector(selectAllTodoSortByID);
+  const todoList = useSelector(selectTodoSortByID);
   const refreshing = useSelector((state: AppRootState) => state.todo.refreshing);
 
   return (
@@ -56,18 +56,3 @@ const styles = StyleSheet.create({
     flex: 1
   }
 });
-
-// export const TodoListScreenContainer = connect(
-//   (state: any) => {
-//     return {
-//       userId: state.auth.userId,
-//       todos: [],
-//       refreshing: state.todo.refreshing
-//     };
-//   },
-//   dispatch => {
-//     return {
-//       actions: bindActionCreators(makeActionRequestCollection(), dispatch)
-//     };
-//   }
-// )(TodoListScreen);

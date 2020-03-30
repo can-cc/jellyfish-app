@@ -3,12 +3,12 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { useSelector } from 'react-redux';
 import { AppRootState } from '../redux/reducer/reducer';
-import { TodoStack } from './todo-stack';
 import { SignInScreenContainer } from '../screen/LogIn.screen';
 import { navigationRef } from './RootNavigation';
 import { TodoListScreen } from '../screen/TodoList/TodoListScreen';
 import { TodoDetailScreen } from '../screen/TodoDetail/TodoDetailScreen';
 import i18n from 'i18n-js';
+import { ListMenu } from '../screen/TodoList/ListMenu';
 
 const Stack = createStackNavigator();
 
@@ -26,6 +26,12 @@ function Root() {
               headerStyle: {
                 backgroundColor: '#FF8976',
                 shadowColor: '#FF8976'
+              },
+              headerTitleStyle: {
+                color: '#fff'
+              },
+              headerRight: () => {
+                return <ListMenu />;
               }
             }}
           />
