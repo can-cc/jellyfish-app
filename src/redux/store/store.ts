@@ -5,10 +5,13 @@ import storage from 'redux-persist/lib/storage';
 import { combineReducers } from 'redux';
 import reduxReset from 'redux-reset';
 import logger from 'redux-logger';
+import axios from 'axios'
 
 import rootEpic from '../epic';
 import hardSet from 'redux-persist/es/stateReconciler/hardSet';
 import { reducers } from '../reducer/reducer';
+import { API_BASE } from "../../env/env";
+import axiosMiddleware from "redux-axios-middleware";
 
 const persistConfig = {
   key: 'root',
@@ -18,11 +21,18 @@ const persistConfig = {
   stateReconciler: hardSet
 };
 
+const client = axios.create({ //all axios can be used, shown in axios documentation
+  baseURL: API_BASE,
+  responseType: 'json'
+});
+
 function setupStore() {
   const persistedReducer = persistReducer(persistConfig, combineReducers(reducers));
   const epicMiddleware = createEpicMiddleware();
 
-  const store = createStore(persistedReducer, compose(applyMiddleware(epicMiddleware, logger), reduxReset()));
+  const store = createStore(persistedReducer, compose(applyMiddleware(epicMiddleware, axiosMiddleware(client, {
+    returnRejectedPromiseOnError: true
+  }), logger), reduxReset()));
 
   return { store, epicMiddleware };
 }
