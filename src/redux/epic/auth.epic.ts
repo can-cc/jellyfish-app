@@ -1,6 +1,6 @@
 import Actions from '../action/actions';
 import axios from 'axios';
-import { setupAxiosJwtHeader } from '../../helper/http-intercetor';
+
 import { API_BASE } from '../../env/env';
 import Toast from 'react-native-root-toast';
 
@@ -15,6 +15,7 @@ import { UserInfo } from '../../typing/user';
 import { path } from 'ramda';
 import i18n from 'i18n-js';
 import { replace } from '../../navigation/RootNavigation';
+import { appInterceptor } from '../../util/interceptor';
 
 export const LOGIN = (action$: any) => {
   return action$.ofType('SIGNIN').pipe(
@@ -22,7 +23,7 @@ export const LOGIN = (action$: any) => {
       return axios
         .post(`${API_BASE}/login`, action.payload)
         .then(response => {
-          setupAxiosJwtHeader(response.headers['app-authorization']);
+          appInterceptor.setupAxiosInterceptor(response.headers['app-authorization']);
           return Actions.SIGNIN.success(response.headers['app-authorization']);
         })
         .catch(error => {
@@ -87,7 +88,7 @@ export const REHYDRATE = (action$: any) => {
     .ofType('persist/REHYDRATE')
     .do((action: any) => {
       if (action.payload) {
-        setupAxiosJwtHeader(action.payload.auth.token);
+        appInterceptor.setupAxiosInterceptor(action.payload.auth.token);
       }
     })
     .ignoreElements();

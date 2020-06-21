@@ -10,42 +10,28 @@ import { AppText } from '../component/AppText';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faEllipsisH, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { updateTodoRequest, deleteTodoRequest } from '../redux/action/todo';
-import Toast, {DURATION} from 'react-native-easy-toast'
+import Toast, { DURATION } from 'react-native-easy-toast';
 
 class ToastRootPlaceholder extends Component<{}> {
-  
-
   componentWillMount() {}
 
-  componentDidMount() {
-   
-  }
+  componentDidMount() {}
 
-  componentWillUnmount() {
-   
-  }
-
- 
+  componentWillUnmount() {}
 
   render() {
     return (
       <View style={styles.container}>
-        <Toast ref="toast"/>
+        <Toast ref="toast" />
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    
-  }
+  container: {}
 });
 
-export const ToastContainer = connect(
-  (state: any, props: any) => {
-    return {
-     
-    };
-  }
-)(ToastRootPlaceholder);
+export const ToastContainer = connect((state: any, props: any) => {
+  return {};
+})(ToastRootPlaceholder);

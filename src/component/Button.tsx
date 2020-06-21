@@ -1,8 +1,9 @@
 import React from 'react';
-import { TouchableHighlight, StyleProp, ViewStyle } from 'react-native';
+import { StyleProp, TouchableHighlight, ViewStyle } from 'react-native';
 
 export class Button extends React.Component<{
   type?: 'primary' | 'normal';
+  size?: 'sm' | 'md';
   onPress?: Function;
   transparent?: boolean;
   style?: StyleProp<ViewStyle>;

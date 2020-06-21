@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { TouchableOpacity } from 'react-native';
 
 export class ListButton extends Component<{ style?: any; onPress?: () => void }, any> {
-  
   onPress = () => {
     if (this.props.onPress) {
       this.props.onPress();

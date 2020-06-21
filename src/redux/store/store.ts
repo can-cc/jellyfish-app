@@ -6,9 +6,9 @@ import { combineReducers } from 'redux';
 import reduxReset from 'redux-reset';
 import logger from 'redux-logger';
 
-import { reducers } from '../reducer';
 import rootEpic from '../epic';
 import hardSet from 'redux-persist/es/stateReconciler/hardSet';
+import { reducers } from '../reducer/reducer';
 
 const persistConfig = {
   key: 'root',
@@ -27,14 +27,17 @@ function setupStore() {
   return { store, epicMiddleware };
 }
 
-export default () => {
+const appCreateStore = () => {
   const { store, epicMiddleware } = setupStore();
 
   const persistor: Persistor = persistStore(store);
 
+  // @ts-ignore
   // store.dispatch({ type: 'RESET' });
   // persistor.purge();
 
   epicMiddleware.run(rootEpic as any);
   return { store, persistor };
 };
+
+export const { store, persistor } = appCreateStore();

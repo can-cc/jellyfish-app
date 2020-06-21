@@ -8,11 +8,6 @@ export interface AuthReducerState {
 
 export function auth(state = { token: null, userId: null }, action) {
   switch (action.type) {
-    // case Actions.SIGNIN.REQUEST:
-    //   return {
-    //     ...state,
-    //     username: action.payload.username
-    //   };
     case Actions.SIGNIN.SUCCESS:
       return {
         ...state,
@@ -25,6 +20,15 @@ export function auth(state = { token: null, userId: null }, action) {
         ...state,
         userInfo: action.payload
       };
+
+    case 'LOGOUT': {
+      return {
+        ...state,
+        token: undefined,
+        userId: undefined
+      };
+    }
+
     default:
       return state;
   }

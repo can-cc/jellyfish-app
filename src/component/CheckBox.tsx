@@ -10,7 +10,6 @@ export function CheckBox(props: { checked: boolean; onChange?: Function; style?:
     <TouchableOpacity
       style={{
         padding: 12
-        
       }}
       onPress={() => {
         Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);

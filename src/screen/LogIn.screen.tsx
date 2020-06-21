@@ -129,7 +129,7 @@ class LogInScreen extends Component<
               borderRadius: 20
             }}
             type="primary"
-            size="small"
+            size="sm"
             onPress={this.submit}
           >
             <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>

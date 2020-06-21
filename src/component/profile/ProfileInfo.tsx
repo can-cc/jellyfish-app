@@ -39,10 +39,14 @@ export class ProfileInfo extends Component<{ onPress?: () => void; style?: any; 
             source={{ uri: WEBSITE_URL + '/' + this.props.userInfo.avatarUrl }}
           />
 
-          <AppText style={{
-            fontSize: 18,
-            color: '#4295ff'
-          }}>{this.props.userInfo.username}</AppText>
+          <AppText
+            style={{
+              fontSize: 18,
+              color: '#4295ff'
+            }}
+          >
+            {this.props.userInfo.username}
+          </AppText>
         </TouchableOpacity>
       </View>
     );

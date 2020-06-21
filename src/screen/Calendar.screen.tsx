@@ -13,7 +13,6 @@ class CalendarScreen extends Component<any, any> {
     };
   };
 
-
   render() {
     return (
       <View style={styles.container}>
@@ -46,7 +45,7 @@ class CalendarScreen extends Component<any, any> {
                   })
                 }
               >
-                  <Text>{item.todo.content}</Text>
+                <Text>{item.todo.content}</Text>
               </TouchableOpacity>
             );
           }}

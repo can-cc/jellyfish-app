@@ -3,13 +3,9 @@ import { StyleSheet, Text, View, Dimensions, PixelRatio, FlatList, Alert } from 
 import { bindActionCreators, ActionCreatorsMapObject } from 'redux';
 import { connect } from 'react-redux';
 import { PersistorContext } from '../component/context/PersistorContext';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import { AppListItem } from '../component/ListItem';
-import { ProfileInfo } from '../component/profile/ProfileInfo';
-import { getUserInfoRequest } from '../redux/action/user';
+
 import { UserInfo } from '../typing/user';
 import { ListButton } from '../component/ListButton';
-import { NavigationContainerProps } from 'react-navigation';
 import { AppText } from '../component/AppText';
 
 const Item = View;
@@ -17,9 +13,9 @@ const Item = View;
 const dp2px = (dp: any) => PixelRatio.getPixelSizeForLayoutSize(dp);
 const px2dp = (px: any) => PixelRatio.roundToNearestPixel(px);
 
-class SettingScreen extends Component<NavigationContainerProps &
-  {
-    logout: () =>void;
+class SettingScreen extends Component<
+  any & {
+    logout: () => void;
     userId: string;
     userInfo: UserInfo;
   },
@@ -28,8 +24,6 @@ class SettingScreen extends Component<NavigationContainerProps &
   static navigationOptions = {
     title: 'Setting'
   };
-
- 
 
   logout = (persistor: any) => {
     Alert.alert(
@@ -76,7 +70,7 @@ class SettingScreen extends Component<NavigationContainerProps &
                   this.logout(persistor);
                 }}
               >
-                <AppText style={{fontWeight: '700'}}>Logout</AppText>
+                <AppText style={{ fontWeight: '700' }}>Logout</AppText>
               </ListButton>
             </View>
           </View>
