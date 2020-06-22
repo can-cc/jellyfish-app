@@ -30,14 +30,14 @@ function setupStore() {
   const persistedReducer = persistReducer(persistConfig, combineReducers(reducers));
   const epicMiddleware = createEpicMiddleware();
 
-  const store = createStore(persistedReducer, compose(applyMiddleware(epicMiddleware, axiosMiddleware(client, {
+  const store = createStore(persistedReducer, compose(applyMiddleware(axiosMiddleware(client, {
     returnRejectedPromiseOnError: true
-  }), logger), reduxReset()));
+  }), epicMiddleware, logger), reduxReset()));
 
   return { store, epicMiddleware };
 }
 
-const appCreateStore = () => {
+export const createAppStore = () => {
   const { store, epicMiddleware } = setupStore();
 
   const persistor: Persistor = persistStore(store);
@@ -50,4 +50,3 @@ const appCreateStore = () => {
   return { store, persistor };
 };
 
-export const { store, persistor } = appCreateStore();

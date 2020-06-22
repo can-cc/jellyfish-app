@@ -1,11 +1,8 @@
 import axios, { AxiosResponse } from 'axios';
-import { navigate } from '../navigation/RootNavigation';
-import { store } from '../redux/store/store';
-import { logout } from '../redux/action/auth';
 
 export class Interceptor {
-  setupAxiosInterceptor(token: string) {
-    axios.interceptors.response.use(this.responseSuccessInterceptor, Interceptor.responseFailureInterceptor);
+  setupAxiosInterceptor(token: string, onUnAuth: Function) { // to prevent circle require
+    axios.interceptors.response.use(this.responseSuccessInterceptor, (error) => Interceptor.responseFailureInterceptor(error, onUnAuth));
     axios.defaults.headers.common['app-authorization'] = `Bearer ${token}`;
   }
 
@@ -13,10 +10,9 @@ export class Interceptor {
     return response;
   }
 
-  private static responseFailureInterceptor(error: any) {
+  private static responseFailureInterceptor(error: any, onUnAuth: Function) {
     if (error.response.status === 401) {
-      (store.dispatch as any)(logout());
-      navigate('Root', { screen: 'Login' });
+      onUnAuth();
     }
     return Promise.reject(error);
   }
