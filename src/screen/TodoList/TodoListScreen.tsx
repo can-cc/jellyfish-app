@@ -12,6 +12,7 @@ export function TodoListScreen() {
   const getTodoList = () => {
     dispatch(getTodoListRequest());
   };
+
   useEffect(() => {
     getTodoList();
   }, []);

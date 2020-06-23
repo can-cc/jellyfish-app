@@ -1,14 +1,19 @@
-import React, { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { MenuModal } from './MenuModal';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
+import { TouchableOpacity } from "react-native-gesture-handler";
 import { faListUl } from "@fortawesome/free-solid-svg-icons/faListUl";
+import { useNavigation } from "@react-navigation/native";
 
 export function ListLeftMenu() {
-  const [modalVisible, setModalVisible] = useState(false);
+  const navigation = useNavigation();
+
+  const goBoxList = () => {
+    navigation.navigate("BoxList", {});
+  };
+
   return (
     <>
-      <TouchableOpacity onPress={() => setModalVisible(true)}>
+      <TouchableOpacity onPress={() => goBoxList()}>
         <FontAwesomeIcon
           color="#fff"
           size={20}
@@ -18,8 +23,6 @@ export function ListLeftMenu() {
           }}
         />
       </TouchableOpacity>
-
-      <MenuModal visible={modalVisible} closeModal={() => setModalVisible(false)} />
     </>
   );
 }

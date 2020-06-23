@@ -14,8 +14,9 @@ import { ofType } from 'redux-observable';
 import { UserInfo } from '../../typing/user';
 import { path } from 'ramda';
 import i18n from 'i18n-js';
-import { navigate, replace } from "../../navigation/RootNavigation";
+import { replace } from "../../navigation/RootNavigation";
 import { appInterceptor } from '../../util/interceptor';
+import { axiosClient } from "../../util/axios";
 
 export const LOGIN = (action$: any) => {
   return action$.ofType('SIGNIN').pipe(
@@ -24,6 +25,9 @@ export const LOGIN = (action$: any) => {
         .post(`${API_BASE}/login`, action.payload)
         .then(response => {
           appInterceptor.setupAxiosInterceptor(response.headers['app-authorization'], () => {
+            replace('Root', { screen: 'Login' });
+          });
+          appInterceptor.setupAxiosClientInterceptor(axiosClient, response.headers['app-authorization'], () => {
             replace('Root', { screen: 'Login' });
           });
           return Actions.SIGNIN.success(response.headers['app-authorization']);
@@ -91,6 +95,9 @@ export const REHYDRATE = (action$: any) => {
     .do((action: any) => {
       if (action.payload) {
         appInterceptor.setupAxiosInterceptor(action.payload.auth.token, () => {
+          replace('Root', { screen: 'Login' });
+        });
+        appInterceptor.setupAxiosClientInterceptor(axiosClient, action.payload.auth.token, () => {
           replace('Root', { screen: 'Login' });
         });
       }

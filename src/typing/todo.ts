@@ -1,6 +1,6 @@
 export type TodoStatus = 'Doing' | 'Done';
 
-export interface Todo {
+export interface ITodo {
   id: string;
   status: TodoStatus;
   content: string;
@@ -15,7 +15,7 @@ export interface CreateTodoInput {
   deadline?: Date;
 }
 
-export type UpdateTodoInput = Todo;
+export type UpdateTodoInput = ITodo;
 
 export interface DeleteTodoInput {
   id: string;

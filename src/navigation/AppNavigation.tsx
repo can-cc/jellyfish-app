@@ -50,12 +50,17 @@ function Root() {
       />
       <Stack.Screen
         name="BoxList"
-        component={BoxListScreen} options={{
-        title: '',
-        headerStyle: {
-          shadowColor: 'white'
-        }
-      }} />
+        component={BoxListScreen}
+        options={{
+          title: '',
+          headerStyle: {
+            shadowColor: 'white'
+          },
+          headerTitleStyle: {
+            color: '#fff'
+          }
+        }}
+      />
       <Stack.Screen
         name="Login"
         component={SignInScreenContainer}

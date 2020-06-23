@@ -1,17 +1,15 @@
-import { compose, createStore, applyMiddleware } from 'redux';
-import { createEpicMiddleware } from 'redux-observable';
-import { persistStore, persistReducer, Persistor } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
-import { combineReducers } from 'redux';
-import reduxReset from 'redux-reset';
-import logger from 'redux-logger';
-import axios from 'axios'
+import { applyMiddleware, combineReducers, compose, createStore } from "redux";
+import { createEpicMiddleware } from "redux-observable";
+import { Persistor, persistReducer, persistStore } from "redux-persist";
+import storage from "redux-persist/lib/storage";
+import reduxReset from "redux-reset";
+import logger from "redux-logger";
 
-import rootEpic from '../epic';
-import hardSet from 'redux-persist/es/stateReconciler/hardSet';
-import { reducers } from '../reducer/reducer';
-import { API_BASE } from "../../env/env";
+import rootEpic from "../epic";
+import hardSet from "redux-persist/es/stateReconciler/hardSet";
+import { reducers } from "../reducer/reducer";
 import axiosMiddleware from "redux-axios-middleware";
+import { axiosClient } from "../../util/axios";
 
 const persistConfig = {
   key: 'root',
@@ -21,16 +19,11 @@ const persistConfig = {
   stateReconciler: hardSet
 };
 
-const client = axios.create({ //all axios can be used, shown in axios documentation
-  baseURL: API_BASE,
-  responseType: 'json'
-});
-
 function setupStore() {
   const persistedReducer = persistReducer(persistConfig, combineReducers(reducers));
   const epicMiddleware = createEpicMiddleware();
 
-  const store = createStore(persistedReducer, compose(applyMiddleware(axiosMiddleware(client, {
+  const store = createStore(persistedReducer, compose(applyMiddleware(axiosMiddleware(axiosClient, {
     returnRejectedPromiseOnError: true
   }), epicMiddleware, logger), reduxReset()));
 
@@ -50,3 +43,5 @@ export const createAppStore = () => {
   return { store, persistor };
 };
 
+
+export const { store, persistor } = createAppStore();

@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, TouchableOpacity, Alert } from 'react-native';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { Todo } from '../../typing/todo';
+import { ITodo } from '../../typing/todo';
 import moment from 'moment';
 import i18n from 'i18n-js';
 import { AppText } from '../../component/AppText';
@@ -10,7 +10,7 @@ import { useDispatch } from 'react-redux';
 import { deleteTodoRequest } from '../../redux/action/todo';
 import * as Haptics from 'expo-haptics';
 
-export function DetailFooter({ todo }: { todo: Todo }) {
+export function DetailFooter({ todo }: { todo: ITodo }) {
   const dispatch = useDispatch();
 
   const onDelete = () => {

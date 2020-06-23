@@ -13,7 +13,7 @@ import i18n from 'i18n-js';
 import { faCalendarAlt } from '@fortawesome/free-regular-svg-icons';
 import { DetailFooter } from './DetailFooter';
 import { AppText } from '../../component/AppText';
-import { Todo } from '../../typing/todo';
+import { ITodo } from '../../typing/todo';
 
 function OperationItem({ text, faIcon, iconColor }: { text: string; faIcon: IconProp; iconColor: string }) {
   return (
@@ -50,7 +50,7 @@ function OperationItem({ text, faIcon, iconColor }: { text: string; faIcon: Icon
 export function TodoDetailScreen({ route, navigation }) {
   const { todoID } = route.params;
   const dispatch = useDispatch();
-  const todo: Todo = useSelector((state: AppRootState) => selectTodoByID(state, todoID));
+  const todo: ITodo = useSelector((state: AppRootState) => selectTodoByID(state, todoID));
   const updateTodo = payload => {
     dispatch(updateTodoRequest({ ...todo, ...payload }));
   };

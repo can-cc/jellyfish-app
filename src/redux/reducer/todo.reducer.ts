@@ -1,11 +1,16 @@
 import Actions from '../action/actions';
 import { normalize } from 'normalizr';
 import { GET_TODO_LIST_SUCCESS, UPDATE_TODO_REQUEST } from '../action/todo';
-import { Todo } from '../../typing/todo';
-import { TodoListSchema, TodoSchema } from '../../schema/todo.schema';
+import { ITodo } from '../../typing/todo';
+import { BoxListSchema, TodoListSchema, TodoSchema } from "../../schema/todo.schema";
+import { IBox } from "../../typing/box";
 
 interface TodoMap {
-  [key: string]: Todo;
+  [key: string]: ITodo;
+}
+
+interface BoxMap {
+  [key: string]: IBox;
 }
 
 export interface TodoReducerState {
@@ -13,6 +18,7 @@ export interface TodoReducerState {
   allTodoIDs: string[];
   showDone: boolean;
   entities: {
+    box: BoxMap;
     todo: TodoMap;
   };
 }
@@ -22,6 +28,7 @@ const initState: TodoReducerState = {
   allTodoIDs: [],
   showDone: false,
   entities: {
+    box: {},
     todo: {}
   }
 };
@@ -35,7 +42,7 @@ export function todo(state: TodoReducerState = initState, action): TodoReducerSt
       };
 
     case GET_TODO_LIST_SUCCESS: {
-      const todos: Todo[] = action.payload;
+      const todos: ITodo[] = action.payload;
       const normalized = normalize(todos, TodoListSchema);
 
       return {
@@ -43,6 +50,7 @@ export function todo(state: TodoReducerState = initState, action): TodoReducerSt
         refreshing: false,
         allTodoIDs: normalized.result,
         entities: {
+          ...state.entities,
           todo: {
             ...state.entities.todo,
             ...normalized.entities.todo
@@ -62,6 +70,7 @@ export function todo(state: TodoReducerState = initState, action): TodoReducerSt
       return {
         ...state,
         entities: {
+          ...state.entities,
           todo: {
             ...state.entities.todo,
             [action.payload.id]: action.payload
@@ -70,24 +79,11 @@ export function todo(state: TodoReducerState = initState, action): TodoReducerSt
       };
     }
 
-    // case Actions.CREATE_TODO.SUCCESS: {
-    //   const normalizedData = normalize(action.payload, TodoSchema);
-    //   return {
-    //     ...state,
-    //     allTodoIDs: state.allTodoIDs.concat(normalizedData.result),
-    //     entities: {
-    //       todo: {
-    //         ...state.entities.todo,
-    //         ...normalizedData.entities.todo
-    //       }
-    //     }
-    //   };
-    // }
-
     case Actions.DELETE_TODO.REQUEST: {
       return {
         ...state,
         entities: {
+          ...state.entities,
           todo: {
             ...state.entities.todo,
             [action.payload.id]: {
@@ -97,6 +93,21 @@ export function todo(state: TodoReducerState = initState, action): TodoReducerSt
           }
         }
       };
+    }
+
+    case 'QUERY_BOX_LIST_SUCCESS': {
+      const boxes = action.payload.data;
+      const normalized = normalize(boxes, BoxListSchema);
+      return {
+        ...state,
+        entities: {
+          ...state.entities,
+          box: {
+            ...state.entities.box,
+            ...normalized.entities.Box
+          }
+        }
+      }
     }
 
     case 'SWITCH_TODO_LIST_SHOW_DONE': {

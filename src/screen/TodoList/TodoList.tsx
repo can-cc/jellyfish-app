@@ -1,16 +1,16 @@
 import React from 'react';
-import { Todo } from '../../typing/todo';
+import { ITodo } from '../../typing/todo';
 import { View } from 'react-native';
 import { TodoItem } from './TodoItem';
 
-export function TodoList({ todoList, style }: { todoList: Todo[]; style?: any }) {
+export function TodoList({ todoList, style }: { todoList: ITodo[]; style?: any }) {
   return (
     <View
       style={{
         ...style
       }}
     >
-      {todoList.map((todo: Todo) => {
+      {todoList.map((todo: ITodo) => {
         return <TodoItem key={todo.id} todo={todo} />;
       })}
     </View>
