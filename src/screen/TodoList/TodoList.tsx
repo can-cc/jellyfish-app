@@ -6,9 +6,6 @@ import { useRoute } from '@react-navigation/native';
 import R from 'ramda';
 
 export function TodoList({ todoList, style }: { todoList: ITodo[]; style?: any }) {
-
-
-
   return (
     <View
       style={{

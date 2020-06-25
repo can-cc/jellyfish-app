@@ -28,26 +28,23 @@ export function getTodoListRequest(boxId: string, statusTag?: string): AppAction
   };
 }
 
-
 export const CREATE_TODO_REQUEST = 'CREATE_TODO_REQUEST';
 export const CREATE_TODO_REQUEST_SUCCESS = 'CREATE_TODO_REQUEST_SUCCESS';
 
 export function createTodoRequest(createTodoInput: CreateTodoInput): AppAction {
   return {
     type: CREATE_TODO_REQUEST,
-    payload: createTodoInput
-  };
-}
-
-export function createTodoSuccess(): AppAction {
-  return {
-    type: CREATE_TODO_REQUEST_SUCCESS
+    payload: {
+      request: {
+        url: `/taco`,
+        method: 'post',
+        data: createTodoInput
+      }
+    }
   };
 }
 
 export const UPDATE_TODO_REQUEST = 'UPDATE_TODO_REQUEST';
-export const UPDATE_TODO_REQUEST_SUCCESS = 'UPDATE_TODO_REQUEST_SUCCESS';
-export const UPDATE_TODO_REQUEST_FAILURE = 'UPDATE_TODO_REQUEST_FAILURE';
 
 export function updateTodoRequest(updateTodoInput: UpdateTodoInput): AppAction {
   return {
@@ -56,31 +53,11 @@ export function updateTodoRequest(updateTodoInput: UpdateTodoInput): AppAction {
   };
 }
 
-export function updateTodoSuccess(): AppAction {
-  return {
-    type: CREATE_TODO_REQUEST_SUCCESS
-  };
-}
-
 export const DELETE_TODO_REQUEST = 'DELETE_TODO_REQUEST';
-export const DELETE_TODO_REQUEST_SUCCESS = 'DELETE_TODO_REQUEST_SUCCESS';
-export const DELETE_TODO_REQUEST_FAILURE = 'DELETE_TODO_REQUEST_FAILURE';
 
 export function deleteTodoRequest(deleteTodoInput: DeleteTodoInput): AppAction {
   return {
     type: DELETE_TODO_REQUEST,
     payload: deleteTodoInput
-  };
-}
-
-export function deleteTodoSuccess(): AppAction {
-  return {
-    type: DELETE_TODO_REQUEST_SUCCESS
-  };
-}
-
-export function deleteTodoFailure(): AppAction {
-  return {
-    type: DELETE_TODO_REQUEST_FAILURE
   };
 }

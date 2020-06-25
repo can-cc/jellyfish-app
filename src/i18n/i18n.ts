@@ -1,4 +1,3 @@
-import * as React from 'react';
 import * as Localization from 'expo-localization';
 import i18n from 'i18n-js';
 
@@ -14,7 +13,6 @@ i18n.translations = {
     passwordText: 'Password',
     createTodoCommonFailure: 'Creation failed, please try again',
     createTodoToggleText: 'Add to do',
-    defaultTodoListName: 'Task',
     addDeadlineText: 'Add Deadline',
     createdAtText: 'Created at',
     remindMeText: 'Remind me',
@@ -38,7 +36,6 @@ i18n.translations = {
     passwordText: '密码',
     createTodoCommonFailure: '创建失败，请重试',
     createTodoToggleText: '添加待办事项',
-    defaultTodoListName: '任务',
     addDeadlineText: '添加到期时间',
     createdAtText: '创建于',
     remindMeText: '提醒我',
@@ -53,6 +50,7 @@ i18n.translations = {
     listOption: '列表选项'
   }
 };
+
 // Set the locale once at the beginning of your app.
 i18n.locale = Localization.locale;
 // When a value is missing from a language it'll fallback to another language with the key present.

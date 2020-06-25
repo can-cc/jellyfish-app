@@ -1,19 +1,22 @@
 import React, { useState, useCallback, useRef } from 'react';
-import { View, TextInput } from 'react-native';
+import { View, TextInput, NativeSyntheticEvent, TextInputSubmitEditingEventData } from "react-native";
 import Modal from 'react-native-modal';
 import { AppButton } from '../../component/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
 import { faBell, faCalendar, faListAlt } from '@fortawesome/free-solid-svg-icons';
 import { faCircle } from '@fortawesome/free-regular-svg-icons';
-import { useDispatch } from 'react-redux';
-import { createTodoRequest } from '../../redux/action/todo';
+import { useDispatch, useSelector } from "react-redux";
+import { createTodoRequest, getTodoListRequest } from "../../redux/action/todo";
 import i18n from 'i18n-js';
 import * as Haptics from 'expo-haptics';
+import { AppRootState } from "../../redux/reducer/reducer";
+import Toast from "react-native-root-toast";
 
-export function TodoCreatorModal({ showModal, closeModal }) {
+export function TodoCreatorModal({ showModal, closeModal, onCreated }) {
   const dispatch = useDispatch();
   const [todoContent, setTodoContent] = useState('');
   const textInputNodeRef = useRef<TextInput>();
+  const boxId = useSelector((state: AppRootState) => state.todo.boxId)
 
   const focusRef = useCallback((node: TextInput) => {
     // make keyboard popup more natural
@@ -32,13 +35,30 @@ export function TodoCreatorModal({ showModal, closeModal }) {
     }, 200);
   };
 
-  const submit = () => {
-    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-    dispatch(
+  const submit = (event: NativeSyntheticEvent<TextInputSubmitEditingEventData>) => {
+    event.preventDefault();
+    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success).then();
+    (dispatch(
       createTodoRequest({
+        boxId,
         content: todoContent
       })
-    );
+    ) as any).then(() => {
+      dispatch(getTodoListRequest(boxId))
+      onCreated();
+    }).catch(() => {
+      Toast.show(i18n.t('createTodoCommonFailure'), {
+        duration: Toast.durations.SHORT,
+        position: Toast.positions.BOTTOM,
+        shadow: false,
+        animation: true,
+        hideOnPress: true,
+        delay: 0,
+        containerStyle: {
+          zIndex: 1000000000
+        }
+      });
+    });
     closeModal();
   };
 
@@ -96,7 +116,7 @@ export function TodoCreatorModal({ showModal, closeModal }) {
               fontSize: 18
             }}
             placeholderTextColor="#bbb"
-            onSubmitEditing={() => submit()}
+            onSubmitEditing={(event) => submit(event)}
             underlineColorAndroid="transparent"
             autoCapitalize="none"
             onChangeText={setTodoContent}

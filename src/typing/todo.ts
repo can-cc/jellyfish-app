@@ -4,6 +4,7 @@ export interface ITodo {
   id: string;
   status: TodoStatus;
   content: string;
+  boxId: string;
   detail: string;
   deadline: Date;
   createdAt: Date;
@@ -11,6 +12,7 @@ export interface ITodo {
 }
 
 export interface CreateTodoInput {
+  boxId?: string;
   content: string;
   deadline?: Date;
 }

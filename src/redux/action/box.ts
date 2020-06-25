@@ -9,3 +9,10 @@ export function queryBoxList() {
     }
   }
 }
+
+export function selectBoxId(boxId: string) {
+  return {
+    type: 'SELECT_BOX_ID',
+    payload: boxId
+  }
+}

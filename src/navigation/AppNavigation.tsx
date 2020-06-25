@@ -1,13 +1,10 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { useSelector } from 'react-redux';
-import { AppRootState } from '../redux/reducer/reducer';
 import { SignInScreenContainer } from '../screen/LogIn.screen';
 import { navigationRef } from './RootNavigation';
 import { TodoListScreen } from '../screen/TodoList/TodoListScreen';
 import { TodoDetailScreen } from '../screen/TodoDetail/TodoDetailScreen';
-import i18n from 'i18n-js';
 import { ListMenu } from '../screen/TodoList/ListMenu';
 import { BoxListScreen } from "../screen/BoxList/BoxListScreen";
 import { ListLeftMenu } from "../screen/TodoList/ListLeftMenu";
@@ -15,14 +12,14 @@ import { ListLeftMenu } from "../screen/TodoList/ListLeftMenu";
 const Stack = createStackNavigator();
 
 function Root() {
-  const authToken = useSelector((state: AppRootState) => state.auth.token);
+  // const authToken = useSelector((state: AppRootState) => state.auth.token);
   return (
     <Stack.Navigator>
       <Stack.Screen
         name="TodoList"
         component={TodoListScreen}
         options={{
-          title: i18n.t('defaultTodoListName'),
+          title: '',
           headerStyle: {
             backgroundColor: '#FF8976',
             shadowColor: '#FF8976'

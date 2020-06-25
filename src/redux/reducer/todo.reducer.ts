@@ -1,8 +1,8 @@
 import Actions from '../action/actions';
 import { normalize } from 'normalizr';
-import { GET_TODO_LIST_SUCCESS, UPDATE_TODO_REQUEST } from '../action/todo';
+import { UPDATE_TODO_REQUEST } from '../action/todo';
 import { ITodo } from '../../typing/todo';
-import { BoxListSchema, TodoListSchema, TodoSchema } from "../../schema/todo.schema";
+import { BoxListSchema, TodoListSchema } from "../../schema/todo.schema";
 import { IBox } from "../../typing/box";
 
 interface TodoMap {
@@ -15,8 +15,8 @@ interface BoxMap {
 
 export interface TodoReducerState {
   refreshing: boolean;
-  allTodoIDs: string[];
   showDone: boolean;
+  boxId: string;
   entities: {
     box: BoxMap;
     todo: TodoMap;
@@ -25,7 +25,7 @@ export interface TodoReducerState {
 
 const initState: TodoReducerState = {
   refreshing: false,
-  allTodoIDs: [],
+  boxId: '@ALL',
   showDone: false,
   entities: {
     box: {},
@@ -41,14 +41,12 @@ export function todo(state: TodoReducerState = initState, action): TodoReducerSt
         refreshing: true
       };
 
-    case GET_TODO_LIST_SUCCESS: {
-      const todos: ITodo[] = action.payload;
+    case `GET_TODO_LIST_SUCCESS`: {
+      const todos: ITodo[] = action.payload.data;
       const normalized = normalize(todos, TodoListSchema);
-
       return {
         ...state,
         refreshing: false,
-        allTodoIDs: normalized.result,
         entities: {
           ...state.entities,
           todo: {
@@ -64,6 +62,13 @@ export function todo(state: TodoReducerState = initState, action): TodoReducerSt
         ...state,
         refreshing: false
       };
+    }
+
+    case 'SELECT_BOX_ID': {
+      return {
+        ...state,
+          boxId: action.payload
+      }
     }
 
     case UPDATE_TODO_REQUEST: {
