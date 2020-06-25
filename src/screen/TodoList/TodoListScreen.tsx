@@ -6,15 +6,20 @@ import { getTodoListRequest } from '../../redux/action/todo';
 import { AppRootState } from '../../redux/reducer/reducer';
 import { selectTodoSortByID } from '../../redux/reducer/selector/todo-selector';
 import { TodoList } from './TodoList';
+import { useRoute } from "@react-navigation/native";
+import R from "ramda";
 
 export function TodoListScreen() {
   const dispatch = useDispatch();
-  const getTodoList = () => {
-    dispatch(getTodoListRequest());
+  const getTodoList = (boxId: string) => {
+    dispatch(getTodoListRequest(boxId));
   };
 
+  const route = useRoute();
+  const boxId = R.path(['params', 'boxId'], route);
+
   useEffect(() => {
-    getTodoList();
+    getTodoList(boxId);
   }, []);
 
   const todoList = useSelector(selectTodoSortByID);

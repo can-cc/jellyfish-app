@@ -8,7 +8,10 @@ export function ListLeftMenu() {
   const navigation = useNavigation();
 
   const goBoxList = () => {
-    navigation.navigate("BoxList", {});
+    navigation.reset({
+      index: 0,
+      routes: [{ name: 'BoxList' }]
+    });
   };
 
   return (

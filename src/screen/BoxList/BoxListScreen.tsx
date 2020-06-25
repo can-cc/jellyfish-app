@@ -6,10 +6,14 @@ import { selectBoxes } from "../../redux/reducer/selector/box-selector";
 import { AppRootState } from "../../redux/reducer/reducer";
 import { BoxItem } from "./BoxItem";
 import { faCalendar, faSortAlphaUp, faStar, faSun, faTasks } from "@fortawesome/free-solid-svg-icons";
+import { Divider } from "../../component/Divider";
+import { AppText } from "../../component/AppText";
+import { useNavigation } from "@react-navigation/native";
 
 export function BoxListScreen() {
   const [selectedBoxId, setSelectedBoxId] = useState();
   const dispatch = useDispatch();
+  const navigation = useNavigation();
 
   useEffect(() => {
     dispatch(queryBoxList());
@@ -17,10 +21,15 @@ export function BoxListScreen() {
 
   const boxes = useSelector((state: AppRootState) => selectBoxes(state));
 
-  const onBoxClick = (name: string) => {};
+  const onBoxClick = (boxId: string) => {
+    navigation.navigate("TodoList", {
+      boxId
+    })
+  };
 
   return <View style={{
-    backgroundColor: 'white'
+    backgroundColor: 'white',
+    flex: 1
   }}>
     <View>
       <BoxItem
@@ -60,11 +69,15 @@ export function BoxListScreen() {
       />
     </View>
 
+    <View style={{paddingRight: 13, paddingLeft: 13, marginTop: 8, marginBottom: 8}}>
+      <Divider />
+    </View>
+
     {
       boxes.map(box =>
         <BoxItem
           key={box.id}
-          iconColor="#9FCC2E"
+          iconColor="#354B9E"
           icon={faCalendar}
           name={box.name}
           selected={selectedBoxId === "@SCHEDULE"}

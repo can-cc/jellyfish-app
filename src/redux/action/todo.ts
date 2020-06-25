@@ -1,25 +1,36 @@
-import { ITodo, CreateTodoInput, UpdateTodoInput, DeleteTodoInput } from '../../typing/todo';
+import { CreateTodoInput, UpdateTodoInput, DeleteTodoInput } from '../../typing/todo';
 import { AppAction } from './actions';
 
-export const GET_TODO_LIST_REQUEST = 'GET_TODO_LIST_REQUEST';
-export const GET_TODO_LIST_SUCCESS = 'GET_TODO_LIST_SUCCESS';
 
-export function getTodoListRequest(): AppAction {
+export function getTodoListRequest(boxId: string, statusTag?: string): AppAction {
+  let statusParams;
+  switch (statusTag) {
+    case 'Doing':
+    case 'Done': {
+      statusParams = statusTag;
+      break;
+    }
+    case 'All':
+    default:
+      statusParams = 'Done,Doing';
+  }
   return {
-    type: GET_TODO_LIST_REQUEST
+    type: `GET_TODO_LIST`,
+    payload: {
+      request: {
+        url: `/tacos`,
+        params: {
+          status: statusParams,
+          box: boxId
+        }
+      }
+    }
   };
 }
 
-export function getTodoListSuccess(todos: ITodo[]): AppAction {
-  return {
-    type: GET_TODO_LIST_SUCCESS,
-    payload: todos
-  };
-}
 
 export const CREATE_TODO_REQUEST = 'CREATE_TODO_REQUEST';
 export const CREATE_TODO_REQUEST_SUCCESS = 'CREATE_TODO_REQUEST_SUCCESS';
-export const CREATE_TODO_REQUEST_FAILURE = 'CREATE_TODO_REQUEST_FAILURE';
 
 export function createTodoRequest(createTodoInput: CreateTodoInput): AppAction {
   return {
