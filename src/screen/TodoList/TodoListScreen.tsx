@@ -29,10 +29,12 @@ export function TodoListScreen() {
   const todoList = useSelector(selectTodoSortByID);
   const refreshing = useSelector((state: AppRootState) => state.todo.refreshing);
   const onTodoCreated = () => {
-    if (scrollViewRef.current) {
+    if (!scrollViewRef.current) {
       return;
     }
-    scrollViewRef.current!.scrollToEnd()
+    setTimeout(() => {
+      scrollViewRef.current!.scrollToEnd();
+    }, 180);
   };
 
   return (

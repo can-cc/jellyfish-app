@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
 import { CreateTodoToggle } from './TodoCreatorToggle';
-import { useDispatch } from "react-redux";
 import { TodoCreatorModal } from './TodoCreatorModal';
 
 interface Props {
@@ -9,7 +8,6 @@ interface Props {
 }
 
 export function TodoCreator({onCreated}: Props) {
-  const dispatch = useDispatch();
   const [showModal, setShowModal] = useState(false);
 
   const closeModal = () => {

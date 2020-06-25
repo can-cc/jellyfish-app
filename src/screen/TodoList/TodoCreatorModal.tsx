@@ -35,8 +35,7 @@ export function TodoCreatorModal({ showModal, closeModal, onCreated }) {
     }, 200);
   };
 
-  const submit = (event: NativeSyntheticEvent<TextInputSubmitEditingEventData>) => {
-    event.preventDefault();
+  const submit = () => {
     Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success).then();
     (dispatch(
       createTodoRequest({
@@ -61,6 +60,7 @@ export function TodoCreatorModal({ showModal, closeModal, onCreated }) {
     });
     closeModal();
   };
+
 
   return (
     <Modal
@@ -104,7 +104,7 @@ export function TodoCreatorModal({ showModal, closeModal, onCreated }) {
           <TextInput
             ref={focusRef}
             placeholder={i18n.t('createTodoToggleText')}
-            multiline
+            // multiline  加上之后输入的时候可以显示多行，但是回车的时候会多一行空行，没法处理
             style={{
               width: '100%',
               marginBottom: 4,
@@ -116,7 +116,7 @@ export function TodoCreatorModal({ showModal, closeModal, onCreated }) {
               fontSize: 18
             }}
             placeholderTextColor="#bbb"
-            onSubmitEditing={(event) => submit(event)}
+            onSubmitEditing={() => submit()}
             underlineColorAndroid="transparent"
             autoCapitalize="none"
             onChangeText={setTodoContent}
